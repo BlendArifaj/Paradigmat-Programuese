@@ -1,5 +1,4 @@
 package Functions;
-
 import DataLogic.Studenti;
 
 public interface DepartamentiFunctions {

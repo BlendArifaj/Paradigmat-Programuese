@@ -53,7 +53,7 @@ public class LoginForm {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 935, 606);
+		frame.setBounds(100, 100, 954, 606);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
