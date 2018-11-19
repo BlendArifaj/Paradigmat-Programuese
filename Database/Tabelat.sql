@@ -2,10 +2,22 @@ DROP DATABASE IF EXISTS FIEKDB;
 create database FIEKDB;
 use FIEKDB;
 
+create table Universiteti(
+id int auto_increment primary key,
+universiteti varchar(50));
+
 create table Fakulteti(
 id varchar(10) primary key,
 emri varchar(50) not null,
-adresa varchar(100) not null);
+universitetiId int,
+adresa varchar(100) not null,
+foreign key(universitetiId) references Universiteti(id));
+
+create table Departamenti(
+id varchar(10) primary key,
+departamenti varchar(100) not null,
+fakultetiId varchar(10) not null,
+foreign key(fakultetiId) references Fakulteti(id));
 
 create table Student(
 id varchar(20) not null primary key,
@@ -14,10 +26,10 @@ mbiemri varchar(30) not null,
 email varchar(40) not null,
 passhash varchar(260) not null,
 tel varchar(15),
-fakultetiId varchar(10) not null,
+departamentId varchar(10) not null,
 qyteti varchar(40),
 niveliStudimeve varchar(20) not null,
-foreign key(fakultetiId) references Fakulteti(id));
+foreign key(departamentId) references Departamenti(id));
 
 create table Profesori(
 id varchar(20) not null primary key,
@@ -56,14 +68,14 @@ tema varchar(60) not null,
 permbajtja blob not null ,#65535 bytes
 profesorId varchar(20) not null,
 studentId varchar(20) not null,
-fakultetId varchar(10) not null,
+departamentId varchar(10) not null,
 lendaId int not null,
 dataDorezimit date not null,
 profesoriPergjigje bool,
 administrataPergjigje bool,
 foreign key(profesorId) references Profesori(id),
 foreign key(studentId) references Student(id),
-foreign key(fakultetId) references Fakulteti(id),
+foreign key(departamentId) references Departamenti(id),
 foreign key(lendaId) references Lenda(id));
 
 create table Access(

@@ -9,7 +9,7 @@ IN mbiemri varchar(30),
 IN email varchar(40),
 IN passhash varchar(260),
 IN tel varchar(15),
-IN fakulteti varchar(50),
+IN departamenti varchar(50),
 IN qyteti varchar(40),
 IN niveliStudimeve varchar(20))
 BEGIN
@@ -20,7 +20,7 @@ BEGIN
     email,
     passhash,
     tel,
-    (select f.id from Fakulteti f where f.emri=fakulteti),
+    (select d.id from Departamenti d where d.emri=departamenti),
     qyteti,
     niveliStudimeve);
 END //
@@ -63,11 +63,13 @@ DELIMITER //
 CREATE PROCEDURE insertFakulteti(
 IN id varchar(10),
 IN emri varchar(50),
+IN universiteti varchar(50),
 IN adresa varchar(100))
 BEGIN
 INSERT INTO Fakulteti values(
 id,
 emri,
+(Select u.id from Universiteti u where u.emri = universiteti),
 adresa);
 END //
 DELIMITER //;
@@ -124,7 +126,7 @@ IN tema varchar(60),
 IN permbajtja blob,
 IN profesorId varchar(20),
 IN studentId varchar(20),
-IN fakulteti varchar(50),
+IN departamenti varchar(50),
 IN lenda varchar(30)
 )
 BEGIN
@@ -133,7 +135,7 @@ BEGIN
     permbajtja,
 	profesorId,
 	studentId,
-	(select f.id from Fakulteti f where f.emri=fakulteti),
+	(select d.id from Departamenti d where d.emri=departamenti),
 	(select l.id from lenda l where l.lenda = lenda),
 	(select CURDATE()),
 	FALSE,
@@ -205,5 +207,42 @@ CREATE PROCEDURE getPunimet(
 IN stdID varchar(20))
 BEGIN 
 SELECT * FROM PUNIMI P WHERE P.studentId = stdID;
+END //
+DELIMITER //;
+
+#Procedura e cila e merr nje student te caktuar
+DELIMITER //
+CREATE PROCEDURE getStudenti(
+IN stdID varchar(20))
+BEGIN
+SELECT S.id,S.emri,S.mbiemri,S.email,S.passhash,S.tel,S.niveliStudimeve,D.departamenti,F.emri as Fakulteti,U.universiteti 
+FROM STUDENT S , Departamenti D, Fakulteti F, Universiteti U
+WHERE S.ID = stdID and
+S.departamentId = D.id and
+D.fakultetiId = F.id and 
+F.universitetiId = u.id;
+END //
+DELIMITER //;
+
+#Procedura e cila e merr fakulteti ne baze te emrit 
+DELIMITER //
+CREATE PROCEDURE getFakulteti(
+IN FAKULTETI VARCHAR(50))
+BEGIN
+SELECT F.ID AS ID, F.EMRI AS FAKULTETI, U.UNIVERSITETI AS UNIVERSITETI,F.ADRESA AS ADRESA
+FROM FAKULTETI F,UNIVERSITETI U
+WHERE F.EMRI = FAKULTETI AND 
+F.UNIVERSITETIID = U.ID;
+END //
+DELIMITER //
+
+#Procedura e cila i merr departamentet e fakultetit
+DELIMITER //
+CREATE PROCEDURE getDepartamentetFakultetit(
+IN FID VARCHAR(10))
+BEGIN
+SELECT D.ID AS ID,D.DEPARTAMENTI AS DEPARTAMENTI, F.EMRI AS FAKULTETI
+FROM DEPARTAMENTI D, FAKULTETI F
+WHERE D.ID = FID AND F.ID = FID;
 END //
 DELIMITER //;
