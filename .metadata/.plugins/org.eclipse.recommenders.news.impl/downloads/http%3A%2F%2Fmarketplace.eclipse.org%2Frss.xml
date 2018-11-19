@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xml:base="http://marketplace.eclipse.org/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:og="http://ogp.me/ns#" xmlns:article="http://ogp.me/ns/article#" xmlns:book="http://ogp.me/ns/book#" xmlns:profile="http://ogp.me/ns/profile#" xmlns:video="http://ogp.me/ns/video#" xmlns:product="http://ogp.me/ns/product#" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:sioc="http://rdfs.org/sioc/ns#" xmlns:sioct="http://rdfs.org/sioc/types#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+  <channel>
+    <title>Eclipse Plugins, Bundles and Products - Eclipse Marketplace</title>
+    <link>http://marketplace.eclipse.org/</link>
+    <description></description>
+    <language>en</language>
+     <atom:link href="http://marketplace.eclipse.org/rss.xml" rel="self" type="application/rss+xml" />
+      <item>
+    <title>MoreUnit</title>
+    <link>http://marketplace.eclipse.org/content/moreunit</link>
+    <description>&lt;div class=&quot;field field-name-field-resource-image field-type-image field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;img typeof=&quot;foaf:Image&quot; class=&quot;img-responsive&quot; src=&quot;http://marketplace.eclipse.org/sites/default/files/moreunit-icon-110x80.png&quot; width=&quot;110&quot; height=&quot;80&quot; alt=&quot;&quot; /&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-date-updated field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Updated:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Sat, 2018-11-17 14:26&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;a href=&quot;/search/content/%22-%22&quot;&gt;-&lt;/a&gt;&lt;div class=&quot;field field-name-shared-date-created field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Created:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Mon, 2006-05-01 23:04&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-submitted-by field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Submitted by:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;a href=&quot;/user/vhenneberger/listings&quot; title=&quot;Vera Henneberger&quot;&gt;Vera Henneberger&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-body field-type-text-with-summary field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot; property=&quot;content:encoded&quot;&gt;&lt;p&gt;MoreUnit is an Eclipse plugin that should assist you in writing more unit tests. It supports all programming languages (switching between tests and classes under tests...) and has specific support for Java (creating test stubs, mock support, decoration, refactoring support...).&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description>
+     <pubDate>Tue, 02 May 2006 03:04:24 +0000</pubDate>
+ <dc:creator>vhenneberger</dc:creator>
+ <guid isPermaLink="false">194 at http://marketplace.eclipse.org</guid>
+ <comments>http://marketplace.eclipse.org/content/moreunit#comments</comments>
+  </item>
+  <item>
+    <title>PL/SQL Enterprise Workbench</title>
+    <link>http://marketplace.eclipse.org/content/plsql-enterprise-workbench</link>
+    <description>&lt;div class=&quot;field field-name-field-resource-image field-type-image field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;img typeof=&quot;foaf:Image&quot; class=&quot;img-responsive&quot; src=&quot;http://marketplace.eclipse.org/sites/default/files/default_images/default_2.png&quot; width=&quot;110&quot; height=&quot;80&quot; alt=&quot;&quot; /&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-date-updated field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Updated:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Sat, 2018-11-17 11:08&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;a href=&quot;/search/content/%22Jan%20Richter%2C%20Germany%2C%20Hamburg%22&quot;&gt;Jan Richter, Germany, Hamburg&lt;/a&gt;&lt;div class=&quot;field field-name-shared-date-created field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Created:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Mon, 2017-02-27 18:53&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-submitted-by field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Submitted by:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;a href=&quot;/user/jrichter847/listings&quot; title=&quot;Jan Richter&quot;&gt;Jan Richter&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-body field-type-text-with-summary field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot; property=&quot;content:encoded&quot;&gt;&lt;h4&gt;&lt;strong&gt;PL/SQL Development&lt;/strong&gt;&lt;/h4&gt;
+&lt;ol&gt;&lt;li&gt;The Eclipse-Plugin supports seamless development integration of Java and PL/SQL.&lt;/li&gt;
+&lt;li&gt;The PL/SQL editor works on local files to support the installed scm system like git subversion, etc.&lt;/li&gt;
+&lt;li&gt;The PL/SQL editor compiles all types of stored procedures, triggers and types to the database and marks errors and warnings inside the editor and inside a problem view.&lt;/li&gt;
+&lt;/ol&gt;&lt;h4&gt;&lt;strong&gt;PL/SQL Runtime Integation&lt;/strong&gt;&lt;/h4&gt;
+&lt;ol&gt;&lt;li&gt;The PL/SQL Connector Builder generates pure Java JDBC access code that only requires an Oracle JDBC-driver for seamless runtime integration of Java and PL/SQL.&lt;/li&gt;
+&lt;li&gt;All generated stereotypes are based on core Java EE patterns : implementation classes, service interfaces, transfer objects and service factories.&lt;/li&gt;
+&lt;/ol&gt;&lt;h4&gt;&lt;strong&gt;Supported PL/SQL Connector Builder types&lt;/strong&gt;&lt;/h4&gt;
+&lt;ul&gt;&lt;li&gt;&lt;strong&gt;Raw-JDBC&lt;/strong&gt; : Supports core PL/SQL programs calls and allows own control of transaction handling.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Java-RPC&lt;/strong&gt; : Remote PL/SQL programs calls using a Factory API or Spring API.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PL/SQL Batch/Stream Processor&lt;/strong&gt; : Batch processing of typed cursors based on Raw-JDBC or Java-RPC Connector Builder.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;RMI&lt;/strong&gt; : Call PL/SQL programs from a client using a Factory API or Spring API via a RMI server.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;JEE&lt;/strong&gt; : Generates Java EE session beans to call PL/SQL programs. Optionally generates a remote client to call the Java EE session beans using a Factory API or Spring API.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Spring-HTTP-Remoting&lt;/strong&gt; : Call PL/SQL programs tunneled thru HTTP with Spring HTTP Remoting from a client  with a Factory API or Spring API.&lt;/li&gt;
+&lt;/ul&gt;&lt;h4&gt;&lt;strong&gt;Continues Integration&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;The PL/SQL Connector Builder is implemented as Maven-Plugin as additional download. The PL/SQL Connector Builder Maven-Plugin generates the Java access code during the Maven build process.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Detailed information, examples and download of Maven-Plugin &lt;/strong&gt;:&lt;br /&gt;&lt;a href=&quot;http://www.jr-database-tools.de&quot; rel=&quot;nofollow&quot;&gt;www.jr-database-tools.de&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description>
+     <pubDate>Mon, 27 Feb 2017 23:53:17 +0000</pubDate>
+ <dc:creator>jrichter847</dc:creator>
+ <guid isPermaLink="false">3315242 at http://marketplace.eclipse.org</guid>
+ <comments>http://marketplace.eclipse.org/content/plsql-enterprise-workbench#comments</comments>
+  </item>
+  <item>
+    <title>JHipster IDE</title>
+    <link>http://marketplace.eclipse.org/content/jhipster-ide</link>
+    <description>&lt;div class=&quot;field field-name-field-resource-image field-type-image field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;img typeof=&quot;foaf:Image&quot; class=&quot;img-responsive&quot; src=&quot;http://marketplace.eclipse.org/sites/default/files/JHLogo1.jpg&quot; width=&quot;65&quot; height=&quot;80&quot; alt=&quot;&quot; /&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-date-updated field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Updated:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Fri, 2018-11-16 17:33&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;a href=&quot;/search/content/%22JHipster%20%28Open%20Source%20Community%29%22&quot;&gt;JHipster (Open Source Community)&lt;/a&gt;&lt;div class=&quot;field field-name-shared-date-created field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Created:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Sat, 2016-11-26 14:43&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-submitted-by field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Submitted by:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;a href=&quot;/user/scolameoakt/listings&quot; title=&quot;Serano Colameo&quot;&gt;Serano Colameo&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-body field-type-text-with-summary field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot; property=&quot;content:encoded&quot;&gt;&lt;p&gt;&lt;strong&gt;JHipster IDE&lt;/strong&gt; provides editing support of JHipster Domain Language (JDL) files for pupular IDEs and editors such as Eclipse and Visual Studio Code. &lt;/p&gt;
+&lt;p&gt;The following features are available:&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;Syntax Coloring&lt;/li&gt;
+&lt;li&gt;Error Checking&lt;/li&gt;
+&lt;li&gt;Auto-Completion&lt;/li&gt;
+&lt;li&gt;Formatting&lt;/li&gt;
+&lt;li&gt;Hover Information&lt;/li&gt;
+&lt;li&gt;Mark Occurences&lt;/li&gt;
+&lt;li&gt;Go To Declaration&lt;/li&gt;
+&lt;li&gt;Rename Refactoring&lt;/li&gt;
+&lt;li&gt;Toggle Comments&lt;/li&gt;
+&lt;li&gt;Outline / Structure View&lt;/li&gt;
+&lt;li&gt;Quick Fix Proposals&lt;/li&gt;
+&lt;li&gt;Find References&lt;/li&gt;
+&lt;li&gt;Folding&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;Furthermore, JHipster IDE generates automatically an UML diagram of the JDL file and provides an integration with the Eclipse terminal shell to call JHipster&#039;s Yeoman generator.&lt;/p&gt;
+&lt;p&gt;Another nice feature is Xdocker which allows to edit, build and run Docker files and images generated by JHipster directly from the IDE.&lt;/p&gt;
+&lt;p&gt;Version 1.6.x is an alignment to the newest changes in JDL language (see new deployment syntax).&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description>
+     <pubDate>Sat, 26 Nov 2016 19:43:19 +0000</pubDate>
+ <dc:creator>scolameoakt</dc:creator>
+ <guid isPermaLink="false">3184658 at http://marketplace.eclipse.org</guid>
+ <comments>http://marketplace.eclipse.org/content/jhipster-ide#comments</comments>
+  </item>
+  <item>
+    <title>m2e-apt</title>
+    <link>http://marketplace.eclipse.org/content/m2e-apt</link>
+    <description>&lt;div class=&quot;field field-name-field-resource-image field-type-image field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;img typeof=&quot;foaf:Image&quot; class=&quot;img-responsive&quot; src=&quot;http://marketplace.eclipse.org/sites/default/files/default_images/no_image.png&quot; width=&quot;110&quot; height=&quot;80&quot; alt=&quot;&quot; /&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-date-updated field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Updated:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Fri, 2018-11-16 15:06&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;a href=&quot;/search/content/%22Red%20Hat%22&quot;&gt;Red Hat&lt;/a&gt;&lt;div class=&quot;field field-name-shared-date-created field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Created:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Tue, 2013-10-15 06:17&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-submitted-by field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Submitted by:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;a href=&quot;/user/fbricon/listings&quot; title=&quot;Fred Bricon&quot;&gt;Fred Bricon&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-body field-type-text-with-summary field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot; property=&quot;content:encoded&quot;&gt;&lt;p&gt;m2e-apt aims at providing automatic Annotation Processing configuration in Eclipse, based on your project&#039;s pom.xml and its classpath dependencies (Requires Java &amp;gt;= 1.6).&lt;/p&gt;
+&lt;p&gt;Due to some rogue annotation processors at large, we decided to disable automatic annotation processing by default. By default, your manual settings for Eclipse JDT APT apply. &lt;/p&gt;
+&lt;p&gt;Go to Window &amp;gt; Preferences &amp;gt; Maven &amp;gt; Annotation Processing or right-click on your project Properties &amp;gt; Maven &amp;gt; Annotation Processing to select the Annotation Processing strategy of your choice. m2e-apt supports both Annotation Processing set on the &lt;a href=&quot;http://maven.apache.org/plugins/maven-compiler-plugin/index.html&quot; rel=&quot;nofollow&quot;&gt;maven-compiler-plugin&lt;/a&gt; or the &lt;a href=&quot;https://code.google.com/p/maven-annotation-plugin/&quot; rel=&quot;nofollow&quot;&gt;maven-processor-plugin&lt;/a&gt; (the latter takes precedence over the former).&lt;/p&gt;
+&lt;p&gt;When Annotation Processing is managed by Eclipse JDT APT, any change in your source classes triggers incremental processing automatically, however subtle differences in Annotation classpath might lead to unexpected results. Moreover, main and test sources separation only works in Eclipse Photon or more recent versions.&lt;/p&gt;
+&lt;p&gt;You can change the workspace or project preferences to delegate annotation processing to Maven, instead of JDT APT. This will result in slower incremental builds (all classes will be processed) but will provide identical results to maven command line builds. Note this only works when using maven-processor-plugin. When annotation processing is driven by maven-compiler-plugin, JDT APT is always used in eclipse.&lt;/p&gt;
+&lt;p&gt;See this &lt;a href=&quot;https://community.jboss.org/en/tools/blog/2012/05/20/annotation-processing-support-in-m2e-or-m2e-apt-100-is-out&quot; rel=&quot;nofollow&quot;&gt;blog post&lt;/a&gt; for more informations.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description>
+     <pubDate>Tue, 15 Oct 2013 10:17:36 +0000</pubDate>
+ <dc:creator>fbricon</dc:creator>
+ <guid isPermaLink="false">1216155 at http://marketplace.eclipse.org</guid>
+ <comments>http://marketplace.eclipse.org/content/m2e-apt#comments</comments>
+  </item>
+  <item>
+    <title>eTrice</title>
+    <link>http://marketplace.eclipse.org/content/etrice</link>
+    <description>&lt;div class=&quot;field field-name-field-resource-image field-type-image field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;img typeof=&quot;foaf:Image&quot; class=&quot;img-responsive&quot; src=&quot;http://marketplace.eclipse.org/sites/default/files/etrice-logo-interim.png&quot; width=&quot;110&quot; height=&quot;65&quot; alt=&quot;&quot; /&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-date-updated field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Updated:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Fri, 2018-11-16 11:41&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;a href=&quot;/search/content/%22Protos%20Software%20GmbH%22&quot;&gt;Protos Software GmbH&lt;/a&gt;&lt;div class=&quot;field field-name-shared-date-created field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Created:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Thu, 2011-12-15 13:15&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-submitted-by field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Submitted by:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;a href=&quot;/user/hrentzreich/listings&quot; title=&quot;Henrik Rentz-Reichert&quot;&gt;Henrik Rentz-Reichert&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-body field-type-text-with-summary field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot; property=&quot;content:encoded&quot;&gt;&lt;p&gt;eTrice provides an implementation of the ROOM modeling language together with editors, code generators for Java code and exemplary target middleware (soon a C generator and middleware will follow). The model is defined in textual form (Xtext) with graphical editors (Graphiti) for the structural and behavioral (i.e. state machine) parts.&lt;/p&gt;
+&lt;p&gt;eTrice is all about the reduction of complexity:&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;structural complexity
+&lt;ul&gt;&lt;li&gt;by explicit modeling of hierarchical Actor containment and layering&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;behavioral complexity
+&lt;ul&gt;&lt;li&gt;by hierachical statemachines&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;teamwork complexity
+&lt;ul&gt;&lt;li&gt;because loosely coupled Actors provide a natural way to structure team work&lt;/li&gt;
+&lt;li&gt;since textual model notation allows simple branching and merging&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;complexity of concurrent &amp;amp; distributed systems
+&lt;ul&gt;&lt;li&gt;because loosely coupled Actors are deployable to threads, processes, nodes&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;complexity of variant handling and reuse (e.g. for product lines)
+&lt;ul&gt;&lt;li&gt;by composition of existing Actors to new structures&lt;/li&gt;
+&lt;li&gt;since Protocols and Ports make Actors replaceable&lt;/li&gt;
+&lt;li&gt;by inheritance for structure, behavior and Protocols&lt;/li&gt;
+&lt;li&gt;by making use of model level libraries&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;complexity of debugging
+&lt;ul&gt;&lt;li&gt;model level debugging: state machine animation, data inspection and manipulation, message injection, generated message sequence charts&lt;/li&gt;
+&lt;li&gt;model checking easier for model than for code (detect errors before they occur)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description>
+     <pubDate>Thu, 15 Dec 2011 18:15:06 +0000</pubDate>
+ <dc:creator>hrentzreich</dc:creator>
+ <guid isPermaLink="false">169937 at http://marketplace.eclipse.org</guid>
+ <comments>http://marketplace.eclipse.org/content/etrice#comments</comments>
+  </item>
+  <item>
+    <title>jSparrow - Automatical Java Code Refactoring</title>
+    <link>http://marketplace.eclipse.org/content/jsparrow-automatical-java-code-refactoring</link>
+    <description>&lt;div class=&quot;field field-name-field-resource-image field-type-image field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;img typeof=&quot;foaf:Image&quot; class=&quot;img-responsive&quot; src=&quot;http://marketplace.eclipse.org/sites/default/files/jSparrow_Fluegel_110x80.jpg&quot; width=&quot;110&quot; height=&quot;77&quot; alt=&quot;&quot; /&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-date-updated field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Updated:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Fri, 2018-11-16 06:48&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;a href=&quot;/search/content/%22Splendit%20IT-Consulting%20GmbH%22&quot;&gt;Splendit IT-Consulting GmbH&lt;/a&gt;&lt;div class=&quot;field field-name-shared-date-created field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Created:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Tue, 2017-06-20 11:34&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-submitted-by field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Submitted by:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;a href=&quot;/user/mprehofer/listings&quot; title=&quot;Michaela Prehofer&quot;&gt;Michaela Prehofer&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-body field-type-text-with-summary field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot; property=&quot;content:encoded&quot;&gt;&lt;h3&gt;&lt;strong&gt;NEW RULES FOR JAVA 10!&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Automatical Java Code Refactoring - &lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt; jSparrow &lt;/strong&gt;is an automatic Eclipse PlugIn, which detects and replaces threats in Java sources with a rule based approach. It automatically improves your Java code and &lt;strong&gt;transforms &lt;/strong&gt;it to Java 8/9/10 user-guided and safe.&lt;/p&gt;
+&lt;p&gt;
+jSparrow has a set of &lt;strong&gt;rules &lt;/strong&gt;now, which are grouped into seven categories (see rule matrix in our screenshots) and sets a standard logging:&lt;br /&gt;
+    • String manipulation&lt;br /&gt;
+    • Formatting&lt;br /&gt;
+    • Coding Convention&lt;br /&gt;
+    • Performance&lt;br /&gt;
+    • Readability&lt;br /&gt;
+    • Old language constructs&lt;br /&gt;
+    • Lambda&lt;br /&gt;
+    • Logging&lt;/p&gt;
+&lt;p&gt;
+&lt;strong&gt;Removal &lt;/strong&gt;of potential &lt;strong&gt;bugs and code smells&lt;/strong&gt; is one of the main purposes of jSparrow. jSparrow is very efficient in disposing of these threats with its rules. You can group the profiles into individual &lt;strong&gt;rule profiles&lt;/strong&gt;, which also can be &lt;strong&gt;exported &lt;/strong&gt;and &lt;strong&gt;imported &lt;/strong&gt;to share them within your development team.&lt;/p&gt;
+&lt;p&gt;
+Being up to date with the latest Java standards is nornally requiring a lot of manual software maintenance work. &lt;strong&gt;jSparrow upgrades &lt;/strong&gt;old code-artifacts to new state-of-the-art programming practices. The usage of jSparrow´s &lt;strong&gt;full version&lt;/strong&gt; allows you to save a lot of valuable time, while offering the option of &lt;strong&gt;automatically upgrading&lt;/strong&gt; to the latest version of Java within minutes in a safe way.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;jSparrow &lt;/strong&gt;improved his Preview Wizard and the Summary Page. It now &lt;strong&gt;estimates &lt;/strong&gt;the&lt;strong&gt; time to fix issues&lt;/strong&gt; manually. The preview wizard shows the number of issues fixed and estimates your &lt;strong&gt;saved time&lt;/strong&gt;. (see screenshots or our release notes: &lt;a href=&quot;https://jsparrow.eu/changelog/&quot; rel=&quot;nofollow&quot;&gt;https://jsparrow.eu/changelog/&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;Once you installed jSparrow in your Eclipse – you will SAVE TIME&amp;amp; MONEY in modernizing your Java sources.&lt;strong&gt; &lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;jSparrow is now also available as Mave PlugIn.&lt;/p&gt;
+&lt;p&gt;Next Release: 21.11.2018 - Be aware of two new rules and a new Welcome screen&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;LATEST VERSION:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;jSparrow Release 2.6.0&lt;/p&gt;
+&lt;p&gt;jSparrow Maven PlugIn 1.0.0&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;OUR RELEASE POLICY IS AS FOLLOWS:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Two major releases&lt;/strong&gt; per year&lt;/p&gt;
+&lt;p&gt;    21st June – Midsummer Release&lt;br /&gt;
+ &lt;strong&gt;  &lt;/strong&gt; 21st December – Winter solstice Release&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Monthly Rule releases&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;If we developed new rules, they will be released on the 21st of each month - (if the 21st isn’t an Austrian working day- the release will be postponed one month)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weekly Bugfix &lt;/strong&gt;releases&lt;/p&gt;
+&lt;p&gt;Bugfixes will be released each Tuesday&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Hotfix Releases &lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Hotfix Releases can be deployed any time (hopefully not necessary)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description>
+     <pubDate>Tue, 20 Jun 2017 15:34:11 +0000</pubDate>
+ <dc:creator>mprehofer</dc:creator>
+ <guid isPermaLink="false">3503691 at http://marketplace.eclipse.org</guid>
+ <comments>http://marketplace.eclipse.org/content/jsparrow-automatical-java-code-refactoring#comments</comments>
+  </item>
+  <item>
+    <title>IBM Operational Decision Manager for Developers v 8.10.0 - Rule Designer</title>
+    <link>http://marketplace.eclipse.org/content/ibm-operational-decision-manager-developers-v-8100-rule-designer</link>
+    <description>&lt;div class=&quot;field field-name-field-resource-image field-type-image field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;img typeof=&quot;foaf:Image&quot; class=&quot;img-responsive&quot; src=&quot;http://marketplace.eclipse.org/sites/default/files/default_images/default_2.png&quot; width=&quot;110&quot; height=&quot;80&quot; alt=&quot;&quot; /&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-date-updated field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Updated:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Thu, 2018-11-15 12:13&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;a href=&quot;/search/content/%22IBM%22&quot;&gt;IBM&lt;/a&gt;&lt;div class=&quot;field field-name-shared-date-created field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Created:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Wed, 2018-11-14 09:54&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-submitted-by field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Submitted by:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;a href=&quot;/user/ftrible/listings&quot; title=&quot;François Trible&quot;&gt;François Trible&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-body field-type-text-with-summary field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot; property=&quot;content:encoded&quot;&gt;&lt;p&gt;Rule Designer is the Eclipse-based development environment of IBM Operational Decision Manager for Developers, for making rule applications that automate the implementation of business policies. Developers benefit from a short learning curve, and best-of-class power and efficiency for rule applications development.&lt;/p&gt;
+&lt;p&gt;Rule Designer key features include co-editing and debugging of Java code and rules, auto correction of rules, decision flow control, code-generation wizards, source code control integration, and conflict and redundancy detection.&lt;/p&gt;
+&lt;p&gt;When used with IBM Operational Decision Manager for Developers, Rule Designer completes a collaborative work environment for developers to automate a company&#039;s business policies for in-house or web-based use.&lt;/p&gt;
+&lt;p&gt;For additional information and support, go to the IBM Operational Decision Manager Developer Center (&lt;a href=&quot;https://developer.ibm.com/odm/&quot; rel=&quot;nofollow&quot;&gt;https://developer.ibm.com/odm/&lt;/a&gt;).&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description>
+     <pubDate>Wed, 14 Nov 2018 14:54:03 +0000</pubDate>
+ <dc:creator>ftrible</dc:creator>
+ <guid isPermaLink="false">4370619 at http://marketplace.eclipse.org</guid>
+ <comments>http://marketplace.eclipse.org/content/ibm-operational-decision-manager-developers-v-8100-rule-designer#comments</comments>
+  </item>
+  <item>
+    <title>ESP32 C/C++ Development Tools</title>
+    <link>http://marketplace.eclipse.org/content/esp32-cc-development-tools</link>
+    <description>&lt;div class=&quot;field field-name-field-resource-image field-type-image field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;img typeof=&quot;foaf:Image&quot; class=&quot;img-responsive&quot; src=&quot;http://marketplace.eclipse.org/sites/default/files/default_images/default_2.png&quot; width=&quot;110&quot; height=&quot;80&quot; alt=&quot;&quot; /&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-date-updated field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Updated:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Thu, 2018-11-15 05:54&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;a href=&quot;/search/content/%22Espressif%20Systems%22&quot;&gt;Espressif Systems&lt;/a&gt;&lt;div class=&quot;field field-name-shared-date-created field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Created:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Fri, 2018-10-26 06:44&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-submitted-by field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Submitted by:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;a href=&quot;/user/dyakovlev/listings&quot; title=&quot;Dmitry Yakovlev&quot;&gt;Dmitry Yakovlev&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-body field-type-text-with-summary field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot; property=&quot;content:encoded&quot;&gt;&lt;p&gt;The ESP32 C/C++ Development Tools contains two plug-ins:&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;ESP32 C/C++ OpenOCD Debuging&lt;/li&gt;
+&lt;li&gt;ESP32 C/C++ Cross Compiler&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;The ESP32 C/C++ OpenOCD Debuging provides GDB debug functionality through OpenOCD. The plugin initialize OpenOCD and GDB to debug a user application. Allows to reset the target, collect system view data and configure debug parameters.&lt;/p&gt;
+&lt;p&gt;The ESP32 C/C++ Cross Compiler allows to import Esp32 make projects into the Eclipse.&lt;/p&gt;
+&lt;p&gt;The solution requires preinstalled ESP-IDF framework and OpenOCD binaries for Esp32.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;The ESP-IDF could be downloaded from &lt;a href=&quot;https://github.com/espressif/esp-idf&quot; rel=&quot;nofollow&quot;&gt;https://github.com/espressif/esp-idf&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;The OpenOCD for Esp32 could be downloaded from: &lt;a href=&quot;https://github.com/espressif/openocd-esp32&quot; rel=&quot;nofollow&quot;&gt;https://github.com/espressif/openocd-esp32&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description>
+     <pubDate>Fri, 26 Oct 2018 10:44:38 +0000</pubDate>
+ <dc:creator>dyakovlev</dc:creator>
+ <guid isPermaLink="false">4340518 at http://marketplace.eclipse.org</guid>
+ <comments>http://marketplace.eclipse.org/content/esp32-cc-development-tools#comments</comments>
+  </item>
+  <item>
+    <title>g9 Modeling Tools</title>
+    <link>http://marketplace.eclipse.org/content/g9-modeling-tools</link>
+    <description>&lt;div class=&quot;field field-name-field-resource-image field-type-image field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;img typeof=&quot;foaf:Image&quot; class=&quot;img-responsive&quot; src=&quot;http://marketplace.eclipse.org/sites/default/files/Esito-g9-110x80_0.png&quot; width=&quot;110&quot; height=&quot;80&quot; alt=&quot;&quot; /&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-date-updated field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Updated:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Thu, 2018-11-15 05:26&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;a href=&quot;/search/content/%22Esito%22&quot;&gt;Esito&lt;/a&gt;&lt;div class=&quot;field field-name-shared-date-created field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Created:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Mon, 2017-06-26 10:27&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-submitted-by field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Submitted by:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;a href=&quot;/user/dbyesen/listings&quot; title=&quot;Dag Bøyesen&quot;&gt;Dag Bøyesen&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-body field-type-text-with-summary field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot; property=&quot;content:encoded&quot;&gt;&lt;p&gt;Are you developing Java applications that are taking forever to complete? Have you considered implementing web based UIs using React along with RESTful web services, but the time to code is overwhelming? Are your domain experts frequently changing their business requirements resulting in major code rewrites? If so, consider the &lt;strong&gt;g9 &lt;/strong&gt;Low-Code Modeling and code generation tools.&lt;/p&gt;
+&lt;p&gt;As a low-code development platform, &lt;strong&gt;g9&lt;/strong&gt; is a suite of Eclipse plugins that integrates with the Java Development Tools that can manage the complexities of application development. It follows a domain driven methodology with automatic code generation providing visual UI design tools. Domain experts can focus their efforts on the domain logic and capture the knowledge in a domain model. The g9 tools can import the domain model into its workspace and allow users to add abstract data, model user interfaces using the WYSIWYG visual editor, model databases and specify web services. Using the supplied generators, both front-end and back-end application code can be generated, some of which make use of the included runtime libraries. This eliminates the need to code much application functionality.&lt;/p&gt;
+&lt;p&gt;Install &lt;strong&gt;g9 Modeling Tools&lt;/strong&gt;, restart Eclipse and open the g9 perspective. Select &lt;strong&gt;File &amp;gt; New &amp;gt; Example...&lt;/strong&gt; to open an existing example project (see the Screenshots).&lt;/p&gt;
+&lt;p&gt;Complete documentation is available from &lt;strong&gt;Help &amp;gt; Help Contents&lt;/strong&gt;. Select &lt;strong&gt;g9 Documentation &amp;gt;  Getting Started &amp;gt; Getting started with g9&lt;/strong&gt; or download the pdf from &lt;a href=&quot;http://www.esito.no/dl/GettingStartedWithg9Modeling.pdf&quot; rel=&quot;nofollow&quot;&gt;http://www.esito.no/dl/GettingStartedWithg9Modeling.pdf&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;g9 Modeling Tools&lt;/strong&gt; help programmers become more efficient and more consistent by generating code, saving you time and money. Included with g9 are a series of generators used to generate the various parts of a java application utilizing various frameworks including Hibernate, Spring and Castor. Front-end supported UIs include React, ICEfaces, Angular/Bootstrap and Swing. Written in Xtend, the g9 generators are very readable and more concise than straight Java although generators can be written in any JVM compatible language (e.g. Java/Scala). Also, generators can be copied to create new variants or they can be modified to adhere to company standards and adapt best practices. You may even create a generator for another language. As business requirements change, the domain model can be updated and code regenerated without worrying about overwriting custom handwritten code. If you are spending too much time writing boilerplate code and implementing changing business requirements into your existing application, consider moving to a &lt;strong&gt;g9 low-code&lt;/strong&gt; development environment.&lt;/p&gt;
+&lt;p&gt;To do this you need the following:&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;The g9 Eclipse plugins.&lt;/li&gt;
+&lt;li&gt;A code generator. Included with g9 are Dialog generators for developing user interfaces, Domain generators for generating java classes, Web Service generators, Object Selection generators for CRUD services and SOAP message generation and Database generators for Hibernate mapping and schema scripts (For a full list of the g9 generators, please visit &lt;a href=&quot;http://www.esito.no/en/generators&quot; rel=&quot;nofollow&quot;&gt;http://www.esito.no/en/generators&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;A supported domain model. These include a UML model using Enterprise Architect, an Ecore/Xcore model using the Eclipse Modeling Framework or a WSDL document,  Also supported is using Java source code with annotations to describe the domain model. You can also connect to an existing database and convert the database schema to an Ecore/Xcore model or to Java source.&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;Download and try out g9 and check if this is something you and your team can benefit from.&lt;/p&gt;
+&lt;p&gt;Please visit &lt;a href=&quot;http://www.esito.no/en/download&quot; rel=&quot;nofollow&quot;&gt;http://www.esito.no/en/download&lt;/a&gt; for more information.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description>
+     <pubDate>Mon, 26 Jun 2017 14:27:28 +0000</pubDate>
+ <dc:creator>dbyesen</dc:creator>
+ <guid isPermaLink="false">3512486 at http://marketplace.eclipse.org</guid>
+ <comments>http://marketplace.eclipse.org/content/g9-modeling-tools#comments</comments>
+  </item>
+  <item>
+    <title>iText 7 pdfDebug</title>
+    <link>http://marketplace.eclipse.org/content/itext-7-pdfdebug</link>
+    <description>&lt;div class=&quot;field field-name-field-resource-image field-type-image field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;img typeof=&quot;foaf:Image&quot; class=&quot;img-responsive&quot; src=&quot;http://marketplace.eclipse.org/sites/default/files/pdfDebugRGB2-110x80_0.png&quot; width=&quot;110&quot; height=&quot;80&quot; alt=&quot;&quot; /&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-date-updated field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Updated:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Thu, 2018-11-15 04:26&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;a href=&quot;/search/content/%22iText%20Software%22&quot;&gt;iText Software&lt;/a&gt;&lt;div class=&quot;field field-name-shared-date-created field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Created:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Fri, 2016-09-30 11:17&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-submitted-by field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Submitted by:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;a href=&quot;/user/avangasse/listings&quot; title=&quot;Amedee Van Gasse&quot;&gt;Amedee Van Gasse&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-body field-type-text-with-summary field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot; property=&quot;content:encoded&quot;&gt;&lt;h2&gt;Program PDF with a crystal-clear view&lt;/h2&gt;
+&lt;h4&gt; &lt;/h4&gt;
+&lt;p&gt;While you’re making PDF files and an error occurs, tracing where the problem is located can be hard. That’s why iText has developed the pdfDebug add-on, which allows you to view your PDF file’s internal content structure, content streams and allows you to browse the document in a logical manner. It is a highly practical tool and currently the only one of its kind.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;iText 7 pdfDebug: Key advantages&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;Only PDF programming debugging tool in the world&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Integrated into your own development environment&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Saves time by letting you catch and correct bugs quickly&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Reflects the internal logic and structure of your documents&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;Integrated into your development tools&lt;/h2&gt;
+&lt;p&gt;One of pdfDebug’s most conspicuous features is that you can make it a seamless part of your integrated development environment. With a clear debugging overview, you can quickly locate and fix bugs in your content streams or data structure right at the source without requiring frustrating and time-consuming searches.&lt;/p&gt;
+&lt;h2&gt;The strength of structure&lt;/h2&gt;
+&lt;p&gt;pdfDebug illuminates the advantages of creating PDFs with iText 7 – where most generic PDF tools only allow the creation of &quot;flat&quot; PDF files, iText 7 can embed rich content and metadata that makes using a debugging tool all the more rewarding. With a clear debugging overview, you can quickly locate and fix bugs in your content streams or data structure right at the source without requiring frustrating and time-consuming searches.&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description>
+     <pubDate>Fri, 30 Sep 2016 15:17:48 +0000</pubDate>
+ <dc:creator>avangasse</dc:creator>
+ <guid isPermaLink="false">3098725 at http://marketplace.eclipse.org</guid>
+ <comments>http://marketplace.eclipse.org/content/itext-7-pdfdebug#comments</comments>
+  </item>
+  </channel>
+</rss>

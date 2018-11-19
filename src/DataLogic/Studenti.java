@@ -94,5 +94,7 @@ public class Studenti extends Person implements StudentiFunctions{
 		newPunim.setFakulteti(this.fakulteti);
 		return newPunim.insertNewPunim();
 	}
-	
+	public void getStudenti() {
+		//Procedura e cila ka me perdor ID e studentit dhe ka me i mbush vlerat tjera te studentit		
+	}
 }
