@@ -1,5 +1,7 @@
 package Business;
 import DataLogic.Hash;
+import Functions.LoginFunctions;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -7,7 +9,7 @@ import java.util.List;
 
 import DataLogic.DBConnect;
 
-public class Login {
+public class Login implements LoginFunctions{
 	
 	private String username = "";
 	private String password = "";
@@ -21,16 +23,15 @@ public class Login {
 		this.password = _password;
 		this.setParameters();
 		this.isCorrect= this.kontrolloPW();
-	}
-	public Login() {
 		
 	}
-	
-	private Boolean kontrolloPW() {
+	public Login() {
+
+	}	
+	public Boolean kontrolloPW() {
 		return this.userStoredHash.equals(Hash.saltedHashString(this.password,this.username));
 	}
-	
-	private void setParameters() {
+	public void setParameters() {
 		DBConnect objDB = new DBConnect("FIEKDB");
 		List<Object> param = new ArrayList<Object>();
 		param.add(this.username);
@@ -47,11 +48,9 @@ public class Login {
 		}	
 		objDB.terminate();
 	}
-	
 	public int getAccess() {
 		return this.access;
 	}
-	
 	public String getLloji() {
 		return this.lloji;
 	}

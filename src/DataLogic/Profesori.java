@@ -8,10 +8,12 @@ import Functions.ProfesoriFunctions;
 public class Profesori extends Person implements ProfesoriFunctions {
 	private List<String> fakulteti;
 	private List<String> lenda;
+	private boolean isChecked = false;
 	public Profesori(String ID,String emri,String mbiemri,String email,String pass,String tel,String titulli,List<String> fakulteti,List<String> lenda) {
 		super(ID,emri,mbiemri,email,pass,tel);
 		this.fakulteti = fakulteti;
 		this.lenda = lenda;
+		this.isChecked = false;
 	}
 	public List<String> getLenda() {
 		return this.lenda;

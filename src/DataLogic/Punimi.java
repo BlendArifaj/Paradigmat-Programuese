@@ -3,12 +3,15 @@ package DataLogic;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
+import Functions.PunimiFunctions;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.io.IOException;
 import java.nio.file.Files;
 
-public class Punimi {
+public class Punimi implements PunimiFunctions{
 	private int ID = 0;
 	private String titulli = null;
 	private String profesorID = null;
@@ -33,14 +36,12 @@ public class Punimi {
 		this.administratPergjigje = administratPergjigje;
 		this.permbajtja = permbajtja;
 	}
-
 	public Punimi(String titulli,String profesori, String lenda,String pathToPermbajtja) {
 		this.titulli = titulli;
 		this.profesorID = profesori;
 		this.lenda = lenda;
 		this.permbajtja = this.getPermbajtja(pathToPermbajtja);
 	}
-	
 	public boolean insertNewPunim() {
 		try {
 			DBConnect objDB = new DBConnect("FIEKDB");
@@ -61,7 +62,6 @@ public class Punimi {
 			return false;
 		}		
 	}
-	
 	public byte[] getPermbajtja(String path) {
 		try {
 			Path pdfPath = Paths.get(path);
@@ -71,7 +71,6 @@ public class Punimi {
 			return null;
 		}
 	}
-	
 	public int getID() {
 		return ID;
 	}
