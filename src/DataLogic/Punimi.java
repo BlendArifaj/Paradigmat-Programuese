@@ -16,20 +16,20 @@ public class Punimi implements PunimiFunctions{
 	private String titulli = null;
 	private String profesorID = null;
 	private String studentID = null;
-	private String fakulteti = null;
+	private String departamenti = null;
 	private String dataDorezimit = null;
 	private String lenda = null;
 	private boolean profesorPergjigje = false;
 	private boolean administratPergjigje = false; 
 	private byte[] permbajtja = null;
 	
-	public Punimi(int iD, String titulli, String profesorID, String studentID, String fakulteti, String dataDorezimit,
+	public Punimi(int iD, String titulli, String profesorID, String studentID, String departamenti, String dataDorezimit,
 			String lenda, boolean profesorPergjigje, boolean administratPergjigje, byte[] permbajtja) {
 		this.ID = iD;
 		this.titulli = titulli;
 		this.profesorID = profesorID;
 		this.studentID = studentID;
-		this.fakulteti = fakulteti;
+		this.departamenti = departamenti;
 		this.dataDorezimit = dataDorezimit;
 		this.lenda = lenda;
 		this.profesorPergjigje = profesorPergjigje;
@@ -50,7 +50,7 @@ public class Punimi implements PunimiFunctions{
 			param.add(this.permbajtja);
 			param.add(this.profesorID);
 			param.add(this.studentID);
-			param.add(this.fakulteti);
+			param.add(this.departamenti);
 			param.add(this.lenda);
 			ResultSet res = objDB.executeProcedure("insertPunim", param);
 			objDB.terminate();
@@ -95,11 +95,11 @@ public class Punimi implements PunimiFunctions{
 	public void setStudentID(String studentID) {
 		this.studentID = studentID;
 	}
-	public String getFakulteti() {
-		return fakulteti;
+	public String getDepartamenti() {
+		return this.departamenti;
 	}
-	public void setFakulteti(String fakultet) {
-		this.fakulteti = fakultet;
+	public void setDepartamenti(String departamenti) {
+		this.departamenti= departamenti;
 	}
 	public String getDataDorezimit() {
 		return dataDorezimit;

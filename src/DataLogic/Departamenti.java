@@ -12,7 +12,7 @@ public class Departamenti implements DepartamentiFunctions{
 		
 	}
 	
-	public Departamenti(int deptID,String fakulteti, String departamenti){
+	public Departamenti(int deptID, String departamenti,String fakulteti){
 		this.deptID = deptID;
 		this.fakulteti = fakulteti;
 		this.deparamenti = departamenti;
