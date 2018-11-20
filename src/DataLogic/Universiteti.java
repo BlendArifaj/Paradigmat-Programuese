@@ -34,6 +34,7 @@ public class Universiteti {
 		this.fakultetet = fakultetet;
 	}
 	public List<Fakulteti> fakultetet(){
+		//PROCEDUREN
 		List<Fakulteti> fakultetet = new ArrayList<Fakulteti>();
 		try {
 			DBConnect objDB = new DBConnect("FIEKDB");
@@ -53,6 +54,7 @@ public class Universiteti {
 		return fakultetet;
 	}
 	public void inicializoUniversitetin(String emri) {
+		//PROCEDUREN
 		try {
 			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();

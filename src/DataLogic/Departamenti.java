@@ -14,20 +14,18 @@ public class Departamenti implements DepartamentiFunctions{
 	public Departamenti() {
 		
 	}
-	
 	public Departamenti(int deptID, String departamenti,String fakulteti){
 		this.ID = deptID;
 		this.fakulteti.inicializoFakultetin(fakulteti);
 		this.deparamenti = departamenti;
 	}
-	
 	public void getPunimet() {
 		
 	}
-	public int getDeptID() {
+	public int getID() {
 		return this.ID;
 	}
-	public void setDeptID(int deptID) {
+	public void setID(int deptID) {
 		this.ID = deptID;
 	}
 	public Fakulteti getFakulteti() {
@@ -43,15 +41,23 @@ public class Departamenti implements DepartamentiFunctions{
 		this.deparamenti = deparamenti;
 	}
 	public Studenti getStudentWithMaxPunimeDepartament() {
-		
+		//PROCEDUREN
 		Studenti student = new Studenti();
+		try {
+			DBConnect objDB = new DBConnect("FIEKDB");
+			List<Object> param = new ArrayList<Object>();
+			ResultSet res = objDB.executeProcedure("getStudentWithMaxPunimeDepartament", param);
+			while(res.next()) {
+				student.getStudenti(res.getString("id"));
+			}
+			objDB.terminate();
+		} catch (Exception e) {
+		
+		}
 		return student;
 	}
-	public void getBestDepartament() {
-		//Procedura e cila e merr ID e departamentit, i cili ka me se shumti punime
-		//Pastaj duke u bazuar ne ID e bene inicializimin e departamentit
-	}
 	public void inicializoDepartamentin(String emri) {
+		//PROCEDUREN
 		try {
 			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();
@@ -67,7 +73,5 @@ public class Departamenti implements DepartamentiFunctions{
 		
 		}
 	}
-
-
 }
 

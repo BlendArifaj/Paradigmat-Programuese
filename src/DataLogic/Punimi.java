@@ -14,11 +14,11 @@ import java.nio.file.Files;
 public class Punimi implements PunimiFunctions{
 	private int ID = 0;
 	private String titulli = null;
-	private String profesorID = null;
-	private String studentID = null;
-	private String departamenti = null;
+	private Profesori profesori = new Profesori();
+	private Studenti studenti = new Studenti();
+	private Departamenti departamenti = new Departamenti();
 	private String dataDorezimit = null;
-	private String lenda = null;
+	private Lenda lenda = new Lenda();
 	private boolean profesorPergjigje = false;
 	private boolean administratPergjigje = false; 
 	private byte[] permbajtja = null;
@@ -27,31 +27,33 @@ public class Punimi implements PunimiFunctions{
 			String lenda, boolean profesorPergjigje, boolean administratPergjigje, byte[] permbajtja) {
 		this.ID = iD;
 		this.titulli = titulli;
-		this.profesorID = profesorID;
-		this.studentID = studentID;
-		this.departamenti = departamenti;
+		this.profesori.getProfesori(profesorID);
+		this.studenti.getStudenti(studentID);
+		this.departamenti.inicializoDepartamentin(departamenti);
 		this.dataDorezimit = dataDorezimit;
-		this.lenda = lenda;
+		this.lenda.getLenden(lenda);
 		this.profesorPergjigje = profesorPergjigje;
 		this.administratPergjigje = administratPergjigje;
 		this.permbajtja = permbajtja;
 	}
-	public Punimi(String titulli,String profesori, String lenda,String pathToPermbajtja) {
+	
+	public Punimi(String titulli,String profesorID, String lenda,String pathToPermbajtja) {
 		this.titulli = titulli;
-		this.profesorID = profesori;
-		this.lenda = lenda;
+		this.profesori.getProfesori(profesorID);
+		this.lenda.getLenden(lenda);
 		this.permbajtja = this.getPermbajtja(pathToPermbajtja);
 	}
+	
 	public boolean insertNewPunim() {
 		try {
 			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();
 			param.add(this.titulli);
 			param.add(this.permbajtja);
-			param.add(this.profesorID);
-			param.add(this.studentID);
+			param.add(this.profesori.getID());
+			param.add(this.studenti.getID());
 			param.add(this.departamenti);
-			param.add(this.lenda);
+			param.add(this.lenda.getLenda());
 			ResultSet res = objDB.executeProcedure("insertPunim", param);
 			objDB.terminate();
 			if(!objDB.isOk) {
@@ -83,22 +85,22 @@ public class Punimi implements PunimiFunctions{
 	public void setTitulli(String titulli) {
 		this.titulli = titulli;
 	}
-	public String getProfesorID() {
-		return profesorID;
+	public Profesori getProfesori() {
+		return this.profesori;
 	}
-	public void setProfesorID(String profesorID) {
-		this.profesorID = profesorID;
+	public void setProfesori(Profesori profesor) {
+		this.profesori = profesor;
 	}
-	public String getStudentID() {
-		return studentID;
+	public Studenti getStudenti() {
+		return this.studenti;
 	}
-	public void setStudentID(String studentID) {
-		this.studentID = studentID;
+	public void setStudenti(Studenti student) {
+		this.studenti = student;
 	}
-	public String getDepartamenti() {
+	public Departamenti getDepartamenti() {
 		return this.departamenti;
 	}
-	public void setDepartamenti(String departamenti) {
+	public void setDepartamenti(Departamenti departamenti) {
 		this.departamenti= departamenti;
 	}
 	public String getDataDorezimit() {
@@ -107,10 +109,10 @@ public class Punimi implements PunimiFunctions{
 	public void setDataDorezimit(String dataDorezimit) {
 		this.dataDorezimit = dataDorezimit;
 	}
-	public String getLenda() {
-		return lenda;
+	public Lenda getLenda() {
+		return this.lenda;
 	}
-	public void setLenda(String lenda) {
+	public void setLenda(Lenda lenda) {
 		this.lenda = lenda;
 	}
 	public boolean isProfesorPergjigje() {

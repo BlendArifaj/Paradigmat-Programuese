@@ -1,5 +1,7 @@
 package Functions;
 
-public interface AdministrataFunctions {
+import DataLogic.Profesori;
 
+public interface AdministrataFunctions {
+	public boolean aprovoProfesorin(Profesori prof);
 }

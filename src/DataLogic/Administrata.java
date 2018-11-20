@@ -1,4 +1,8 @@
 package DataLogic;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
 import Functions.AdministrataFunctions;
 
 public class Administrata extends Person implements AdministrataFunctions{
@@ -27,6 +31,20 @@ public class Administrata extends Person implements AdministrataFunctions{
 	}
 	public void setFakulteti(String fakulteti) {
 		this.fakulteti = fakulteti;
+	}
+	public boolean aprovoProfesorin(Profesori prof) {
+		//PROCEDUREN
+		try {
+			DBConnect objDB = new DBConnect("FIEKDB");
+			List<Object> param = new ArrayList<Object>();
+			param.add(prof.getID());
+			ResultSet res = objDB.executeProcedure("aprovoProfesorin", param);
+			objDB.terminate();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+		
 	}
 
 }

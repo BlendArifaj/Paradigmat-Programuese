@@ -40,8 +40,7 @@ public class Studenti extends Person implements StudentiFunctions{
 	}
 	public void setNiveliStudimeve(String niveliStudimeve) {
 		this.niveliStudimeve = niveliStudimeve;
-	}
-	
+	}	
 	public Universiteti getUniversiteti() {
 		return universiteti;
 	}
@@ -80,7 +79,6 @@ public class Studenti extends Person implements StudentiFunctions{
 	}	
 	public List<Punimi> getPunimet(){
 		List<Punimi> returnPunimet = new ArrayList<Punimi>();
-		//Ka mbet me shkru pjesen e kodit ku mirren te gjith punimet per kete student
 		try {
 			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();
@@ -102,16 +100,14 @@ public class Studenti extends Person implements StudentiFunctions{
 		} catch (Exception e) {
 			return null;
 		}
-		//
 	}
 	public boolean addPunimi(Punimi newPunim) {
-		newPunim.setStudentID(this.ID);
-		newPunim.setDepartamenti(this.departamenti.getDeparamenti());
+		newPunim.setStudenti(this);
+		newPunim.setDepartamenti(this.departamenti);
 		return newPunim.insertNewPunim();
 	}
-	
 	public void getStudenti(String stdId){
-		//Procedura e cila ka me perdor ID e studentit dhe ka me i mbush vlerat tjera te studentit	
+		//PROCEDUREN
 		try {
 			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();
