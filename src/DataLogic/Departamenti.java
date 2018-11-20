@@ -1,20 +1,23 @@
 package DataLogic;
 
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
 import Functions.DepartamentiFunctions;
 
 public class Departamenti implements DepartamentiFunctions{
-	private int deptID;
-	private String fakulteti;
-	private String fakultetiId;
+	private int ID;
 	private String deparamenti;
+	private Fakulteti fakulteti = new Fakulteti();
 	
 	public Departamenti() {
 		
 	}
 	
 	public Departamenti(int deptID, String departamenti,String fakulteti){
-		this.deptID = deptID;
-		this.fakulteti = fakulteti;
+		this.ID = deptID;
+		this.fakulteti.inicializoFakultetin(fakulteti);
 		this.deparamenti = departamenti;
 	}
 	
@@ -22,22 +25,16 @@ public class Departamenti implements DepartamentiFunctions{
 		
 	}
 	public int getDeptID() {
-		return this.deptID;
+		return this.ID;
 	}
 	public void setDeptID(int deptID) {
-		this.deptID = deptID;
+		this.ID = deptID;
 	}
-	public String getFakulteti() {
+	public Fakulteti getFakulteti() {
 		return this.fakulteti;
 	}
-	public void setFakulteti(String fakulteti) {
+	public void setFakulteti(Fakulteti fakulteti) {
 		this.fakulteti = fakulteti;
-	}
-	public String getFakultetiId() {
-		return this.fakultetiId;
-	}
-	public void setFakultetiId(String fakultetiId) {
-		this.fakultetiId = fakultetiId;
 	}
 	public String getDeparamenti() {
 		return this.deparamenti;
@@ -54,8 +51,23 @@ public class Departamenti implements DepartamentiFunctions{
 		//Procedura e cila e merr ID e departamentit, i cili ka me se shumti punime
 		//Pastaj duke u bazuar ne ID e bene inicializimin e departamentit
 	}
-	public void setDepartament() {
-		//Tu u bazu ne ID me ba inicializimin e variablave tjera
+	public void inicializoDepartamentin(String emri) {
+		try {
+			DBConnect objDB = new DBConnect("FIEKDB");
+			List<Object> param = new ArrayList<Object>();
+			param.add(emri);
+			ResultSet res = objDB.executeProcedure("getDepartamenti", param);
+			while(res.next()) {
+				this.ID = res.getInt("id");
+				this.deparamenti = res.getString("deparamenti");
+				this.fakulteti.inicializoFakultetin(res.getString("fakulteti"));
+			}
+			objDB.terminate();
+		} catch (Exception e) {
+		
+		}
 	}
+
+
 }
 

@@ -6,16 +6,16 @@ import Functions.StudentiFunctions;
 
 public class Studenti extends Person implements StudentiFunctions{
 	
-	private String universiteti = null;
-	private String fakulteti = null;
-	private String departamenti = null;
+	private Universiteti universiteti = new Universiteti();
+	private Fakulteti fakulteti = new Fakulteti();
+	private Departamenti departamenti = new Departamenti();
 	private String qyteti = null;
 	private String niveliStudimeve = null;
-	private List<Punimi> punimet = null;
+	private List<Punimi> punimet = new ArrayList<Punimi>();
 	
 	public Studenti(String ID,String emri,String mbiemri,String email,String pass,String tel, String departamenti, String qyteti,String niveliStudimeve) {
 		super(ID,emri,mbiemri,email,pass,tel);
-		this.departamenti = departamenti;
+		this.departamenti.inicializoDepartamentin(departamenti);
 		this.qyteti = qyteti;
 		this.niveliStudimeve = niveliStudimeve;
 		this.punimet = this.getPunimet();
@@ -23,10 +23,10 @@ public class Studenti extends Person implements StudentiFunctions{
 	public Studenti() {
 		super();
 	}
-	public String getFakulteti() {
+	public Fakulteti getFakulteti() {
 		return fakulteti;
 	}
-	public void setFakulteti(String fakulteti) {
+	public void setFakulteti(Fakulteti fakulteti) {
 		this.fakulteti = fakulteti;
 	}
 	public String getQyteti() {
@@ -42,16 +42,16 @@ public class Studenti extends Person implements StudentiFunctions{
 		this.niveliStudimeve = niveliStudimeve;
 	}
 	
-	public String getUniversiteti() {
+	public Universiteti getUniversiteti() {
 		return universiteti;
 	}
-	public void setUniversiteti(String universiteti) {
+	public void setUniversiteti(Universiteti universiteti) {
 		this.universiteti = universiteti;
 	}
-	public String getDepartamenti() {
+	public Departamenti getDepartamenti() {
 		return departamenti;
 	}
-	public void setDepartamenti(String departamenti) {
+	public void setDepartamenti(Departamenti departamenti) {
 		this.departamenti = departamenti;
 	}
 	public Boolean insertNewStudent() {
@@ -106,7 +106,7 @@ public class Studenti extends Person implements StudentiFunctions{
 	}
 	public boolean addPunimi(Punimi newPunim) {
 		newPunim.setStudentID(this.ID);
-		newPunim.setDepartamenti(this.departamenti);
+		newPunim.setDepartamenti(this.departamenti.getDeparamenti());
 		return newPunim.insertNewPunim();
 	}
 	
@@ -126,9 +126,9 @@ public class Studenti extends Person implements StudentiFunctions{
 				this.tel = res.getString("tel");
 				this.niveliStudimeve = res.getString("niveliStudimeve");
 				this.qyteti = res.getString("qyteti");
-				this.departamenti = res.getString("departamenti");
-				this.fakulteti = res.getString("Fakulteti");
-				this.universiteti = res.getString("universiteti");
+				this.departamenti.inicializoDepartamentin(res.getString("departamenti"));
+				this.fakulteti.inicializoFakultetin(res.getString("Fakulteti"));
+				this.universiteti.inicializoUniversitetin(res.getString("universiteti"));
 				this.punimet = this.getPunimet();
 			}
 			objDB.terminate();

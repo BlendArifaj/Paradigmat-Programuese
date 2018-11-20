@@ -7,14 +7,18 @@ public class Fakulteti {
 	private String ID;
 	private String emri;
 	private String adresa;
-	private String universiteti;
-	private List<Departamenti> departamentet;
-	public Fakulteti(String ID, String emri,String universiteti,String adresa) {
+	private Universiteti universiteti = new Universiteti();
+	private List<Departamenti> departamentet = new ArrayList<Departamenti>();
+	public Fakulteti(String ID, String emri,Universiteti universiteti,String adresa) {
 		this.ID = ID;
 		this.emri = emri;
 		this.universiteti = universiteti;
 		this.adresa = adresa;
 		this.departamentet = this.getDepartamentet();
+	}
+	public Fakulteti()
+	{
+		
 	}
 	public List<Departamenti> getDepartamentet() {
 		List<Departamenti> departamentet = new ArrayList<Departamenti>();
@@ -92,8 +96,7 @@ public class Fakulteti {
 	public void setAdresa(String adresa) {
 		this.adresa = adresa;
 	}
-	public void getFakulteti(String fakulteti) {
-		//Procedura e cila e bene inicimin e fakulteti ne baze te emrit te dhene si parameter ne funksion
+	public void inicializoFakultetin(String fakulteti) {
 		try {
 			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();
@@ -102,7 +105,7 @@ public class Fakulteti {
 			while(res.next()) {
 				this.ID = res.getString("ID");
 				this.emri = res.getString("FAKULTETI");
-				this.universiteti = res.getString("UNIVERSITETI");
+				this.universiteti.inicializoUniversitetin(res.getString("UNIVERSITETI"));
 				this.adresa = res.getString("ADRESA");
 				this.departamentet = this.getDepartamentet();
 			}

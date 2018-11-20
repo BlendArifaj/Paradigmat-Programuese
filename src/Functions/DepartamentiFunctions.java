@@ -5,5 +5,4 @@ public interface DepartamentiFunctions {
 	public void getPunimet();
 	public Studenti getStudentWithMaxPunimeDepartament();
 	public void getBestDepartament();
-	public void setDepartament();
 }
