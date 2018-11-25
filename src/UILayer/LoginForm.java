@@ -30,7 +30,7 @@ import javax.swing.UIManager;
 
 public class LoginForm {
 
-	public JFrame frmPlagiarismChecker;
+	public JFrame frmLogin;
 	protected JTextField txtUsername;
 	protected JPasswordField pwdPassword;
 	protected JLabel lblMessage;
@@ -43,7 +43,7 @@ public class LoginForm {
 			public void run() {
 				try {
 					LoginForm window = new LoginForm();
-					window.frmPlagiarismChecker.setVisible(true);
+					window.frmLogin.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -62,35 +62,35 @@ public class LoginForm {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmPlagiarismChecker = new JFrame();
-		frmPlagiarismChecker.setResizable(false);
-		frmPlagiarismChecker.setTitle("Login");
-		frmPlagiarismChecker.setIconImage(Toolkit.getDefaultToolkit().getImage(LoginForm.class.getResource("/Images/logo.png")));
-		frmPlagiarismChecker.setBounds(750, 300, 420, 443);
-		frmPlagiarismChecker.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmPlagiarismChecker.getContentPane().setLayout(null);
+		frmLogin = new JFrame();
+		frmLogin.setResizable(false);
+		frmLogin.setTitle("Login");
+		frmLogin.setIconImage(Toolkit.getDefaultToolkit().getImage(LoginForm.class.getResource("/Images/logo.png")));
+		frmLogin.setBounds(750, 300, 420, 443);
+		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmLogin.getContentPane().setLayout(null);
 		
 		JLabel lblUsername = new JLabel("Username:");
 		lblUsername.setForeground(new Color(255, 255, 255));
 		lblUsername.setBounds(64, 51, 288, 25);
-		frmPlagiarismChecker.getContentPane().add(lblUsername);
+		frmLogin.getContentPane().add(lblUsername);
 		lblUsername.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 24));
 		
 		JLabel lblPassword = new JLabel("Password:");
 		lblPassword.setForeground(new Color(255, 255, 255));
 		lblPassword.setBounds(64, 143, 288, 25);
-		frmPlagiarismChecker.getContentPane().add(lblPassword);
+		frmLogin.getContentPane().add(lblPassword);
 		lblPassword.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 24));
 		
 		txtUsername = new JTextField();
 		txtUsername.setBounds(64, 78, 288, 40);
-		frmPlagiarismChecker.getContentPane().add(txtUsername);
+		frmLogin.getContentPane().add(txtUsername);
 		txtUsername.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		txtUsername.setColumns(10);
 		
 		pwdPassword = new JPasswordField();
 		pwdPassword.setBounds(64, 171, 288, 40);
-		frmPlagiarismChecker.getContentPane().add(pwdPassword);
+		frmLogin.getContentPane().add(pwdPassword);
 		pwdPassword.setEchoChar('*');
 		pwdPassword.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
@@ -100,7 +100,7 @@ public class LoginForm {
 		btnLogin.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
 		btnLogin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnLogin.setBounds(144, 254, 127, 50);
-		frmPlagiarismChecker.getContentPane().add(btnLogin);
+		frmLogin.getContentPane().add(btnLogin);
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Login newLogin = new Login(txtUsername.getText(),new String(pwdPassword.getPassword()));
@@ -115,7 +115,7 @@ public class LoginForm {
 		
 		lblMessage = new JLabel("");
 		lblMessage.setBounds(64, 219, 288, 19);
-		frmPlagiarismChecker.getContentPane().add(lblMessage);
+		frmLogin.getContentPane().add(lblMessage);
 		lblMessage.setForeground(Color.RED);
 		lblMessage.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
 		lblMessage.setHorizontalAlignment(SwingConstants.CENTER);
@@ -126,7 +126,7 @@ public class LoginForm {
 		lblRegister.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 16));
 		lblRegister.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblRegister.setBounds(58, 317, 319, 22);
-		frmPlagiarismChecker.getContentPane().add(lblRegister);
+		frmLogin.getContentPane().add(lblRegister);
 		
 		JLabel lblForgotPassword = new JLabel("Forgot password? Click here");
 		lblForgotPassword.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -134,12 +134,12 @@ public class LoginForm {
 		lblForgotPassword.setHorizontalAlignment(SwingConstants.CENTER);
 		lblForgotPassword.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 16));
 		lblForgotPassword.setBounds(58, 342, 319, 22);
-		frmPlagiarismChecker.getContentPane().add(lblForgotPassword);
+		frmLogin.getContentPane().add(lblForgotPassword);
 		
 		JLabel label = new JLabel("");
 		label.setOpaque(true);
 		label.setIcon(new ImageIcon(LoginForm.class.getResource("/Images/bck1.png")));
 		label.setBounds(0, -34, 416, 447);
-		frmPlagiarismChecker.getContentPane().add(label);
+		frmLogin.getContentPane().add(label);
 	}
 }
