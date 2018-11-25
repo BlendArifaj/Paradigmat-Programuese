@@ -63,9 +63,10 @@ public class LoginForm {
 	 */
 	private void initialize() {
 		frmPlagiarismChecker = new JFrame();
+		frmPlagiarismChecker.setResizable(false);
 		frmPlagiarismChecker.setTitle("Plagiarism Checker");
 		frmPlagiarismChecker.setIconImage(Toolkit.getDefaultToolkit().getImage(LoginForm.class.getResource("/Images/logo.png")));
-		frmPlagiarismChecker.setBounds(750, 300, 434, 460);
+		frmPlagiarismChecker.setBounds(750, 300, 420, 443);
 		frmPlagiarismChecker.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmPlagiarismChecker.getContentPane().setLayout(null);
 		
