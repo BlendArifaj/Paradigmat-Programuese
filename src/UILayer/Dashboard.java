@@ -14,6 +14,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
 import com.sun.prism.Image;
+
+import Business.Login;
+import DataLogic.Administrata;
+import DataLogic.Profesori;
+import DataLogic.Studenti;
+
 import javax.swing.ImageIcon;
 import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
@@ -41,14 +47,16 @@ import javax.swing.table.DefaultTableModel;
 
 public class Dashboard {
 
-	private JFrame frame;
-	private JTextField txtArifaj;
-	private JTextField txtBlendarifajgmailcom;
-	private JTextField txtBlend;
-	private JTextField textField_3;
-	private JTextField txtIstog;
+	public JFrame frame;
+	private JTextField txtMbiemri;
+	private JTextField txtEmail;
+	private JTextField txtEmri;
+	private JTextField txtTel;
+	private JTextField txtQyteti;
 	private JTable table;
-
+	private Login objLogin;
+	private Object user;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -68,7 +76,40 @@ public class Dashboard {
 	public Dashboard() {
 		initialize();
 	}
+	public Dashboard(Login loginObj) {
+		initialize();
+		this.objLogin = loginObj;
+		mbushTeDhenat();
+	}
 
+	private void mbushTeDhenat() {
+		if(this.objLogin.getLloji().equals("Student")) {
+			Studenti user = new Studenti();
+			user.getStudenti(this.objLogin.getUsername());
+			mbushTeDhenatStudent(user);
+		}else if(this.objLogin.getLloji().equals("Profesor")) {
+			Profesori user = new Profesori();
+			user.getProfesori(this.objLogin.getUsername());
+			mbushTeDhenatProfesor(user);
+		}else {
+			Administrata user = new Administrata();
+			user.getAdministrata(this.objLogin.getUsername());
+			mbushTeDhenatAdministrata(user);
+		}
+	}
+	private void mbushTeDhenatStudent(Studenti studenti) {
+		txtEmri.setText(studenti.getEmri());
+		txtMbiemri.setText(studenti.getMbiemri());
+		txtEmail.setText(studenti.getEmail());
+		txtQyteti.setText(studenti.getQyteti());
+		txtTel.setText(studenti.getTel());
+	}
+	private void mbushTeDhenatProfesor(Profesori profesori) {
+		
+	}
+	private void mbushTeDhenatAdministrata(Administrata administrata) {
+		
+	}
 	@SuppressWarnings({ "restriction", "serial" })
 	private void initialize() {
 		frame = new JFrame();
@@ -102,45 +143,45 @@ public class Dashboard {
 		lblEmail.setBounds(121, 202, 118, 41);
 		panelProfile.add(lblEmail);
 		
-		txtArifaj = new JTextField();
-		txtArifaj.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		txtArifaj.setColumns(10);
-		txtArifaj.setBounds(249, 141, 252, 33);
-		panelProfile.add(txtArifaj);
+		txtMbiemri = new JTextField();
+		txtMbiemri.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		txtMbiemri.setColumns(10);
+		txtMbiemri.setBounds(249, 141, 252, 33);
+		panelProfile.add(txtMbiemri);
 		
-		txtBlendarifajgmailcom = new JTextField();
-		txtBlendarifajgmailcom.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		txtBlendarifajgmailcom.setColumns(10);
-		txtBlendarifajgmailcom.setBounds(249, 206, 252, 33);
-		panelProfile.add(txtBlendarifajgmailcom);
+		txtEmail = new JTextField();
+		txtEmail.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		txtEmail.setColumns(10);
+		txtEmail.setBounds(249, 206, 252, 33);
+		panelProfile.add(txtEmail);
 		
-		txtBlend = new JTextField();
-		txtBlend.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		txtBlend.setColumns(10);
-		txtBlend.setBounds(249, 66, 252, 33);
-		panelProfile.add(txtBlend);
+		txtEmri = new JTextField();
+		txtEmri.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		txtEmri.setColumns(10);
+		txtEmri.setBounds(249, 66, 252, 33);
+		panelProfile.add(txtEmri);
 		
 		JLabel lblTelephone = new JLabel("Telephone");
 		lblTelephone.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblTelephone.setBounds(121, 265, 118, 41);
 		panelProfile.add(lblTelephone);
 		
-		textField_3 = new JTextField();
-		textField_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		textField_3.setColumns(10);
-		textField_3.setBounds(249, 269, 252, 33);
-		panelProfile.add(textField_3);
+		txtTel = new JTextField();
+		txtTel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		txtTel.setColumns(10);
+		txtTel.setBounds(249, 269, 252, 33);
+		panelProfile.add(txtTel);
 		
 		JLabel lblQyteti = new JLabel("Qyteti");
 		lblQyteti.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblQyteti.setBounds(121, 331, 118, 41);
 		panelProfile.add(lblQyteti);
 		
-		txtIstog = new JTextField();
-		txtIstog.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		txtIstog.setColumns(10);
-		txtIstog.setBounds(249, 335, 252, 33);
-		panelProfile.add(txtIstog);
+		txtQyteti = new JTextField();
+		txtQyteti.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		txtQyteti.setColumns(10);
+		txtQyteti.setBounds(249, 335, 252, 33);
+		panelProfile.add(txtQyteti);
 		
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.setFont(new Font("Tahoma", Font.PLAIN, 18));

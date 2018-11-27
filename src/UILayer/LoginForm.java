@@ -26,6 +26,9 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
+
+import com.sun.java.swing.plaf.windows.resources.windows;
+
 import javax.swing.UIManager;
 
 public class LoginForm {
@@ -64,6 +67,12 @@ public class LoginForm {
 	private void initialize() {
 		frmLogin = new JFrame();
 		frmLogin.setResizable(false);
+		
+		//Mos i fshi Fjollë/////////////////////////////
+		frmLogin.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		frmLogin.setUndecorated(true);
+		frmLogin.setVisible(true);
+		///////////////////////////////////////////////
 		frmLogin.setTitle("Login");
 		frmLogin.setIconImage(Toolkit.getDefaultToolkit().getImage(LoginForm.class.getResource("/Images/logo.png")));
 		frmLogin.setBounds(750, 300, 420, 443);
@@ -99,19 +108,34 @@ public class LoginForm {
 		btnLogin.setForeground(new Color(255, 255, 255));
 		btnLogin.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
 		btnLogin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnLogin.setBounds(144, 254, 127, 50);
+		btnLogin.setBounds(225, 254, 127, 50);
 		frmLogin.getContentPane().add(btnLogin);
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Login newLogin = new Login(txtUsername.getText(),new String(pwdPassword.getPassword()));
 				if(newLogin.isCorrect) {
-					lblMessage.setText("Password/username are correct!");
+					frmLogin.setVisible(false);
+					Dashboard newd = new Dashboard(newLogin);
+					newd.frame.setVisible(true);
 				}else {
 					lblMessage.setText("Please check your username/password!");
 				}
 			}
 		});
 		btnLogin.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 24));
+		
+		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frmLogin.dispose();
+			}
+		});
+		btnCancel.setForeground(Color.WHITE);
+		btnCancel.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 24));
+		btnCancel.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
+		btnCancel.setBackground(Color.LIGHT_GRAY);
+		btnCancel.setBounds(64, 254, 127, 50);
+		frmLogin.getContentPane().add(btnCancel);
 		
 		lblMessage = new JLabel("");
 		lblMessage.setBounds(64, 219, 288, 19);

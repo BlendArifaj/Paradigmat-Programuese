@@ -13,7 +13,6 @@ import DataLogic.Administrata;
 import DataLogic.DBConnect;
 
 public class Login implements LoginFunctions{
-	private Object user;
 	private String username = "";
 	private String password = "";
 	public Boolean isCorrect = false;
@@ -35,7 +34,6 @@ public class Login implements LoginFunctions{
 		return this.userStoredHash.equals(Hash.saltedHashString(this.password,this.username));
 	}
 	public void setParameters() {
-		
 		DBConnect objDB = new DBConnect("FIEKDB");
 		List<Object> param = new ArrayList<Object>();
 		param.add(this.username);
@@ -46,22 +44,12 @@ public class Login implements LoginFunctions{
 				 this.lloji = res.getString("Lloji");
 				 this.access = res.getInt("Access");
 			}
-		} catch (SQLException e) {
+		}catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
 		objDB.terminate();
-		if(this.lloji == "Student") {
-			Studenti user = new Studenti();
-			((Studenti) this.user).getStudenti(this.username);
-			
-		}else if(this.lloji=="Profesor") {
-			this.user = new Profesori();
-			((Profesori) this.user).getProfesori(this.username);
-		}else {
-			this.user = new Administrata();
-			((Administrata) this.user).getAdministrata(this.username);
-		}
+		
 	}
 	public int getAccess() {
 		return this.access;
@@ -69,5 +57,9 @@ public class Login implements LoginFunctions{
 	public String getLloji() {
 		return this.lloji;
 	}
+	public String getUsername() {
+		return this.username;
+	}
+	
 
 }
