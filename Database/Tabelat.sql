@@ -37,7 +37,8 @@ emri varchar(30) not null,
 mbiemri varchar(30) not null,
 email varchar(40) not null,
 passhash varchar(260) not null,
-tel varchar(15));
+tel varchar(15),
+aprovuar boolean not null);
 
 create table Lenda(
 id int NOT NULL AUTO_INCREMENT,

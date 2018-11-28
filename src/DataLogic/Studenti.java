@@ -107,7 +107,6 @@ public class Studenti extends Person implements StudentiFunctions{
 		return newPunim.insertNewPunim();
 	}
 	public void getStudenti(String stdId){
-		//PROCEDUREN
 		try {
 			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();

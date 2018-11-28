@@ -57,7 +57,6 @@ public class Departamenti implements DepartamentiFunctions{
 		return student;
 	}
 	public void inicializoDepartamentin(String emri) {
-		//PROCEDUREN
 		try {
 			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();
@@ -65,8 +64,8 @@ public class Departamenti implements DepartamentiFunctions{
 			ResultSet res = objDB.executeProcedure("getDepartamenti", param);
 			while(res.next()) {
 				this.ID = res.getInt("id");
-				this.deparamenti = res.getString("deparamenti");
-				this.fakulteti.inicializoFakultetin(res.getString("fakulteti"));
+				this.deparamenti = res.getString("departamenti");
+				this.fakulteti.inicializoFakultetin(res.getString("fakultetiId"));
 			}
 			objDB.terminate();
 		} catch (Exception e) {

@@ -97,7 +97,6 @@ public class Fakulteti {
 		this.adresa = adresa;
 	}
 	public void inicializoFakultetin(String fakulteti) {
-		//PROCEDUREN
 		try {
 			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();

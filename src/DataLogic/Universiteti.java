@@ -54,7 +54,6 @@ public class Universiteti {
 		return fakultetet;
 	}
 	public void inicializoUniversitetin(String emri) {
-		//PROCEDUREN
 		try {
 			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();
@@ -70,4 +69,5 @@ public class Universiteti {
 		
 		}
 	}
+
 }

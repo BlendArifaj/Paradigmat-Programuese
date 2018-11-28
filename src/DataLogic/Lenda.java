@@ -26,7 +26,6 @@ public class Lenda {
 		this.lenda = lenda;
 	}
 	public boolean insertLenda() {
-		//PROCEDURA
 		try {
 			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();
@@ -42,7 +41,6 @@ public class Lenda {
 		}
 	}
 	public void getLenden(String lenda) {
-		//PROCEDURA
 				try {
 					DBConnect objDB = new DBConnect("FIEKDB");
 					List<Object> param = new ArrayList<Object>();
