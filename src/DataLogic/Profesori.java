@@ -8,12 +8,13 @@ import Functions.ProfesoriFunctions;
 public class Profesori extends Person implements ProfesoriFunctions {
 	private List<String> fakulteti;
 	private List<String> lenda;
-	private boolean isChecked = false;
+	private boolean isAprovuar = false;
+
 	public Profesori(String ID,String emri,String mbiemri,String email,String pass,String tel,String titulli,List<String> fakulteti,List<String> lenda) {
 		super(ID,emri,mbiemri,email,pass,tel);
 		this.fakulteti = fakulteti;
 		this.lenda = lenda;
-		this.isChecked = false;
+		this.isAprovuar = false;
 	}
 	public List<String> getLenda() {
 		return this.lenda;
@@ -43,6 +44,7 @@ public class Profesori extends Person implements ProfesoriFunctions {
 				this.email = res.getString("email");
 				this.passHash = res.getString("passHash");
 				this.tel = res.getString("tel");
+				this.isAprovuar = res.getBoolean("aprovuar");
 			}
 			res = objDB.executeProcedure("getProfesoriLendet", param);
 			this.lenda = new ArrayList<String>();

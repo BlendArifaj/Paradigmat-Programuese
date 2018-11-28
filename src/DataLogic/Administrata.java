@@ -47,7 +47,6 @@ public class Administrata extends Person implements AdministrataFunctions{
 		
 	}
 	public void getAdministrata(String username) {
-		//PROCEDUREN
 		try {
 			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();
@@ -60,7 +59,8 @@ public class Administrata extends Person implements AdministrataFunctions{
 				this.email = res.getString("email");
 				this.passHash = res.getString("passhash");
 				this.tel = res.getString("tel");
-				//Dhe inicializimet tjera
+				this.fakulteti.inicializoFakultetin(res.getString("fakultetiId"));
+				this.access = res.getInt("access");
 			}
 			objDB.terminate();
 		} catch (Exception e) {
