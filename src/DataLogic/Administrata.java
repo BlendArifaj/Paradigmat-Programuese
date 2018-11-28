@@ -33,7 +33,6 @@ public class Administrata extends Person implements AdministrataFunctions{
 		this.fakulteti = fakulteti;
 	}
 	public boolean aprovoProfesorin(Profesori prof) {
-		//PROCEDUREN
 		try {
 			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();
