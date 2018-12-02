@@ -168,7 +168,10 @@ public class LoginForm {
 				if(newLogin.isCorrect) {
 					frmLogin.setVisible(false);
 					Dashboard newd = new Dashboard(newLogin);
-					newd.frame.setVisible(true);
+					//newd.frame.setVisible(true);
+					frmMain o=new frmMain();
+					o.setVisible(true);
+							
 				}else {
 					lblMessage.setText("Please check your username/password!");
 				}

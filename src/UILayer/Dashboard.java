@@ -44,6 +44,7 @@ import java.awt.SystemColor;
 import javax.swing.border.BevelBorder;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Frame;
 
 public class Dashboard {
 
@@ -113,13 +114,14 @@ public class Dashboard {
 	@SuppressWarnings({ "restriction", "serial" })
 	private void initialize() {
 		frame = new JFrame();
-		frame.getContentPane().setLayout(null);
+		frame.setExtendedState(Frame.MAXIMIZED_HORIZ);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		//frame.setUndecorated(true);
 		frame.setVisible(true);
+		frame.getContentPane().setLayout(null);
 		
 		JLayeredPane layeredPane = new JLayeredPane();
-		layeredPane.setBounds(144, 88, 608, 547);
+		layeredPane.setBounds(633, 243, 608, 547);
 		frame.getContentPane().add(layeredPane);
 		layeredPane.setLayout(new CardLayout(0, 0));
 		
@@ -303,6 +305,7 @@ public class Dashboard {
 		panelSettings.add(btnNdryshoFjalekalimin);
 		
 		JButton btnProfile = new JButton("Profile");
+		btnProfile.setBounds(408, 427, 106, 37);
 		btnProfile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				layeredPane.removeAll();
@@ -312,10 +315,10 @@ public class Dashboard {
 			}
 		});
 		btnProfile.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnProfile.setBounds(28, 88, 106, 37);
 		frame.getContentPane().add(btnProfile);
 		
 		JButton btnTemat = new JButton("Tema");
+		btnTemat.setBounds(408, 462, 106, 37);
 		btnTemat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				layeredPane.removeAll();
@@ -325,10 +328,10 @@ public class Dashboard {
 			}
 		});
 		btnTemat.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnTemat.setBounds(28, 123, 106, 37);
 		frame.getContentPane().add(btnTemat);
 		
 		JButton btnSettings = new JButton("Settings");
+		btnSettings.setBounds(408, 529, 106, 37);
 		btnSettings.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				layeredPane.removeAll();
@@ -338,17 +341,16 @@ public class Dashboard {
 			}
 		});
 		btnSettings.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnSettings.setBounds(28, 190, 106, 37);
 		frame.getContentPane().add(btnSettings);
 		
 		JLabel lblStudent = new JLabel("Blend Arifaj");
-		lblStudent.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 22));
 		lblStudent.setBounds(634, 33, 118, 30);
+		lblStudent.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 22));
 		frame.getContentPane().add(lblStudent);
 		
 		JButton btnLogOut = new JButton("Log out");
+		btnLogOut.setBounds(408, 564, 106, 37);
 		btnLogOut.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnLogOut.setBounds(28, 225, 106, 37);
 		frame.getContentPane().add(btnLogOut);
 		
 		ImageIcon imageIcon = new ImageIcon("C:\\Users\\Arianit\\Downloads\\student.png");
@@ -361,6 +363,7 @@ public class Dashboard {
 		frame.getContentPane().add(imgStudent);
 		
 		JButton btnStatistikat = new JButton("Statistikat");
+		btnStatistikat.setBounds(408, 495, 106, 37);
 		btnStatistikat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				layeredPane.removeAll();
@@ -370,7 +373,6 @@ public class Dashboard {
 			}
 		});
 		btnStatistikat.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnStatistikat.setBounds(28, 156, 106, 37);
 		frame.getContentPane().add(btnStatistikat);
 	}
 }
