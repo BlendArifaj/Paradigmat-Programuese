@@ -12,7 +12,6 @@ public class Studenti extends Person implements StudentiFunctions{
 	private String qyteti = null;
 	private String niveliStudimeve = null;
 	private List<Punimi> punimet = new ArrayList<Punimi>();
-	private List<Njoftimi> njoftimet = new ArrayList<Njoftimi>();
 	
 	public Studenti(String ID,String emri,String mbiemri,String email,String pass,String tel, String departamenti, String qyteti,String niveliStudimeve) {
 		super(ID,emri,mbiemri,email,pass,tel);
@@ -53,12 +52,6 @@ public class Studenti extends Person implements StudentiFunctions{
 	}
 	public void setDepartamenti(Departamenti departamenti) {
 		this.departamenti = departamenti;
-	}
-	public List<Njoftimi> getNjoftimet() {
-		return this.njoftimet;
-	}
-	public void setNjoftimet(List<Njoftimi> njoftimet) {
-		this.njoftimet = njoftimet;
 	}
 	public List<Punimi> punimet() {
 		return this.punimet;
@@ -144,4 +137,5 @@ public class Studenti extends Person implements StudentiFunctions{
 		
 		}
 	}
+	
 }

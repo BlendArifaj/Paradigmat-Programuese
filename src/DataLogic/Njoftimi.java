@@ -24,6 +24,13 @@ public class Njoftimi {
 		this.punimId = PunimId;
 		this.njoftim = Njoftim;
 	}
+	public Njoftimi(int id,String personId,int PunimId, String Njoftim, Boolean Status) {
+		this.njoftimId = id;
+		this.personId = personId;
+		this.punimId = PunimId;
+		this.njoftim = Njoftim;
+		this.statusi = Status;
+	}
 	public void getNjoftimi() {
 		//Procedura
 			try {
@@ -36,6 +43,7 @@ public class Njoftimi {
 					this.personId = res.getString("personId");
 					this.punimId = res.getInt("punimId");
 					this.njoftim = res.getString("njoftimi");
+					this.statusi = res.getBoolean("statusi");
 				}
 				objDB.terminate();
 			} catch (Exception e) {
@@ -61,6 +69,23 @@ public class Njoftimi {
 		} catch (Exception e) {
 			return false;
 		}
+	}
+	public Boolean updateStatusi() {
+		//Procedura
+				try {
+					DBConnect objDB = new DBConnect("FIEKDB");
+					List<Object> param = new ArrayList<Object>();
+					param.add(this.njoftimId);
+					@SuppressWarnings("unused")
+					ResultSet res = objDB.executeProcedure("updateStatusi", param);
+					objDB.terminate();
+					if(!objDB.isOk) {
+						return false;
+					}
+					return true;
+				} catch (Exception e) {
+					return false;
+				}
 	}
 	public int getNjoftimId() {
 		return this.njoftimId;

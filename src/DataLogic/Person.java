@@ -1,5 +1,7 @@
 package DataLogic;
 
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Person {
@@ -10,7 +12,8 @@ public class Person {
 	protected String email = null;
 	protected String passHash = null;
 	protected String tel = null;
-	
+	protected List<Njoftimi> njoftimet = new ArrayList<Njoftimi>();
+	protected boolean newNjoftim = false;
 	public Person() {
 		
 	}
@@ -21,6 +24,27 @@ public class Person {
 		this.email = _email;
 		this.passHash = Hash.saltedHashString(_pass, this.ID);
 		this.tel=_tel;
+		this.inicializoNjoftimet();
+	}
+	private void inicializoNjoftimet() {
+		//Procedura
+		try {
+			DBConnect objDB = new DBConnect("FIEKDB");
+			List<Object> param = new ArrayList<Object>();
+			param.add(this.ID);
+			ResultSet res = objDB.executeProcedure("getNjoftimetFromDB", param);
+			while(res.next()) {
+				Njoftimi objN = new Njoftimi(res.getInt("id"),
+						res.getString("personId"),
+						res.getInt("punimId"),
+						res.getString("njoftim"),
+						res.getBoolean("statusi"));
+				this.njoftimet.add(objN);
+			}
+			objDB.terminate();
+		} catch (Exception e) {
+		
+		}
 	}
 	public String getID() {
 		return this.ID;
@@ -57,6 +81,33 @@ public class Person {
 	}
 	public void setTel(String tel) {
 		this.tel = tel;
+	}
+	public List<Njoftimi> getNjoftimet() {
+		return this.njoftimet;
+	}
+	public void setNjoftimet(List<Njoftimi> njoftimet) {
+		this.njoftimet = njoftimet;
+	}
+	public Boolean update() {
+		//Procedura
+		try {
+			DBConnect objDB = new DBConnect("FIEKDB");
+			List<Object> param = new ArrayList<Object>();
+			param.add(this.ID);
+			param.add(this.emri);
+			param.add(this.mbiemri);
+			param.add(this.email);
+			param.add(this.passHash);
+			param.add(this.tel);
+			ResultSet res = objDB.executeProcedure("update", param);
+			objDB.terminate();
+			if(!objDB.isOk) {
+				return false;
+			}
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 	
 	/*

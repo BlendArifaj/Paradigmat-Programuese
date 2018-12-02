@@ -65,7 +65,39 @@ public class Administrata extends Person implements AdministrataFunctions{
 		} catch (Exception e) {
 		
 		}
-		
 	}
+	public Boolean addNewUniversitet(Universiteti newUni) {
+		//Procedura
+		try {
+			DBConnect objDB = new DBConnect("FIEKDB");
+			List<Object> param = new ArrayList<Object>();
+			param.add(newUni.getEmri());
+			ResultSet res = objDB.executeProcedure("addNewUniversity", param);
+			objDB.terminate();
+			if(!objDB.isOk) {
+				return false;
+			}
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	public Boolean addNewLenda(Lenda newLenda) {
+		//Procedura
+		try {
+			DBConnect objDB = new DBConnect("FIEKDB");
+			List<Object> param = new ArrayList<Object>();
+			param.add(newLenda.getLenda());
+			ResultSet res = objDB.executeProcedure("addNewLenda", param);
+			objDB.terminate();
+			if(!objDB.isOk) {
+				return false;
+			}
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
 
 }

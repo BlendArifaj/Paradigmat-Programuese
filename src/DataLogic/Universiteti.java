@@ -69,5 +69,26 @@ public class Universiteti {
 		
 		}
 	}
+	public Boolean addFakultetet(List<Fakulteti> fakulteti) {
+		//Procedura
+		try {
+			DBConnect objDB = new DBConnect("FIEKDB");
+			for(int i = 0;i<fakulteti.size();i++) {
+				List<Object> param = new ArrayList<Object>();
+				param.add(fakulteti.get(i).getID());
+				param.add(fakulteti.get(i).getEmri());
+				param.add(this.ID);
+				param.add(fakulteti.get(i).getAdresa());
+				ResultSet res = objDB.executeProcedure("addNewFakultetUniversiteti", param);		
+			}
+			objDB.terminate();
+			if(!objDB.isOk) {
+				return false;
+			}
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
 
 }
