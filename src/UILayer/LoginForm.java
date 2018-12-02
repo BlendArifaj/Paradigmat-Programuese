@@ -36,6 +36,8 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.Point;
 import java.awt.ComponentOrientation;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class LoginForm {
 
@@ -74,6 +76,7 @@ public class LoginForm {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		
 		frmLogin = new JFrame();
+		JButton btnCancel = new JButton("Cancel");
 		frmLogin.getContentPane().setBackground(new Color(72, 209, 204));
 		frmLogin.getContentPane().setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		frmLogin.setBackground(new Color(238, 232, 170));
@@ -88,6 +91,7 @@ public class LoginForm {
 		frmLogin.setBounds(0, 0, screenSize.width, screenSize.height);
 		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmLogin.getContentPane().setLayout(null);
+		
 		
 		JPanel loginPanel = new JPanel();
 		loginPanel.setBackground(new Color(245, 245, 245));
@@ -107,7 +111,19 @@ public class LoginForm {
 		lblPassword.setForeground(new Color(0, 0, 0));
 		lblPassword.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 24));
 		
+		JButton btnLogin = new JButton("Login");
 		txtUsername = new JTextField();
+		txtUsername.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+				      btnLogin.doClick();
+				   }
+				if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+				      btnCancel.doClick();
+				   }
+			}
+		});
 		txtUsername.setHorizontalAlignment(SwingConstants.CENTER);
 		txtUsername.setBorder(null);
 		txtUsername.setBackground(new Color(211, 211, 211));
@@ -119,6 +135,17 @@ public class LoginForm {
 		txtUsername.setColumns(10);
 		
 		pwdPassword = new JPasswordField();
+		pwdPassword.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+				      btnLogin.doClick();
+				   }
+				if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+				      btnCancel.doClick();
+				   }
+			}
+		});
 		pwdPassword.setHorizontalAlignment(SwingConstants.CENTER);
 		pwdPassword.setBorder(null);
 		pwdPassword.setBackground(new Color(211, 211, 211));
@@ -128,7 +155,7 @@ public class LoginForm {
 		pwdPassword.setEchoChar('*');
 		pwdPassword.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 24));
 		
-		JButton btnLogin = new JButton("Login");
+		
 		btnLogin.setBounds(73, 530, 127, 50);
 		loginPanel.add(btnLogin);
 		btnLogin.setBackground(new Color(95, 158, 160));
@@ -149,7 +176,6 @@ public class LoginForm {
 		});
 		btnLogin.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 24));
 		
-		JButton btnCancel = new JButton("Cancel");
 		btnCancel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnCancel.setBounds(234, 530, 127, 50);
 		loginPanel.add(btnCancel);
