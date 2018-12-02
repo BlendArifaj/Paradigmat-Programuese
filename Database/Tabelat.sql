@@ -94,3 +94,28 @@ fakultetiId varchar(10) not null,
 access int not null,
 foreign key(fakultetiId) references Fakulteti(id),
 foreign key(access) references Access(Id));
+
+create table NjoftimetStudenti(
+idNjoftimi int auto_increment primary key,
+idStudenti varchar(20) not null,
+idPunimi int not null,
+njoftimi varchar(200) not null,
+foreign key(idStudenti) references Student(id),
+foreign key(idPunimi) references Punimi(id));
+
+create table NjoftimetProfesori(
+idNjoftimi int auto_increment primary key,
+idProfesori varchar(20) not null,
+idPunimi int not null,
+njoftimi varchar(200) not null,
+statusiNjoftimit boolean not null,
+foreign key(idProfesori) references Profesori(id),
+foreign key(idPunimi) references Punimi(id));
+
+create table NjoftimetAdministrata(
+idNjoftimi int auto_increment primary key,
+idAdministrata varchar(20) not null,
+idPunimi int not null,
+njoftimi varchar(200) not null,
+foreign key(idAdministrata) references Administrata(id),
+foreign key(idPunimi) references Punimi(id));
