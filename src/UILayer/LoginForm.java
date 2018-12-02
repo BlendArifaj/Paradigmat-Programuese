@@ -30,6 +30,12 @@ import javax.swing.border.LineBorder;
 import com.sun.java.swing.plaf.windows.resources.windows;
 
 import javax.swing.UIManager;
+import java.awt.Frame;
+import java.awt.Dialog.ModalExclusionType;
+import java.awt.Dimension;
+import java.awt.Rectangle;
+import java.awt.Point;
+import java.awt.ComponentOrientation;
 
 public class LoginForm {
 
@@ -65,51 +71,70 @@ public class LoginForm {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmLogin = new JFrame();
-		frmLogin.setResizable(false);
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		
-		//Mos i fshi Fjollë/////////////////////////////
-		frmLogin.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		frmLogin = new JFrame();
+		frmLogin.getContentPane().setBackground(new Color(72, 209, 204));
+		frmLogin.getContentPane().setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+		frmLogin.setBackground(new Color(238, 232, 170));
+		frmLogin.setExtendedState(Frame.MAXIMIZED_BOTH);
+		frmLogin.setBounds(new Rectangle(0, 0, 0, 0));
 		frmLogin.setUndecorated(true);
+		frmLogin.setResizable(false);
 		frmLogin.setVisible(true);
 		///////////////////////////////////////////////
 		frmLogin.setTitle("Login");
 		frmLogin.setIconImage(Toolkit.getDefaultToolkit().getImage(LoginForm.class.getResource("/Images/logo.png")));
-		frmLogin.setBounds(750, 300, 420, 443);
+		frmLogin.setBounds(0, 0, screenSize.width, screenSize.height);
 		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmLogin.getContentPane().setLayout(null);
 		
+		JPanel loginPanel = new JPanel();
+		loginPanel.setBackground(new Color(245, 245, 245));
+		loginPanel.setBounds(743, 195, 434, 690);
+		frmLogin.getContentPane().add(loginPanel);
+		loginPanel.setLayout(null);
+		
 		JLabel lblUsername = new JLabel("Username:");
-		lblUsername.setForeground(new Color(255, 255, 255));
-		lblUsername.setBounds(64, 51, 288, 25);
-		frmLogin.getContentPane().add(lblUsername);
-		lblUsername.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 24));
+		lblUsername.setBounds(73, 327, 288, 25);
+		loginPanel.add(lblUsername);
+		lblUsername.setForeground(new Color(0, 0, 0));
+		lblUsername.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 24));
 		
 		JLabel lblPassword = new JLabel("Password:");
-		lblPassword.setForeground(new Color(255, 255, 255));
-		lblPassword.setBounds(64, 143, 288, 25);
-		frmLogin.getContentPane().add(lblPassword);
-		lblPassword.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 24));
+		lblPassword.setBounds(73, 419, 288, 25);
+		loginPanel.add(lblPassword);
+		lblPassword.setForeground(new Color(0, 0, 0));
+		lblPassword.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 24));
 		
 		txtUsername = new JTextField();
-		txtUsername.setBounds(64, 78, 288, 40);
-		frmLogin.getContentPane().add(txtUsername);
-		txtUsername.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		txtUsername.setHorizontalAlignment(SwingConstants.CENTER);
+		txtUsername.setBorder(null);
+		txtUsername.setBackground(new Color(211, 211, 211));
+		txtUsername.setName("");
+		txtUsername.setToolTipText("");
+		txtUsername.setBounds(73, 354, 288, 40);
+		loginPanel.add(txtUsername);
+		txtUsername.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 24));
 		txtUsername.setColumns(10);
 		
 		pwdPassword = new JPasswordField();
-		pwdPassword.setBounds(64, 171, 288, 40);
-		frmLogin.getContentPane().add(pwdPassword);
+		pwdPassword.setHorizontalAlignment(SwingConstants.CENTER);
+		pwdPassword.setBorder(null);
+		pwdPassword.setBackground(new Color(211, 211, 211));
+		pwdPassword.setToolTipText("");
+		pwdPassword.setBounds(73, 447, 288, 40);
+		loginPanel.add(pwdPassword);
 		pwdPassword.setEchoChar('*');
-		pwdPassword.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		pwdPassword.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 24));
 		
 		JButton btnLogin = new JButton("Login");
-		btnLogin.setBackground(new Color(192, 192, 192));
+		btnLogin.setBounds(73, 530, 127, 50);
+		loginPanel.add(btnLogin);
+		btnLogin.setBackground(new Color(95, 158, 160));
 		btnLogin.setForeground(new Color(255, 255, 255));
 		btnLogin.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
 		btnLogin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnLogin.setBounds(225, 254, 127, 50);
-		frmLogin.getContentPane().add(btnLogin);
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Login newLogin = new Login(txtUsername.getText(),new String(pwdPassword.getPassword()));
@@ -125,6 +150,9 @@ public class LoginForm {
 		btnLogin.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 24));
 		
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnCancel.setBounds(234, 530, 127, 50);
+		loginPanel.add(btnCancel);
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frmLogin.dispose();
@@ -133,37 +161,34 @@ public class LoginForm {
 		btnCancel.setForeground(Color.WHITE);
 		btnCancel.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 24));
 		btnCancel.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
-		btnCancel.setBackground(Color.LIGHT_GRAY);
-		btnCancel.setBounds(64, 254, 127, 50);
-		frmLogin.getContentPane().add(btnCancel);
+		btnCancel.setBackground(new Color(95, 158, 160));
 		
 		lblMessage = new JLabel("");
-		lblMessage.setBounds(64, 219, 288, 19);
-		frmLogin.getContentPane().add(lblMessage);
+		lblMessage.setBounds(73, 495, 288, 19);
+		loginPanel.add(lblMessage);
 		lblMessage.setForeground(Color.RED);
 		lblMessage.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
 		lblMessage.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel lblRegister = new JLabel("New user? Register here");
-		lblRegister.setForeground(new Color(255, 255, 255));
+		lblRegister.setBounds(73, 618, 288, 22);
+		loginPanel.add(lblRegister);
+		lblRegister.setForeground(new Color(0, 0, 0));
 		lblRegister.setHorizontalAlignment(SwingConstants.CENTER);
-		lblRegister.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 16));
+		lblRegister.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 16));
 		lblRegister.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblRegister.setBounds(58, 317, 319, 22);
-		frmLogin.getContentPane().add(lblRegister);
 		
 		JLabel lblForgotPassword = new JLabel("Forgot password? Click here");
+		lblForgotPassword.setBounds(73, 642, 288, 22);
+		loginPanel.add(lblForgotPassword);
 		lblForgotPassword.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblForgotPassword.setForeground(new Color(255, 255, 255));
+		lblForgotPassword.setForeground(new Color(0, 0, 0));
 		lblForgotPassword.setHorizontalAlignment(SwingConstants.CENTER);
-		lblForgotPassword.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 16));
-		lblForgotPassword.setBounds(58, 342, 319, 22);
-		frmLogin.getContentPane().add(lblForgotPassword);
+		lblForgotPassword.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 16));
 		
 		JLabel label = new JLabel("");
-		label.setOpaque(true);
-		label.setIcon(new ImageIcon(LoginForm.class.getResource("/Images/bck1.png")));
-		label.setBounds(0, -34, 416, 447);
-		frmLogin.getContentPane().add(label);
+		label.setIcon(new ImageIcon(LoginForm.class.getResource("/Images/loginPic.png")));
+		label.setBounds(88, 30, 256, 256);
+		loginPanel.add(label);
 	}
 }
