@@ -45,6 +45,7 @@ public class Profesori extends Person implements ProfesoriFunctions {
 				this.passHash = res.getString("passHash");
 				this.tel = res.getString("tel");
 				this.isAprovuar = res.getBoolean("aprovuar");
+				this.inicializoNjoftimet();
 			}
 			res = objDB.executeProcedure("getProfesoriLendet", param);
 			this.lenda = new ArrayList<String>();

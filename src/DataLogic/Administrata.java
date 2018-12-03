@@ -60,6 +60,7 @@ public class Administrata extends Person implements AdministrataFunctions{
 				this.tel = res.getString("tel");
 				this.fakulteti.inicializoFakultetin(res.getString("fakultetiId"));
 				this.access = res.getInt("access");
+				this.inicializoNjoftimet();
 			}
 			objDB.terminate();
 		} catch (Exception e) {

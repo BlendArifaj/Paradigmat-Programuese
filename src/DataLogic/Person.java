@@ -13,6 +13,7 @@ public class Person {
 	protected String passHash = null;
 	protected String tel = null;
 	protected List<Njoftimi> njoftimet = new ArrayList<Njoftimi>();
+	protected List<Njoftimi> newNjoftimet = new ArrayList<Njoftimi>();
 	protected boolean newNjoftim = false;
 	public Person() {
 		
@@ -26,20 +27,42 @@ public class Person {
 		this.tel=_tel;
 		this.inicializoNjoftimet();
 	}
-	private void inicializoNjoftimet() {
-		//Procedura
+	
+	public List<Njoftimi> getNewNjoftimet() {
+		return newNjoftimet;
+	}
+	public void setNewNjoftimet(List<Njoftimi> newNjoftimet) {
+		this.newNjoftimet = newNjoftimet;
+	}
+	public boolean isNewNjoftim() {
+		return newNjoftim;
+	}
+	public void setNewNjoftim(boolean newNjoftim) {
+		this.newNjoftim = newNjoftim;
+	}
+	protected void inicializoNjoftimet() {
 		try {
 			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();
 			param.add(this.ID);
 			ResultSet res = objDB.executeProcedure("getNjoftimetFromDB", param);
 			while(res.next()) {
+				Boolean statusi = res.getBoolean("statusi");
 				Njoftimi objN = new Njoftimi(res.getInt("id"),
 						res.getString("personId"),
 						res.getInt("punimId"),
 						res.getString("njoftim"),
-						res.getBoolean("statusi"));
-				this.njoftimet.add(objN);
+						statusi);
+				if(statusi) {
+					this.njoftimet.add(objN);	
+				}else {
+					this.newNjoftimet.add(objN);
+				}
+			}
+			if(this.newNjoftimet.size()>0) {
+				this.newNjoftim = true;
+			}else {
+				this.newNjoftim = false;
 			}
 			objDB.terminate();
 		} catch (Exception e) {
@@ -89,7 +112,6 @@ public class Person {
 		this.njoftimet = njoftimet;
 	}
 	public Boolean update() {
-		//Procedura
 		try {
 			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();
@@ -99,7 +121,7 @@ public class Person {
 			param.add(this.email);
 			param.add(this.passHash);
 			param.add(this.tel);
-			ResultSet res = objDB.executeProcedure("update", param);
+			ResultSet res = objDB.executeProcedure("updatePerson", param);
 			objDB.terminate();
 			if(!objDB.isOk) {
 				return false;

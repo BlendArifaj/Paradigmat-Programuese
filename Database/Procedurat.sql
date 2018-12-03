@@ -300,3 +300,58 @@ FROM LENDA L
 WHERE L.LENDA = LENDAEMRI;
 END //
 DELIMITER //;
+
+#Procedura e cila i merr te gjitha njoftimet
+DELIMITER //
+CREATE PROCEDURE getNjoftimetFromDB(
+IN PERSONID VARCHAR(20))
+BEGIN
+SELECT S.idNjoftimi AS id,
+	S.idStudenti as personId,
+	S.idPunimi as punimId,
+    S.njoftimi as njoftim,
+    S.statusiNjoftimit as statusi
+FROM NjoftimetStudenti S
+WHERE S.idStudenti = PERSONID
+UNION
+SELECT P.idNjoftimi AS id,
+	P.idProfesori as personId,
+	P.idPunimi as punimId,
+    P.njoftimi as njoftim,
+    P.statusiNjoftimit as statusi
+FROM NjoftimetProfesori P
+WHERE P.idStudenti = PERSONID
+UNION
+SELECT A.idNjoftimi AS id,
+	A.idAdministrata as personId,
+	A.idPunimi as punimId,
+    A.njoftimi as njoftim,
+    A.statusiNjoftimit as statusi
+FROM NjoftimetAdministrata A
+WHERE A.idStudenti = PERSONID;
+END //
+DELIMITER ;
+
+#PROCEDURA E CILA E BENE UPDATE PERSONIN
+CREATE PROCEDURE updatePerson(
+IN IDPERSON VARCHAR(20),
+IN _EMRI VARCHAR(30),
+IN _MBIEMRI VARCHAR(30),
+IN _EMAIL VARCHAR(40),
+IN _PASSHASH VARCHAR(260),
+IN _TEL VARCHAR(15))
+BEGIN
+IF (SELECT COUNT(*) FROM Student S WHERE S.ID = IDPERSON) = 1 THEN
+	UPDATE STUDENT S
+    SET S.EMRI = _EMRI, S.MBIEMRI = _MBIEMRI, S.EMAIL = _EMAIL, S.PASSHASH = _PASSHASH, S.TEL = _TEL
+    WHERE S.ID = _IDPERSON
+ELSEIF (SELECT COUNT(*) FROM Profesori P WHERE P.ID = IDPERSON) =1 THEN
+	UPDATE PROFESORI P
+    SET P.EMRI = _EMRI, P.MBIEMRI = _MBIEMRI, P.EMAIL = _EMAIL, P.PASSHASH = _PASSHASH, P.TEL = _TEL
+    WHERE P.ID = _IDPERSON
+ELSE (SELECT COUNT(*) FROM Administrata A WHERE A.ID = IDPERSON) =1 THEN
+	UPDATE Administrata A
+    SET A.EMRI = _EMRI, A.MBIEMRI = _MBIEMRI, A.EMAIL = _EMAIL, A.PASSHASH = _PASSHASH, A.TEL = _TEL
+    WHERE A.ID = _IDPERSON
+END //
+DELIMITER //;

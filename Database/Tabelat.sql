@@ -100,6 +100,7 @@ idNjoftimi int auto_increment primary key,
 idStudenti varchar(20) not null,
 idPunimi int not null,
 njoftimi varchar(200) not null,
+statusiNjoftimit boolean not null,
 foreign key(idStudenti) references Student(id),
 foreign key(idPunimi) references Punimi(id));
 
@@ -117,5 +118,6 @@ idNjoftimi int auto_increment primary key,
 idAdministrata varchar(20) not null,
 idPunimi int not null,
 njoftimi varchar(200) not null,
+statusiNjoftimit boolean not null,
 foreign key(idAdministrata) references Administrata(id),
 foreign key(idPunimi) references Punimi(id));

@@ -131,6 +131,7 @@ public class Studenti extends Person implements StudentiFunctions{
 				this.fakulteti.inicializoFakultetin(res.getString("Fakulteti"));
 				this.universiteti.inicializoUniversitetin(res.getString("universiteti"));
 				this.punimet = this.getPunimet();
+				this.inicializoNjoftimet();
 			}
 			objDB.terminate();
 		} catch (Exception e) {
