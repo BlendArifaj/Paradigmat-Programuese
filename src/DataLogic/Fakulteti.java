@@ -114,5 +114,25 @@ public class Fakulteti {
 		
 		}
 	}
+	public Boolean addDepartamentet(List<Departamenti> departamentet) {
+		//Procedura
+		try {
+			DBConnect objDB = new DBConnect("FIEKDB");
+			for(int i = 0;i<departamentet.size();i++) {
+				List<Object> param = new ArrayList<Object>();
+				param.add(departamentet.get(i).getID());
+				param.add(departamentet.get(i).getDeparamenti());
+				param.add(this.ID);
+				ResultSet res = objDB.executeProcedure("addNewDepartamentFakulteti", param);		
+			}
+			objDB.terminate();
+			if(!objDB.isOk) {
+				return false;
+			}
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
 
 }
