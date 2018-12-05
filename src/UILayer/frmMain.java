@@ -47,6 +47,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
 
 public class frmMain extends JFrame {
 
@@ -66,6 +67,24 @@ public class frmMain extends JFrame {
 	private JTextField txtLenda;
 	private JTextField temaDiplomes;
 	private JTable table_3;
+	private JTextField txtEmri;
+	private JTextField txtMbiemri;
+	private JTextField txtEmail;
+	private JTextField txtTel;
+	private JTextField txtUniversiteti;
+	private JTextField txtFakulteti;
+	private JTextField txtDepartamenti;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField txtCancelBtn;
+	private JTextField txtSaveBtn;
+	private JTextField txtStudentPassword;
+	private JTextField txtStudentProfile;
+	private JTextField txtStatusiITemes;
+	private JTextField txtShikoDokumentin;
+	private JTextField txtStatistikat;
 
 	/**
 	 * Launch the application.
@@ -586,6 +605,269 @@ public class frmMain extends JFrame {
 		
 		JPanel panelAdministrataStats = new JPanel();
 		layeredPane.add(panelAdministrataStats, "name_15438420206650");
+		
+		JPanel panelStudentMyAccount = new JPanel();
+		panelStudentMyAccount.setBackground(Color.WHITE);
+		layeredPane.add(panelStudentMyAccount, "name_20772975047901");
+		panelStudentMyAccount.setLayout(null);
+		
+		txtEmri = new JTextField();
+		txtEmri.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		txtEmri.setText("Emri");
+		txtEmri.setBorder(null);
+		txtEmri.setBounds(119, 136, 150, 48);
+		panelStudentMyAccount.add(txtEmri);
+		txtEmri.setColumns(10);
+		
+		JLabel lblStudentEmriMyAccount = new JLabel("");
+		lblStudentEmriMyAccount.setIcon(new ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")));
+		lblStudentEmriMyAccount.setBounds(333, 111, 423, 105);
+		panelStudentMyAccount.add(lblStudentEmriMyAccount);
+		
+		txtMbiemri = new JTextField();
+		txtMbiemri.setText("Mbiemri");
+		txtMbiemri.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		txtMbiemri.setColumns(10);
+		txtMbiemri.setBorder(null);
+		txtMbiemri.setBounds(119, 240, 150, 48);
+		panelStudentMyAccount.add(txtMbiemri);
+		
+		JLabel lblStudentMbiemriMyAccount = new JLabel("");
+		lblStudentMbiemriMyAccount.setIcon(new ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")));
+		lblStudentMbiemriMyAccount.setBounds(333, 208, 423, 105);
+		panelStudentMyAccount.add(lblStudentMbiemriMyAccount);
+		
+		txtEmail = new JTextField();
+		txtEmail.setText("Email");
+		txtEmail.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		txtEmail.setColumns(10);
+		txtEmail.setBorder(null);
+		txtEmail.setBounds(119, 338, 150, 48);
+		panelStudentMyAccount.add(txtEmail);
+		
+		txtTel = new JTextField();
+		txtTel.setText("Tel");
+		txtTel.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		txtTel.setColumns(10);
+		txtTel.setBorder(null);
+		txtTel.setBounds(119, 442, 150, 48);
+		panelStudentMyAccount.add(txtTel);
+		
+		txtUniversiteti = new JTextField();
+		txtUniversiteti.setText("Universiteti");
+		txtUniversiteti.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		txtUniversiteti.setColumns(10);
+		txtUniversiteti.setBorder(null);
+		txtUniversiteti.setBounds(119, 541, 164, 48);
+		panelStudentMyAccount.add(txtUniversiteti);
+		
+		txtFakulteti = new JTextField();
+		txtFakulteti.setText("Fakulteti");
+		txtFakulteti.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		txtFakulteti.setColumns(10);
+		txtFakulteti.setBorder(null);
+		txtFakulteti.setBounds(119, 637, 164, 48);
+		panelStudentMyAccount.add(txtFakulteti);
+		
+		txtDepartamenti = new JTextField();
+		txtDepartamenti.setText("Departamenti");
+		txtDepartamenti.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		txtDepartamenti.setColumns(10);
+		txtDepartamenti.setBorder(null);
+		txtDepartamenti.setBounds(119, 735, 182, 48);
+		panelStudentMyAccount.add(txtDepartamenti);
+		
+		JLabel lblStudentEmailMyAccount = new JLabel("");
+		lblStudentEmailMyAccount.setIcon(new ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")));
+		lblStudentEmailMyAccount.setBounds(333, 308, 423, 105);
+		panelStudentMyAccount.add(lblStudentEmailMyAccount);
+		
+		JLabel lblStudentTelMyAccount = new JLabel("");
+		lblStudentTelMyAccount.setIcon(new ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")));
+		lblStudentTelMyAccount.setBounds(333, 417, 423, 105);
+		panelStudentMyAccount.add(lblStudentTelMyAccount);
+		
+		JLabel lblStudentUniversitetiMyAccount = new JLabel("");
+		lblStudentUniversitetiMyAccount.setIcon(new ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")));
+		lblStudentUniversitetiMyAccount.setBounds(333, 515, 423, 105);
+		panelStudentMyAccount.add(lblStudentUniversitetiMyAccount);
+		
+		JLabel lblStudentFakultetiMyAccount = new JLabel("");
+		lblStudentFakultetiMyAccount.setIcon(new ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")));
+		lblStudentFakultetiMyAccount.setBounds(333, 609, 423, 105);
+		panelStudentMyAccount.add(lblStudentFakultetiMyAccount);
+		
+		JLabel lblStudentDepartamentMyAccount = new JLabel("");
+		lblStudentDepartamentMyAccount.setIcon(new ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")));
+		lblStudentDepartamentMyAccount.setBounds(333, 704, 423, 105);
+		panelStudentMyAccount.add(lblStudentDepartamentMyAccount);
+		
+		JPanel panelStudentProfile = new JPanel();
+		panelStudentProfile.setBackground(Color.WHITE);
+		layeredPane.add(panelStudentProfile, "name_21421619482368");
+		panelStudentProfile.setLayout(null);
+		
+		txtSaveBtn = new JTextField();
+		txtSaveBtn.setHorizontalAlignment(SwingConstants.CENTER);
+		txtSaveBtn.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		txtSaveBtn.setText("SAVE");
+		txtSaveBtn.setBorder(null);
+		txtSaveBtn.setColumns(10);
+		txtSaveBtn.setBounds(528, 689, 186, 64);
+		panelStudentProfile.add(txtSaveBtn);
+		
+		txtCancelBtn = new JTextField();
+		txtCancelBtn.setHorizontalAlignment(SwingConstants.CENTER);
+		txtCancelBtn.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		txtCancelBtn.setText("CANCEL");
+		txtCancelBtn.setBorder(null);
+		txtCancelBtn.setBounds(311, 689, 186, 64);
+		panelStudentProfile.add(txtCancelBtn);
+		txtCancelBtn.setColumns(10);
+		
+		textField = new JTextField();
+		textField.setText("Emri");
+		textField.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		textField.setColumns(10);
+		textField.setBorder(null);
+		textField.setBounds(123, 219, 150, 48);
+		panelStudentProfile.add(textField);
+		
+		textField_1 = new JTextField();
+		textField_1.setText("Mbiemri");
+		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		textField_1.setColumns(10);
+		textField_1.setBorder(null);
+		textField_1.setBounds(123, 322, 150, 48);
+		panelStudentProfile.add(textField_1);
+		
+		textField_2 = new JTextField();
+		textField_2.setText("Email");
+		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		textField_2.setColumns(10);
+		textField_2.setBorder(null);
+		textField_2.setBounds(123, 434, 150, 48);
+		panelStudentProfile.add(textField_2);
+		
+		textField_3 = new JTextField();
+		textField_3.setText("Tel");
+		textField_3.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		textField_3.setColumns(10);
+		textField_3.setBorder(null);
+		textField_3.setBounds(123, 533, 150, 48);
+		panelStudentProfile.add(textField_3);
+		
+		JLabel lblStudentEmriProfile = new JLabel("");
+		lblStudentEmriProfile.setIcon(new ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")));
+		lblStudentEmriProfile.setBounds(303, 193, 423, 105);
+		panelStudentProfile.add(lblStudentEmriProfile);
+		
+		JLabel lblStudentMbiemriProfile = new JLabel("");
+		lblStudentMbiemriProfile.setIcon(new ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")));
+		lblStudentMbiemriProfile.setBounds(303, 296, 423, 105);
+		panelStudentProfile.add(lblStudentMbiemriProfile);
+		
+		JLabel lblStudentEmailProfile = new JLabel("");
+		lblStudentEmailProfile.setIcon(new ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")));
+		lblStudentEmailProfile.setBounds(303, 398, 423, 105);
+		panelStudentProfile.add(lblStudentEmailProfile);
+		
+		JLabel lblStudentTelProfile = new JLabel("");
+		lblStudentTelProfile.setIcon(new ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")));
+		lblStudentTelProfile.setBounds(303, 500, 423, 105);
+		panelStudentProfile.add(lblStudentTelProfile);
+		
+		JLabel lblCancelBtn = new JLabel("");
+		lblCancelBtn.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).getImage().getScaledInstance(200, 80, Image.SCALE_SMOOTH)));
+		lblCancelBtn.setBounds(303, 672, 207, 100);
+		panelStudentProfile.add(lblCancelBtn);
+		
+		JLabel lblSaveBtn = new JLabel("");
+		lblSaveBtn.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).getImage().getScaledInstance(200, 80, Image.SCALE_SMOOTH)));
+		lblSaveBtn.setBounds(520, 672, 207, 100);
+		panelStudentProfile.add(lblSaveBtn);
+		
+		JPanel panelStudentSettings = new JPanel();
+		panelStudentSettings.setBackground(Color.WHITE);
+		layeredPane.add(panelStudentSettings, "name_22149151830299");
+		panelStudentSettings.setLayout(null);
+		
+		txtStudentProfile = new JTextField();
+		txtStudentProfile.setText("Profile");
+		txtStudentProfile.setOpaque(false);
+		txtStudentProfile.setFont(new Font("Tahoma", Font.BOLD, 20));
+		txtStudentProfile.setColumns(10);
+		txtStudentProfile.setBorder(null);
+		txtStudentProfile.setBounds(548, 342, 74, 42);
+		panelStudentSettings.add(txtStudentProfile);
+		
+		JLabel lblStudentSettingsProfileIcon = new JLabel("New label");
+		lblStudentSettingsProfileIcon.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/settings_password_button.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
+		lblStudentSettingsProfileIcon.setBounds(538, 231, 100, 100);
+		panelStudentSettings.add(lblStudentSettingsProfileIcon);
+		
+		txtStudentPassword = new JTextField();
+		txtStudentPassword.setFont(new Font("Tahoma", Font.BOLD, 20));
+		txtStudentPassword.setText("Password");
+		txtStudentPassword.setBorder(null);
+		txtStudentPassword.setOpaque(false);
+		txtStudentPassword.setBounds(174, 342, 107, 42);
+		panelStudentSettings.add(txtStudentPassword);
+		txtStudentPassword.setColumns(10);
+		
+		JLabel lblStudentSettingsPassIcon = new JLabel("New label");
+		lblStudentSettingsPassIcon.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/settings_password_button.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
+		lblStudentSettingsPassIcon.setBounds(174, 231, 100, 100);
+		panelStudentSettings.add(lblStudentSettingsPassIcon);
+		
+		JLabel lblStudentSettingsPassRectangle = new JLabel("");
+		lblStudentSettingsPassRectangle.setIcon(new ImageIcon(frmMain.class.getResource("/Images/settings_button.png")));
+		lblStudentSettingsPassRectangle.setBounds(107, 217, 239, 183);
+		panelStudentSettings.add(lblStudentSettingsPassRectangle);
+		
+		JLabel lblStudentSettingsProfile = new JLabel("");
+		lblStudentSettingsProfile.setIcon(new ImageIcon(frmMain.class.getResource("/Images/settings_button.png")));
+		lblStudentSettingsProfile.setBounds(464, 217, 239, 183);
+		panelStudentSettings.add(lblStudentSettingsProfile);
+		
+		JPanel panelStudentStats = new JPanel();
+		panelStudentStats.setBackground(Color.WHITE);
+		layeredPane.add(panelStudentStats, "name_22814355849101");
+		panelStudentStats.setLayout(null);
+		
+		txtStatusiITemes = new JTextField();
+		txtStatusiITemes.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		txtStatusiITemes.setText("Statusi i temes tuaj");
+		txtStatusiITemes.setBounds(129, 60, 265, 59);
+		txtStatusiITemes.setBorder(null);
+		panelStudentStats.add(txtStatusiITemes);
+		txtStatusiITemes.setColumns(10);
+		
+		JLabel lblStatusiTemesIcon = new JLabel("");
+		lblStatusiTemesIcon.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/checked.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
+		lblStatusiTemesIcon.setBounds(197, 152, 115, 100);
+		panelStudentStats.add(lblStatusiTemesIcon);
+		
+		txtShikoDokumentin = new JTextField();
+		txtShikoDokumentin.setText("Shiko dokumentin");
+		txtShikoDokumentin.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		txtShikoDokumentin.setColumns(10);
+		txtShikoDokumentin.setBorder(null);
+		txtShikoDokumentin.setBounds(692, 60, 265, 59);
+		panelStudentStats.add(txtShikoDokumentin);
+		
+		JLabel lblShikoDokumentinIcon = new JLabel("");
+		lblShikoDokumentinIcon.setBounds(756, 130, 100, 118);
+		lblShikoDokumentinIcon.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/pdf.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
+		panelStudentStats.add(lblShikoDokumentinIcon);
+		
+		txtStatistikat = new JTextField();
+		txtStatistikat.setText("Statistikat");
+		txtStatistikat.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		txtStatistikat.setColumns(10);
+		txtStatistikat.setBorder(null);
+		txtStatistikat.setBounds(462, 448, 148, 59);
+		panelStudentStats.add(txtStatistikat);
 				
 	}
 }
