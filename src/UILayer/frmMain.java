@@ -48,6 +48,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
+import javax.swing.DefaultComboBoxModel;
 
 public class frmMain extends JFrame {
 
@@ -85,6 +86,11 @@ public class frmMain extends JFrame {
 	private JTextField txtStatusiITemes;
 	private JTextField txtShikoDokumentin;
 	private JTextField txtStatistikat;
+	private JTextField txtShkruajTemen;
+	private JTextField txtProfesori;
+	private JTextField txtDepartamenti_1;
+	private JTextField txtUpload;
+	private JTextField txtAdd;
 
 	/**
 	 * Launch the application.
@@ -838,14 +844,14 @@ public class frmMain extends JFrame {
 		txtStatusiITemes = new JTextField();
 		txtStatusiITemes.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		txtStatusiITemes.setText("Statusi i temes tuaj");
-		txtStatusiITemes.setBounds(129, 60, 265, 59);
+		txtStatusiITemes.setBounds(257, 60, 265, 59);
 		txtStatusiITemes.setBorder(null);
 		panelStudentStats.add(txtStatusiITemes);
 		txtStatusiITemes.setColumns(10);
 		
 		JLabel lblStatusiTemesIcon = new JLabel("");
 		lblStatusiTemesIcon.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/checked.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
-		lblStatusiTemesIcon.setBounds(197, 152, 115, 100);
+		lblStatusiTemesIcon.setBounds(325, 152, 115, 100);
 		panelStudentStats.add(lblStatusiTemesIcon);
 		
 		txtShikoDokumentin = new JTextField();
@@ -853,11 +859,11 @@ public class frmMain extends JFrame {
 		txtShikoDokumentin.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		txtShikoDokumentin.setColumns(10);
 		txtShikoDokumentin.setBorder(null);
-		txtShikoDokumentin.setBounds(692, 60, 265, 59);
+		txtShikoDokumentin.setBounds(820, 60, 265, 59);
 		panelStudentStats.add(txtShikoDokumentin);
 		
 		JLabel lblShikoDokumentinIcon = new JLabel("");
-		lblShikoDokumentinIcon.setBounds(756, 130, 100, 118);
+		lblShikoDokumentinIcon.setBounds(884, 130, 100, 118);
 		lblShikoDokumentinIcon.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/pdf.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
 		panelStudentStats.add(lblShikoDokumentinIcon);
 		
@@ -866,8 +872,100 @@ public class frmMain extends JFrame {
 		txtStatistikat.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		txtStatistikat.setColumns(10);
 		txtStatistikat.setBorder(null);
-		txtStatistikat.setBounds(462, 448, 148, 59);
+		txtStatistikat.setBounds(586, 447, 148, 59);
 		panelStudentStats.add(txtStatistikat);
+		
+		JPanel panelStudentDiploma = new JPanel();
+		panelStudentDiploma.setBackground(Color.WHITE);
+		layeredPane.add(panelStudentDiploma, "name_244271854762");
+		panelStudentDiploma.setLayout(null);
+		
+		txtAdd = new JTextField();
+		txtAdd.setText("Add");
+		txtAdd.setOpaque(false);
+		txtAdd.setHorizontalAlignment(SwingConstants.CENTER);
+		txtAdd.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		txtAdd.setColumns(10);
+		txtAdd.setBorder(null);
+		txtAdd.setBounds(826, 726, 71, 46);
+		panelStudentDiploma.add(txtAdd);
+		
+		JLabel lblStudentDiplomaShto = new JLabel("");
+		lblStudentDiplomaShto.setIcon(new ImageIcon(frmMain.class.getResource("/Images/login_rectangle_login.png")));
+		lblStudentDiplomaShto.setBounds(761, 726, 200, 46);
+		panelStudentDiploma.add(lblStudentDiplomaShto);
+		
+		txtUpload = new JTextField();
+		txtUpload.setText("Upload");
+		txtUpload.setOpaque(false);
+		txtUpload.setHorizontalAlignment(SwingConstants.CENTER);
+		txtUpload.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		txtUpload.setColumns(10);
+		txtUpload.setBorder(null);
+		txtUpload.setBounds(807, 595, 114, 46);
+		panelStudentDiploma.add(txtUpload);
+		
+		JLabel lblStudentDiplomaUploadIcon = new JLabel("");
+		lblStudentDiplomaUploadIcon.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/upload.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
+		lblStudentDiplomaUploadIcon.setBounds(814, 484, 107, 111);
+		panelStudentDiploma.add(lblStudentDiplomaUploadIcon);
+		
+		txtDepartamenti_1 = new JTextField();
+		txtDepartamenti_1.setText("Departamenti");
+		txtDepartamenti_1.setOpaque(false);
+		txtDepartamenti_1.setHorizontalAlignment(SwingConstants.CENTER);
+		txtDepartamenti_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		txtDepartamenti_1.setColumns(10);
+		txtDepartamenti_1.setBorder(null);
+		txtDepartamenti_1.setBounds(207, 499, 375, 79);
+		panelStudentDiploma.add(txtDepartamenti_1);
+		
+		txtProfesori = new JTextField();
+		txtProfesori.setText("Fakulteti");
+		txtProfesori.setOpaque(false);
+		txtProfesori.setHorizontalAlignment(SwingConstants.CENTER);
+		txtProfesori.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		txtProfesori.setColumns(10);
+		txtProfesori.setBorder(null);
+		txtProfesori.setBounds(207, 355, 375, 79);
+		panelStudentDiploma.add(txtProfesori);
+		
+		txtShkruajTemen = new JTextField();
+		txtShkruajTemen.setHorizontalAlignment(SwingConstants.CENTER);
+		txtShkruajTemen.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		txtShkruajTemen.setText("Shkruaj temen");
+		txtShkruajTemen.setBounds(351, 140, 579, 79);
+		txtShkruajTemen.setBorder(null);
+		txtShkruajTemen.setOpaque(false);
+		panelStudentDiploma.add(txtShkruajTemen);
+		txtShkruajTemen.setColumns(10);
+		
+		JLabel lblStudentDiplomaTema = new JLabel("");
+		lblStudentDiplomaTema.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).getImage().getScaledInstance(600, 100, Image.SCALE_SMOOTH)));
+		lblStudentDiplomaTema.setBounds(341, 126, 608, 105);
+		panelStudentDiploma.add(lblStudentDiplomaTema);
+		
+		JLabel lblStudentDiplomaFakulteti = new JLabel("");
+		lblStudentDiplomaFakulteti.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).getImage().getScaledInstance(400, 100, Image.SCALE_SMOOTH)));
+		lblStudentDiplomaFakulteti.setBounds(197, 345, 400, 105);
+		panelStudentDiploma.add(lblStudentDiplomaFakulteti);
+		
+		JLabel lblStudentDiplomaDepart = new JLabel("Departamenti");
+		lblStudentDiplomaDepart.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).getImage().getScaledInstance(400, 100, Image.SCALE_SMOOTH)));
+		lblStudentDiplomaDepart.setBounds(197, 484, 400, 105);
+		panelStudentDiploma.add(lblStudentDiplomaDepart);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Blerim Rexha", "Lule Ahmedi", "Agni Dika"}));
+		comboBox.setBackground(Color.WHITE);
+		comboBox.setBounds(197, 646, 399, 84);
+		panelStudentDiploma.add(comboBox);
+		
+		JLabel lblStudentDiplomaUpload = new JLabel("");
+		lblStudentDiplomaUpload.setIcon(new ImageIcon(frmMain.class.getResource("/Images/settings_button.png")));
+		lblStudentDiplomaUpload.setBounds(761, 472, 200, 177);
+		panelStudentDiploma.add(lblStudentDiplomaUpload);
 				
 	}
 }
