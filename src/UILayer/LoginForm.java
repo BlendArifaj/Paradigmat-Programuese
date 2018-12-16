@@ -156,7 +156,7 @@ public class LoginForm {
 		pwdPassword.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 24));
 		
 		
-		btnLogin.setBounds(73, 530, 127, 50);
+		btnLogin.setBounds(234, 527, 127, 50);
 		loginPanel.add(btnLogin);
 		btnLogin.setBackground(new Color(95, 158, 160));
 		btnLogin.setForeground(new Color(255, 255, 255));
@@ -180,7 +180,7 @@ public class LoginForm {
 		btnLogin.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 24));
 		
 		btnCancel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnCancel.setBounds(234, 530, 127, 50);
+		btnCancel.setBounds(73, 527, 127, 50);
 		loginPanel.add(btnCancel);
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
