@@ -97,6 +97,31 @@ public class frmMain extends JFrame {
 	private JTextField txtDepartamenti_1;
 	private JTextField txtUpload;
 	private JTextField txtAdd;
+
+	public JPanel panelAdministrataNjoftimet;
+	public JPanel panelAdministrataSettings;
+	public JPanel panelAdministrataSettingsShto;
+	public JPanel panelAdministrataBtnKontrollo;
+	public JPanel panelAdministrataThesis;
+	public JPanel panelAdministrataStats;
+	public JPanel panelStudentMyAccount;
+	public JPanel panelStudentProfile;
+	public JPanel panelStudentStats;
+	public JPanel panelStudentDiploma;
+	public JPanel panelStudentSettings;
+	public JPanel panel;
+	public JPanel panelMain;
+	public JPanel panelPerson;
+	public JPanel panelMenu;
+	public JPanel panelMenuNotifications;
+	public JPanel panelMenuThesis;
+	public JPanel panelMenuSettings;
+	public JPanel panelMenuStats;
+	public JPanel panelTop;
+	public JPanel panelLogo;
+
+	
+	
 	public static List<JPanel> panels = new ArrayList<JPanel>();
 	/**
 	 * Launch the application.
@@ -131,7 +156,7 @@ public class frmMain extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panelMenu = new JPanel();
+		panelMenu = new JPanel();
 		panelMenu.setMaximumSize(new Dimension(160, 32767));
 		panelMenu.setBackground(new Color(51, 51, 51));
 		panelMenu.setPreferredSize(new Dimension(250, 10));
@@ -215,26 +240,25 @@ public class frmMain extends JFrame {
 		lblStatistics.setBounds(81, 699, 87, 30);
 		panelMenu.add(lblStatistics);
 		
-		JPanel panelMenuNotifications = new JPanel();
+		panelMenuNotifications = new JPanel();
 		panelMenuNotifications.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		panelMenuNotifications.setOpaque(false);
 		panelMenuNotifications.setBounds(0, 69, 250, 123);
 		panelMenu.add(panelMenuNotifications);
 		
-		
-		JPanel panelMenuThesis = new JPanel();
+		panelMenuThesis = new JPanel();
 		panelMenuThesis.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		panelMenuThesis.setOpaque(false);
 		panelMenuThesis.setBounds(0, 253, 250, 123);
 		panelMenu.add(panelMenuThesis);
 		
-		JPanel panelMenuSettings = new JPanel();
+		panelMenuSettings = new JPanel();
 		panelMenuSettings.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		panelMenuSettings.setOpaque(false);
 		panelMenuSettings.setBounds(0, 441, 250, 123);
 		panelMenu.add(panelMenuSettings);
 		
-		JPanel panelMenuStats = new JPanel();
+		panelMenuStats = new JPanel();
 		panelMenuStats.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		panelMenuStats.setOpaque(false);
 		panelMenuStats.setBounds(0, 625, 250, 123);
@@ -250,13 +274,13 @@ public class frmMain extends JFrame {
 		btnMyAccount.setBounds(34, 794, 186, 64);
 		panelMenu.add(btnMyAccount);
 		
-		JPanel panelTop = new JPanel();
+		panelTop = new JPanel();
 		panelTop.setMinimumSize(new Dimension(10, 200));
 		panelTop.setPreferredSize(new Dimension(10, 170));
 		contentPane.add(panelTop, BorderLayout.NORTH);
 		panelTop.setLayout(new BoxLayout(panelTop, BoxLayout.X_AXIS));
 		
-		JPanel panelLogo = new JPanel();
+		panelLogo = new JPanel();
 		panelLogo.setMinimumSize(new Dimension(250, 200));
 		panelLogo.setPreferredSize(new Dimension(250, 200));
 		panelLogo.setSize(new Dimension(160, 0));
@@ -270,7 +294,7 @@ public class frmMain extends JFrame {
 		lblLogo.setBounds(66, 23, 117, 117);
 		panelLogo.add(lblLogo);
 		
-		JPanel panelPerson = new JPanel();
+		panelPerson = new JPanel();
 		panelPerson.setMinimumSize(new Dimension(10, 200));
 		panelPerson.setMaximumSize(new Dimension(32767, 200));
 		panelPerson.setBackground(new Color(51, 204, 255));
@@ -288,10 +312,11 @@ public class frmMain extends JFrame {
 		lblAdministrata.setBounds(1250, 127, 163, 38);
 		panelPerson.add(lblAdministrata);
 		
-		JPanel panelMain = new JPanel();
+		panelMain = new JPanel();
 		contentPane.add(panelMain, BorderLayout.CENTER);
 		panelMain.setLayout(null);
 		
+		// Marrja e te dhenave nga Databasa (Tema per studentin)
 		String[] columnNames = {"Tema",
                 "Viti",
                 "Profesori"};
@@ -314,6 +339,7 @@ public class frmMain extends JFrame {
 		"Blerim Reha", new Integer(10), new Boolean(false)}
 		};
 		
+		// Marrja e te dhenave nga Databasa (Tema per administraten)
 		String[] AdministrataColumnNamesThesis = {"Tema",
                 "Studenti",
                 "Departamenti",
@@ -326,19 +352,19 @@ public class frmMain extends JFrame {
 		{"Data Mining", "Blend Arifaj","Kompjuterike","2017", new Integer(10), new Boolean(false)}
 		};
 		
-		JPanel panelAdministrataSettingsShto = new JPanel();
+		panelAdministrataSettingsShto = new JPanel();
 		panelAdministrataSettingsShto.setVisible(false);
 		
-		JPanel panelAdministrataThesis = new JPanel();
+		panelAdministrataThesis = new JPanel();
 		panelAdministrataThesis.setVisible(false);
 		
-		JPanel panelStudentStats = new JPanel();
+		panelStudentStats = new JPanel();
 		panelStudentStats.setVisible(false);
 		
-		JPanel panelAdministrataStats = new JPanel();
+		panelAdministrataStats = new JPanel();
 		panelAdministrataStats.setVisible(false);
 		
-		JPanel panelAdministrataBtnKontrollo = new JPanel();
+		panelAdministrataBtnKontrollo = new JPanel();
 		panelAdministrataBtnKontrollo.setVisible(false);
 		panelAdministrataBtnKontrollo.setBounds(0, 0, 1660, 900);
 		panelMain.add(panelAdministrataBtnKontrollo);
@@ -373,7 +399,7 @@ public class frmMain extends JFrame {
 		panelAdministrataBtnKontrollo.add(detajeTemesDiplomes);
 		
 
-		JPanel panelAdministrataNjoftimet = new JPanel();
+		panelAdministrataNjoftimet = new JPanel();
 		panelAdministrataNjoftimet.setBounds(0, 0, 1660, 900);
 		panelMain.add(panelAdministrataNjoftimet);
 		panelAdministrataNjoftimet.setBackground(SystemColor.textHighlightText);
@@ -407,7 +433,7 @@ public class frmMain extends JFrame {
 		table_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		scrollPane.setViewportView(table_2);
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBackground(Color.WHITE);
 		panel.setBounds(0, 374, 1618, 491);
 		panelAdministrataNjoftimet.add(panel);
@@ -599,7 +625,7 @@ public class frmMain extends JFrame {
 		lblShtoDepartamentRectangle.setIcon(new ImageIcon(frmMain.class.getResource("/Images/settings_button.png")));
 		panelAdministrataSettingsShto.add(lblShtoDepartamentRectangle);
 		
-		JPanel panelAdministrataSettings = new JPanel();
+		panelAdministrataSettings = new JPanel();
 		panelAdministrataSettings.setBounds(0, 0, 1427, 865);
 		panelMain.add(panelAdministrataSettings);
 		panelAdministrataSettings.setVisible(false);
@@ -693,7 +719,7 @@ public class frmMain extends JFrame {
 		lblShtoTeDhenaRectangle.setBounds(358, 455, 271, 198);
 		panelAdministrataSettings.add(lblShtoTeDhenaRectangle);
 		
-		JPanel panelStudentMyAccount = new JPanel();
+		panelStudentMyAccount = new JPanel();
 		panelStudentMyAccount.setVisible(false);
 		panelStudentMyAccount.setBounds(0, 0, 1427, 865);
 		panelMain.add(panelStudentMyAccount);
@@ -791,7 +817,7 @@ public class frmMain extends JFrame {
 		lblStudentDepartamentMyAccount.setBounds(333, 704, 423, 105);
 		panelStudentMyAccount.add(lblStudentDepartamentMyAccount);
 		
-		JPanel panelStudentProfile = new JPanel();
+		panelStudentProfile = new JPanel();
 		panelStudentProfile.setVisible(false);
 		panelStudentProfile.setBounds(0, 0, 1427, 865);
 		panelMain.add(panelStudentProfile);
@@ -878,7 +904,7 @@ public class frmMain extends JFrame {
 		lblSaveBtn.setBounds(520, 672, 207, 100);
 		panelStudentProfile.add(lblSaveBtn);
 		
-		JPanel panelStudentSettings = new JPanel();
+		panelStudentSettings = new JPanel();
 		panelStudentSettings.setVisible(false);
 		panelStudentSettings.setBounds(0, 0, 1427, 865);
 		panelMain.add(panelStudentSettings);
