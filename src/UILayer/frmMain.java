@@ -44,8 +44,14 @@ import javax.swing.border.SoftBevelBorder;
 import javax.swing.AbstractListModel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import javafx.scene.layout.Pane;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.DefaultComboBoxModel;
@@ -91,7 +97,7 @@ public class frmMain extends JFrame {
 	private JTextField txtDepartamenti_1;
 	private JTextField txtUpload;
 	private JTextField txtAdd;
-
+	public static List<JPanel> panels = new ArrayList<JPanel>();
 	/**
 	 * Launch the application.
 	 */
@@ -1011,20 +1017,20 @@ public class frmMain extends JFrame {
 		lblStudentDiplomaUpload.setBounds(761, 472, 200, 177);
 		panelStudentDiploma.add(lblStudentDiplomaUpload);
 		
+		panels.add(panelAdministrataNjoftimet);
+		panels.add(panelAdministrataSettings);
+		panels.add(panelAdministrataSettingsShto);
+		panels.add(panelAdministrataBtnKontrollo);
+		panels.add(panelAdministrataThesis);
+		panels.add(panelAdministrataStats);
+		panels.add(panelStudentMyAccount);
+		panels.add(panelStudentProfile);
+		panels.add(panelStudentStats);
+		panels.add(panelStudentDiploma);
 		panelMenuNotifications.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				panelAdministrataNjoftimet.setVisible(true);
-				panelAdministrataSettings.setVisible(false);
-				panelAdministrataSettingsShto.setVisible(false);
-				panelAdministrataBtnKontrollo.setVisible(false);
-				panelAdministrataThesis.setVisible(false);
-				panelAdministrataStats.setVisible(false);
-				panelStudentMyAccount.setVisible(false);
-				panelStudentProfile.setVisible(false);
-				panelStudentStats.setVisible(false);
-				panelStudentDiploma.setVisible(false);
-				
+				caktoVisible(panelAdministrataNjoftimet);
 			}
 		});
 		
@@ -1032,16 +1038,7 @@ public class frmMain extends JFrame {
 		panelMenuThesis.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				panelAdministrataNjoftimet.setVisible(false);
-				panelAdministrataSettings.setVisible(false);
-				panelAdministrataSettingsShto.setVisible(false);
-				panelAdministrataBtnKontrollo.setVisible(false);
-				panelAdministrataThesis.setVisible(true);
-				panelAdministrataStats.setVisible(false);
-				panelStudentMyAccount.setVisible(false);
-				panelStudentProfile.setVisible(false);
-				panelStudentStats.setVisible(false);
-				panelStudentDiploma.setVisible(false);
+				caktoVisible(panelAdministrataThesis);
 			}
 		});
 				
@@ -1049,16 +1046,7 @@ public class frmMain extends JFrame {
 		panelMenuSettings.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				panelAdministrataNjoftimet.setVisible(false);
-				panelAdministrataSettings.setVisible(true);
-				panelAdministrataSettingsShto.setVisible(false);
-				panelAdministrataBtnKontrollo.setVisible(false);
-				panelAdministrataThesis.setVisible(false);
-				panelAdministrataStats.setVisible(false);
-				panelStudentMyAccount.setVisible(false);
-				panelStudentProfile.setVisible(false);
-				panelStudentStats.setVisible(false);
-				panelStudentDiploma.setVisible(false);
+				caktoVisible(panelAdministrataSettings);
 			}
 		});
 		
@@ -1066,16 +1054,7 @@ public class frmMain extends JFrame {
 		lblShtoTeDhenaRectangle.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				panelAdministrataNjoftimet.setVisible(false);
-				panelAdministrataSettings.setVisible(false);
-				panelAdministrataSettingsShto.setVisible(true);
-				panelAdministrataBtnKontrollo.setVisible(false);
-				panelAdministrataThesis.setVisible(false);
-				panelAdministrataStats.setVisible(false);
-				panelStudentMyAccount.setVisible(false);
-				panelStudentProfile.setVisible(false);
-				panelStudentStats.setVisible(false);
-				panelStudentDiploma.setVisible(false);
+				caktoVisible(panelAdministrataSettingsShto);
 			}
 		});
 		
@@ -1083,16 +1062,7 @@ public class frmMain extends JFrame {
 		panelMenuStats.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				panelAdministrataNjoftimet.setVisible(false);
-				panelAdministrataSettings.setVisible(false);
-				panelAdministrataSettingsShto.setVisible(false);
-				panelAdministrataBtnKontrollo.setVisible(false);
-				panelAdministrataThesis.setVisible(false);
-				panelAdministrataStats.setVisible(true);
-				panelStudentMyAccount.setVisible(false);
-				panelStudentProfile.setVisible(false);
-				panelStudentStats.setVisible(false);
-				panelStudentDiploma.setVisible(false);
+				caktoVisible(panelAdministrataStats);
 			}
 		});
 		
@@ -1100,17 +1070,20 @@ public class frmMain extends JFrame {
 		lblKontrolloTemen.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				panelAdministrataNjoftimet.setVisible(false);
-				panelAdministrataSettings.setVisible(false);
-				panelAdministrataSettingsShto.setVisible(false);
-				panelAdministrataBtnKontrollo.setVisible(true);
-				panelAdministrataThesis.setVisible(false);
-				panelAdministrataStats.setVisible(false);
-				panelStudentMyAccount.setVisible(false);
-				panelStudentProfile.setVisible(false);
-				panelStudentStats.setVisible(false);
-				panelStudentDiploma.setVisible(false);
+				caktoVisible(panelAdministrataBtnKontrollo);
 			}
 		});
+		
+	}
+	public static void caktoVisible(JPanel e){
+		for(int i = 0;i<panels.size();i++) {
+			if(panels.get(i).getName().equals(e.getName())) {
+				panels.get(i).setVisible(true);
+			}else {
+				panels.get(i).setVisible(false);
+			}
+			
+		}
+		
 	}
 }
