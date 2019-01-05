@@ -130,6 +130,7 @@ public class frmMain extends JFrame {
 	public static Login objLogin;
 	public static JLabel lblMemberIcon;
 	public static JLabel lblMember;
+	public static JLabel lblNotificationIcon;
 	
 	
 	/**
@@ -141,8 +142,6 @@ public class frmMain extends JFrame {
 	 * Create the frame.
 	 */
 	public frmMain(Login newLogin) {
-		
-		objLogin = newLogin;
 		
 		setUndecorated(true);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -171,11 +170,6 @@ public class frmMain extends JFrame {
 		lblHighlightNotifications.setBounds(238, 86, 12, 85);
 		panelMenu.add(lblHighlightNotifications);
 		
-		JLabel lblNotificationsZero = new JLabel("");
-		lblNotificationsZero.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblNotificationsZero.setIcon(new ImageIcon(frmMain.class.getResource("/Images/notification_zero.png")));
-		lblNotificationsZero.setBounds(100, 86, 50, 50);
-		panelMenu.add(lblNotificationsZero);
 		
 		JLabel lblHighlightThesis = new JLabel("");
 		lblHighlightThesis.setOpaque(true);
@@ -328,7 +322,7 @@ public class frmMain extends JFrame {
 		
 		// Metoda qe merr si paramter se cfare lloj anetari eshte (student,profesor ose administrator)
 		// dhe shfaq ikonen dhe labelen perkatese tek ana djathte larte
-		userMember(newLogin.getLloji());
+		userMember(newLogin);
 		
 		panelMain = new JPanel();
 		contentPane.add(panelMain, BorderLayout.CENTER);
@@ -1263,49 +1257,78 @@ public class frmMain extends JFrame {
 		}
 	}
 	
-	public static void userMember(String user) {
+	public static void userMember(Login user) {
 		
-		if (user.equals("Student")) 
+		lblMemberIcon = new JLabel("");
+		lblNotificationIcon = new JLabel("");
+		lblMember = new JLabel(user.getLloji());
+		
+		if (user.getLloji().equals("Student")) 
 		{
 			// Ikona e anetarit
-			lblMemberIcon = new JLabel("");
 			lblMemberIcon.setIcon(new ImageIcon(frmMain.class.getResource("/Images/professor.png")));
 			lblMemberIcon.setBounds(1271, 4, 128, 128);
 			panelPerson.add(lblMemberIcon);
 			
 			// Teksti(label) anetarit
-			lblMember = new JLabel(user);
 			lblMember.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 28));
 			lblMember.setBounds(1250, 127, 163, 38);
 			panelPerson.add(lblMember);
+			
+			// Ikona e notifications
+			lblNotificationIcon.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			lblNotificationIcon.setIcon(new ImageIcon(frmMain.class.getResource("/Images/notification_zero.png")));
+			lblNotificationIcon.setBounds(100, 86, 50, 50);
+			panelMenu.add(lblNotificationIcon);
+			
+			if(user.student.isNewNjoftim()) {
+				lblNotificationIcon.setIcon(new ImageIcon(frmMain.class.getResource("/Images/notification.png")));
+			}
 		}
-		else if (user.equals("Profesor")) 
+		else if (user.getLloji().equals("Profesor")) 
 		{
 			// Ikona e anetarit
-			lblMemberIcon = new JLabel("");
 			lblMemberIcon.setIcon(new ImageIcon(frmMain.class.getResource("/Images/professor.png")));
 			lblMemberIcon.setBounds(1271, 4, 128, 128);
 			panelPerson.add(lblMemberIcon);
 			
 			// Teksti(label) anetarit
-			lblMember = new JLabel(user);
 			lblMember.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 28));
 			lblMember.setBounds(1250, 127, 163, 38);
 			panelPerson.add(lblMember);
+			
+			// Ikona e notifications
+			lblNotificationIcon.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			lblNotificationIcon.setIcon(new ImageIcon(frmMain.class.getResource("/Images/notification_zero.png")));
+			lblNotificationIcon.setBounds(100, 86, 50, 50);
+			panelMenu.add(lblNotificationIcon);
+			
+			if(user.profesor.isNewNjoftim()) {
+				lblNotificationIcon.setIcon(new ImageIcon(frmMain.class.getResource("/Images/notification.png")));
+			}
 		}
-		else if (user.equals("Administrata")) 
+		else if (user.getLloji().equals("Administrata")) 
 		{
 			// Ikona e anetarit
-			lblMemberIcon = new JLabel("");
 			lblMemberIcon.setIcon(new ImageIcon(frmMain.class.getResource("/Images/professor.png")));
 			lblMemberIcon.setBounds(1271, 4, 128, 128);
 			panelPerson.add(lblMemberIcon);
 			
 			// Teksti(label) anetarit
-			lblMember = new JLabel(user);
 			lblMember.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 28));
 			lblMember.setBounds(1250, 127, 163, 38);
 			panelPerson.add(lblMember);
+			
+			// Ikona e notifications
+			lblNotificationIcon.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			lblNotificationIcon.setIcon(new ImageIcon(frmMain.class.getResource("/Images/notification_zero.png")));
+			lblNotificationIcon.setBounds(100, 86, 50, 50);
+			panelMenu.add(lblNotificationIcon);
+						
+			if(user.administrat.isNewNjoftim()) {
+				lblNotificationIcon.setIcon(new ImageIcon(frmMain.class.getResource("/Images/notification.png")));
+			}
+			
 		}
 		
 }
