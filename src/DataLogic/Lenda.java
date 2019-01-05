@@ -56,5 +56,6 @@ public class Lenda {
 				}
 	}
 
-	
+
+	//HashTable procedura e cila ka me i mor krejt fakultet (vetem emri) dhe si qeles, dmth menyren per me ju qas do ta kete id-n e fks
 }

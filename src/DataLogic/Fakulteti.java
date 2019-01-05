@@ -114,8 +114,8 @@ public class Fakulteti {
 		
 		}
 	}
+	
 	public Boolean addDepartamentet(List<Departamenti> departamentet) {
-		//Procedura
 		try {
 			DBConnect objDB = new DBConnect("FIEKDB");
 			for(int i = 0;i<departamentet.size();i++) {
@@ -134,5 +134,5 @@ public class Fakulteti {
 			return false;
 		}
 	}
-
+	//HashTable procedura e cila ka me i mor krejt fakultet (vetem emri) dhe si qeles, dmth menyren per me ju qas do ta kete id-n e fks
 }

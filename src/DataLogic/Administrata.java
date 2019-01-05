@@ -68,7 +68,6 @@ public class Administrata extends Person implements AdministrataFunctions{
 		}
 	}
 	public Boolean addNewUniversitet(Universiteti newUni) {
-		//Procedura
 		try {
 			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();
@@ -83,8 +82,8 @@ public class Administrata extends Person implements AdministrataFunctions{
 			return false;
 		}
 	}
+	
 	public Boolean addNewLenda(Lenda newLenda) {
-		//Procedura
 		try {
 			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();

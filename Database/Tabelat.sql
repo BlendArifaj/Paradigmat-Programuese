@@ -113,7 +113,7 @@ statusiNjoftimit boolean not null,
 foreign key(idProfesori) references Profesori(id),
 foreign key(idPunimi) references Punimi(id));
 
-create table NjoftimetAdministrata(
+CREATE table NjoftimetAdministrata(
 idNjoftimi int auto_increment primary key,
 idAdministrata varchar(20) not null,
 idPunimi int not null,
