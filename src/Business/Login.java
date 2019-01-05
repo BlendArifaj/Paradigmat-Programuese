@@ -42,9 +42,11 @@ public class Login implements LoginFunctions{
 	public Login() {
 
 	}	
+	
 	public Boolean kontrolloPW() {
 		return this.userStoredHash.equals(Hash.saltedHashString(this.password,this.username));
 	}
+	
 	public void setParameters() {
 		DBConnect objDB = new DBConnect("FIEKDB");
 		List<Object> param = new ArrayList<Object>();
@@ -72,6 +74,4 @@ public class Login implements LoginFunctions{
 	public String getUsername() {
 		return this.username;
 	}
-	
-
 }
