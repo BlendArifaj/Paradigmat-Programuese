@@ -19,13 +19,25 @@ public class Login implements LoginFunctions{
 	private String userStoredHash = "";
 	private int access = 0;
 	private String lloji = "";
-	
+	public Studenti student = null;
+	public Profesori profesor = null;
+	public Administrata administrat = null;
+
 	public Login(String _username,String _password) {
 		this.username = _username;
 		this.password = _password;
 		this.setParameters();
 		this.isCorrect= this.kontrolloPW();
-		
+		if(this.lloji.equals("Student")) {
+			student = new Studenti();
+			student.getStudenti(this.username);
+		}else if(this.lloji.equals("Profesor")) {
+			profesor = new Profesori();
+			profesor.getProfesori(this.username);
+		}else {
+			administrat = new Administrata();
+			administrat.getAdministrata(this.username);
+		}
 	}
 	public Login() {
 

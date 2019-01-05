@@ -166,6 +166,7 @@ public class LoginForm {
 			public void actionPerformed(ActionEvent arg0) {
 				Login newLogin = new Login(txtUsername.getText(),new String(pwdPassword.getPassword()));
 				if(newLogin.isCorrect) {
+					
 					frmLogin.setVisible(false);
 					//Dashboard newd = new Dashboard(newLogin);
 					//newd.frame.setVisible(true);
