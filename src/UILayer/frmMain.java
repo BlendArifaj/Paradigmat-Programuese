@@ -127,6 +127,10 @@ public class frmMain extends JFrame {
 	
 	public static List<JLabel> labelHighlight = new ArrayList<JLabel>();
 	
+	public static Login objLogin;
+	public static JLabel lblMemberIcon;
+	public static JLabel lblMember;
+	
 	
 	/**
 	 * Launch the application.
@@ -137,6 +141,9 @@ public class frmMain extends JFrame {
 	 * Create the frame.
 	 */
 	public frmMain(Login newLogin) {
+		
+		objLogin = newLogin;
+		
 		setUndecorated(true);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		setLocationByPlatform(true);
@@ -319,19 +326,9 @@ public class frmMain extends JFrame {
 		panelTop.add(panelPerson);
 		panelPerson.setLayout(null);
 		
-		//DB
-		// Icona qe shfaqet larte nese je administrator , student ose profesor
-		JLabel lblAdminIcon = new JLabel("");
-		lblAdminIcon.setIcon(new ImageIcon(frmMain.class.getResource("/Images/professor.png")));
-		lblAdminIcon.setBounds(1271, 4, 128, 128);
-		panelPerson.add(lblAdminIcon);
-		
-		//DB
-		// Teksti qe shfaqet larte nese je administrator , student ose profesor
-		JLabel lblAdministrata = new JLabel("Administrata");
-		lblAdministrata.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 28));
-		lblAdministrata.setBounds(1250, 127, 163, 38);
-		panelPerson.add(lblAdministrata);
+		// Metoda qe merr si paramter se cfare lloj anetari eshte (student,profesor ose administrator)
+		// dhe shfaq ikonen dhe labelen perkatese tek ana djathte larte
+		userMember(newLogin.getLloji());
 		
 		panelMain = new JPanel();
 		contentPane.add(panelMain, BorderLayout.CENTER);
@@ -1265,4 +1262,74 @@ public class frmMain extends JFrame {
 			}	
 		}
 	}
+	
+	public static void userMember(String user) {
+		
+		if (user.equals("Student")) 
+		{
+			// Ikona e anetarit
+			lblMemberIcon = new JLabel("");
+			lblMemberIcon.setIcon(new ImageIcon(frmMain.class.getResource("/Images/professor.png")));
+			lblMemberIcon.setBounds(1271, 4, 128, 128);
+			panelPerson.add(lblMemberIcon);
+			
+			// Teksti(label) anetarit
+			lblMember = new JLabel(user);
+			lblMember.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 28));
+			lblMember.setBounds(1250, 127, 163, 38);
+			panelPerson.add(lblMember);
+		}
+		else if (user.equals("Profesor")) 
+		{
+			// Ikona e anetarit
+			lblMemberIcon = new JLabel("");
+			lblMemberIcon.setIcon(new ImageIcon(frmMain.class.getResource("/Images/professor.png")));
+			lblMemberIcon.setBounds(1271, 4, 128, 128);
+			panelPerson.add(lblMemberIcon);
+			
+			// Teksti(label) anetarit
+			lblMember = new JLabel(user);
+			lblMember.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 28));
+			lblMember.setBounds(1250, 127, 163, 38);
+			panelPerson.add(lblMember);
+		}
+		else if (user.equals("Administrata")) 
+		{
+			// Ikona e anetarit
+			lblMemberIcon = new JLabel("");
+			lblMemberIcon.setIcon(new ImageIcon(frmMain.class.getResource("/Images/professor.png")));
+			lblMemberIcon.setBounds(1271, 4, 128, 128);
+			panelPerson.add(lblMemberIcon);
+			
+			// Teksti(label) anetarit
+			lblMember = new JLabel(user);
+			lblMember.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 28));
+			lblMember.setBounds(1250, 127, 163, 38);
+			panelPerson.add(lblMember);
+		}
+		
+}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
