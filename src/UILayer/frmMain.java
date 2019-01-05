@@ -1120,7 +1120,7 @@ public class frmMain extends JFrame {
 				panelAdministrataNjoftimet.setVisible(false);
 				panelAdministrataSettings.setVisible(false);
 				panelAdministrataSettingsShto.setVisible(false);
-				panelAdministrataThesis.setVisible(true);
+				panelStudentStats.setVisible(true);
 				panelAdministrataStats.setVisible(false);
 				panelStudentMyAccount.setVisible(false);
 				panelStudentProfile.setVisible(false);
@@ -1266,7 +1266,7 @@ public class frmMain extends JFrame {
 		if (user.getLloji().equals("Student")) 
 		{
 			// Ikona e anetarit
-			lblMemberIcon.setIcon(new ImageIcon(frmMain.class.getResource("/Images/professor.png")));
+			lblMemberIcon.setIcon(new ImageIcon(frmMain.class.getResource("/Images/dashboard_student_icon.png")));
 			lblMemberIcon.setBounds(1271, 4, 128, 128);
 			panelPerson.add(lblMemberIcon);
 			
@@ -1284,6 +1284,7 @@ public class frmMain extends JFrame {
 			if(user.student.isNewNjoftim()) {
 				lblNotificationIcon.setIcon(new ImageIcon(frmMain.class.getResource("/Images/notification.png")));
 			}
+			
 		}
 		else if (user.getLloji().equals("Profesor")) 
 		{
@@ -1310,7 +1311,7 @@ public class frmMain extends JFrame {
 		else if (user.getLloji().equals("Administrata")) 
 		{
 			// Ikona e anetarit
-			lblMemberIcon.setIcon(new ImageIcon(frmMain.class.getResource("/Images/professor.png")));
+			lblMemberIcon.setIcon(new ImageIcon(frmMain.class.getResource("/Images/user.png")));
 			lblMemberIcon.setBounds(1271, 4, 128, 128);
 			panelPerson.add(lblMemberIcon);
 			
