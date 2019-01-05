@@ -167,10 +167,10 @@ public class LoginForm {
 				Login newLogin = new Login(txtUsername.getText(),new String(pwdPassword.getPassword()));
 				if(newLogin.isCorrect) {
 					frmLogin.setVisible(false);
-					Dashboard newd = new Dashboard(newLogin);
+					//Dashboard newd = new Dashboard(newLogin);
 					//newd.frame.setVisible(true);
-					frmMain o=new frmMain();
-					o.setVisible(true);
+					frmMain objFrmMain=new frmMain(newLogin);
+					objFrmMain.setVisible(true);
 							
 				}else {
 					lblMessage.setText("Please check your username/password!");

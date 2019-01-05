@@ -45,6 +45,7 @@ import javax.swing.AbstractListModel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import Business.Login;
 import javafx.scene.layout.Pane;
 
 import java.awt.event.MouseAdapter;
@@ -130,23 +131,12 @@ public class frmMain extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					frame = new frmMain();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the frame.
 	 */
-	public frmMain() {
+	public frmMain(Login newLogin) {
 		setUndecorated(true);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		setLocationByPlatform(true);
