@@ -131,6 +131,8 @@ public class frmMain extends JFrame {
 	public static JLabel lblMemberIcon;
 	public static JLabel lblMember;
 	public static JLabel lblNotificationIcon;
+	private JTextField txtStudentNotificationsTema;
+	private JTextField txtStudentNotificationsMessage;
 	
 	
 	/**
@@ -383,6 +385,52 @@ public class frmMain extends JFrame {
 		
 		JPanel panelStudentDiploma = new JPanel();
 		panelStudentDiploma.setVisible(false);
+		
+		JPanel panelStudentNotifications = new JPanel();
+		panelStudentNotifications.setBackground(Color.WHITE);
+		panelStudentNotifications.setBounds(0, 0, 1427, 865);
+		panelMain.add(panelStudentNotifications);
+		panelStudentNotifications.setLayout(null);
+		
+		// Mesazhi qe do shfaqet kur nje studenti i vjen nje notification(Studenti)
+		txtStudentNotificationsMessage = new JTextField();
+		txtStudentNotificationsMessage.setColumns(10);
+		txtStudentNotificationsMessage.setBounds(328, 487, 752, 259);
+		panelStudentNotifications.add(txtStudentNotificationsMessage);
+		
+		// Tema qe do te shfaqet per te cilen i vie notifications(Studenti)
+		txtStudentNotificationsTema = new JTextField();
+		txtStudentNotificationsTema.setBounds(313, 274, 773, 77);
+		panelStudentNotifications.add(txtStudentNotificationsTema);
+		txtStudentNotificationsTema.setColumns(10);
+		
+		JLabel lblNjoftimet = new JLabel("NJOFTIMET");
+		lblNjoftimet.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblNjoftimet.setBounds(578, 66, 196, 65);
+		panelStudentNotifications.add(lblNjoftimet);
+		
+		JLabel lblTema = new JLabel("Tema");
+		lblTema.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblTema.setBounds(142, 274, 136, 65);
+		panelStudentNotifications.add(lblTema);
+		
+		JLabel lblStudentNjoftimetTema = new JLabel("");
+		lblStudentNjoftimetTema.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).getImage()
+				.getScaledInstance(800, 100, Image.SCALE_SMOOTH)));
+		lblStudentNjoftimetTema.setBounds(301, 248, 800, 127);
+		panelStudentNotifications.add(lblStudentNjoftimetTema);
+		
+		JLabel lblStudentNotificationsMessage = new JLabel("");
+		lblStudentNotificationsMessage.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).getImage()
+				.getScaledInstance(800, 300, Image.SCALE_SMOOTH)));
+		lblStudentNotificationsMessage.setBounds(301, 414, 800, 403);
+		panelStudentNotifications.add(lblStudentNotificationsMessage);
+		
+		JLabel lblMesazhi = new JLabel("Mesazhi");
+		lblMesazhi.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblMesazhi.setBounds(142, 468, 136, 65);
+		panelStudentNotifications.add(lblMesazhi);
+		
 		panelStudentDiploma.setBounds(0, 0, 1427, 865);
 		panelMain.add(panelStudentDiploma);
 		panelStudentDiploma.setBackground(Color.WHITE);
@@ -1360,27 +1408,4 @@ public class frmMain extends JFrame {
 		}
 		
 }
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
