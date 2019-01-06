@@ -125,6 +125,7 @@ public class Profesori extends Person implements ProfesoriFunctions {
 			return false;
 		}	
 	}
+	
 	//HashTable procedura e cila ka me i mor krejt profesoret (vetem emri) dhe si qeles, dmth menyren per me ju qas do ta kete id-n e profes
 }
 

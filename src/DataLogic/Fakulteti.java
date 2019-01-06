@@ -1,6 +1,8 @@
 package DataLogic;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.Hashtable;
 import java.util.List;
 
 public class Fakulteti {
@@ -9,6 +11,9 @@ public class Fakulteti {
 	private String adresa;
 	private Universiteti universiteti = new Universiteti();
 	private List<Departamenti> departamentet = new ArrayList<Departamenti>();
+	private Enumeration<String> fakultetet;
+	public Hashtable<String, String> fakultetetIDs = new Hashtable<String, String>();
+
 	public Fakulteti(String ID, String emri,Universiteti universiteti,String adresa) {
 		this.ID = ID;
 		this.emri = emri;
@@ -55,7 +60,7 @@ public class Fakulteti {
 			return false;
 		}		
 	}
-	
+	/*
 	public String[][] getFakultetet(){
 		try {
 			DBConnect objDB = new DBConnect("FIEKDB");
@@ -77,7 +82,8 @@ public class Fakulteti {
 		} catch (Exception e) {
 			return null;
 		}
-	}
+	}*/
+	
 	public String getID() {
 		return this.ID;
 	}
@@ -134,5 +140,29 @@ public class Fakulteti {
 			return false;
 		}
 	}
-	//HashTable procedura e cila ka me i mor krejt fakultet (vetem emri) dhe si qeles, dmth menyren per me ju qas do ta kete id-n e fks
+	
+	public Enumeration<String> getFakultetet(){
+		return this.fakultetet;
+	}
+	
+	public Hashtable<String, String> getAllFakultetet() {
+		try {
+			DBConnect objDB = new DBConnect("FIEKDB");
+			List<Object> param = new ArrayList<Object>();
+			ResultSet res = objDB.executeProcedure("getAllFakultetet", param);		
+			while(res.next()) {
+				fakultetetIDs.put(res.getString("id"), res.getString("fakulteti"));	
+			}
+			objDB.terminate();
+		} catch (Exception e) {
+		
+		}
+	        this.fakultetet = fakultetetIDs.elements(); 
+	        /*
+	        while (e.hasMoreElements()) { 
+	            System.out.println(e.nextElement()); 
+	        } 
+		*/
+	        return this.fakultetetIDs;
+	}
 }

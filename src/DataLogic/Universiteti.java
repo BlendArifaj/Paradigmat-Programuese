@@ -2,18 +2,25 @@ package DataLogic;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.Hashtable;
 import java.util.List;
 
 public class Universiteti {
 	private int ID;
 	private String emri;
 	private List<Fakulteti> fakultetet;
+	private Enumeration<String> universitetet;
+	public Hashtable<Integer, String> univeristetetIDs = new Hashtable<Integer, String>();
 	public Universiteti() {
 		
 	}
 	public Universiteti(String emri){
 		this.emri = emri;
 		this.inicializoUniversitetin(this.emri);
+	}
+	public Enumeration<String> getUniversitetet() {
+		return this.universitetet;
 	}
 	public int getID() {
 		return ID;
@@ -77,8 +84,7 @@ public class Universiteti {
 				param.add(fakulteti.get(i).getID());
 				param.add(fakulteti.get(i).getEmri());
 				param.add(this.ID);
-				param.add(fakulteti.get(i).getAdresa());
-				ResultSet res = objDB.executeProcedure("addNewFakultetUniversiteti", param);		
+				param.add(fakulteti.get(i).getAdresa());		
 			}
 			objDB.terminate();
 			if(!objDB.isOk) {
@@ -90,5 +96,24 @@ public class Universiteti {
 		}
 	}
 
-	//HashTable procedura e cila ka me i mor krejt universitetet (vetem emri) dhe si qeles, dmth menyren per me ju qas do ta kete id-n e unit
+	public Hashtable<Integer, String> getAllUniversitetet() {
+		try {
+			DBConnect objDB = new DBConnect("FIEKDB");
+			List<Object> param = new ArrayList<Object>();
+			ResultSet res = objDB.executeProcedure("getAllUniversitetet", param);		
+			while(res.next()) {
+				univeristetetIDs.put(res.getInt("id"), res.getString("universiteti"));	
+			}
+			objDB.terminate();
+		} catch (Exception e) {
+		
+		}
+	        this.universitetet = univeristetetIDs.elements(); 
+	        /*
+	        while (e.hasMoreElements()) { 
+	            System.out.println(e.nextElement()); 
+	        } 
+		*/
+	        return this.univeristetetIDs;
+	}	
 }

@@ -2,13 +2,21 @@ package DataLogic;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.Hashtable;
 import java.util.List;
 
 public class Lenda {
 	private int ID;
 	private String lenda;
+	
+	private Enumeration<String> lendet;
+	public Hashtable<Integer, String> lendetIDs = new Hashtable<Integer, String>();
 	public Lenda() {
 		
+	}
+	public Enumeration<String> getLendet(){
+		return this.lendet;
 	}
 	public Lenda(String Lenda) {
 		
@@ -55,7 +63,24 @@ public class Lenda {
 
 				}
 	}
-
-
-	//HashTable procedura e cila ka me i mor krejt fakultet (vetem emri) dhe si qeles, dmth menyren per me ju qas do ta kete id-n e fks
+	public Hashtable<Integer, String> getAllLendet() {
+		try {
+			DBConnect objDB = new DBConnect("FIEKDB");
+			List<Object> param = new ArrayList<Object>();
+			ResultSet res = objDB.executeProcedure("getAllLendet", param);		
+			while(res.next()) {
+				lendetIDs.put(res.getInt("id"), res.getString("lenda"));	
+			}
+			objDB.terminate();
+		} catch (Exception e) {
+		
+		}
+	        this.lendet = lendetIDs.elements(); 
+	        /*
+	        while (e.hasMoreElements()) { 
+	            System.out.println(e.nextElement()); 
+	        } 
+		*/
+	        return this.lendetIDs;
+	}
 }
