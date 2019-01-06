@@ -107,6 +107,11 @@ public class frmMain extends JFrame {
 	public static JPanel panelAdministrataBtnKontrollo;
 	public static JPanel panelAdministrataThesis;
 	public static JPanel panelAdministrataStats;
+	public static JPanel panelAdministrataAddDepartament;
+	public static JLabel lblAdministrataAddDepartament;
+	public static JPanel panelAdministrataAddUniversity;
+	public static JPanel panelAdministrataAddLenda;
+	public static JPanel panelAdministrataAddFakultet;
 	public static JPanel panelStudentMyAccount;
 	public static JPanel panelStudentProfile;
 	public static JPanel panelStudentStats;
@@ -139,6 +144,10 @@ public class frmMain extends JFrame {
 	private JTextField txtAdministrataShtoFakultetAdresa;
 	private JTextField txtAdministrataShtoDepartamentEmri;
 	private JTextField txtAdministrataShtoLendeEmri;
+	private JTextField txtShto;
+	private JTextField txtAdd_1;
+	private JTextField txtAdd_2;
+	private JTextField txtAdd_3;
 	
 	
 	/**
@@ -281,14 +290,16 @@ public class frmMain extends JFrame {
 		JButton btnLogOut = new JButton("LOG OUT");
 		btnLogOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				frame.setVisible(false);
+				LoginForm window = new LoginForm();
+				window.frmLogin.setVisible(true);
+				
 			}
 		});
 		btnLogOut.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				frame.setVisible(false);
+				LoginForm window = new LoginForm();
+				window.frmLogin.setVisible(true);
 			}
 		});
 		
@@ -392,39 +403,72 @@ public class frmMain extends JFrame {
 		panelAdministrataSettingsShto = new JPanel();
 		panelAdministrataSettingsShto.setVisible(false);
 		
-		JPanel panelAdministrataAddLenda = new JPanel();
-		panelAdministrataAddLenda.setLayout(null);
-		panelAdministrataAddLenda.setBackground(Color.WHITE);
-		panelAdministrataAddLenda.setBounds(0, 0, 1427, 865);
-		panelMain.add(panelAdministrataAddLenda);
+		panelStudentNotifications = new JPanel();
+		panelStudentNotifications.setBackground(Color.WHITE);
+		panelStudentNotifications.setBounds(0, 0, 1427, 865);
+		panelMain.add(panelStudentNotifications);
+		panelStudentNotifications.setLayout(null);
 		
-		txtAdministrataShtoLendeEmri = new JTextField();
-		txtAdministrataShtoLendeEmri.setColumns(10);
-		txtAdministrataShtoLendeEmri.setBorder(null);
-		txtAdministrataShtoLendeEmri.setBounds(322, 259, 577, 62);
-		panelAdministrataAddLenda.add(txtAdministrataShtoLendeEmri);
+		// Mesazhi qe do shfaqet kur nje studenti i vjen nje notification(Studenti)
+		txtStudentNotificationsMessage = new JTextField();
+		txtStudentNotificationsMessage.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		txtStudentNotificationsMessage.setOpaque(false);
+		txtStudentNotificationsMessage.setBorder(null);
+		txtStudentNotificationsMessage.setColumns(10);
+		txtStudentNotificationsMessage.setBounds(328, 487, 752, 259);
+		panelStudentNotifications.add(txtStudentNotificationsMessage);
 		
-		JLabel lblAdministrataShtoLende = new JLabel("");
-		lblAdministrataShtoLende.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).getImage()
-				.getScaledInstance(600, 80, Image.SCALE_SMOOTH)));
-		lblAdministrataShtoLende.setBounds(312, 246, 609, 90);
-		panelAdministrataAddLenda.add(lblAdministrataShtoLende);
+		// Tema qe do te shfaqet per te cilen i vie notifications(Studenti)
+		txtStudentNotificationsTema = new JTextField();
+		txtStudentNotificationsTema.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		txtStudentNotificationsTema.setOpaque(false);
+		txtStudentNotificationsTema.setBorder(null);
+		txtStudentNotificationsTema.setBounds(313, 274, 773, 77);
+		panelStudentNotifications.add(txtStudentNotificationsTema);
+		txtStudentNotificationsTema.setColumns(10);
 		
-		JLabel lblShtoLendeTe = new JLabel("Shto lende te re");
-		lblShtoLendeTe.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		lblShtoLendeTe.setBounds(312, 65, 373, 62);
-		panelAdministrataAddLenda.add(lblShtoLendeTe);
+		JLabel lblNjoftimet = new JLabel("NJOFTIMET");
+		lblNjoftimet.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblNjoftimet.setBounds(578, 66, 196, 65);
+		panelStudentNotifications.add(lblNjoftimet);
 		
-		JLabel label_5 = new JLabel("Emri");
-		label_5.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		label_5.setBounds(78, 259, 144, 62);
-		panelAdministrataAddLenda.add(label_5);
+		JLabel lblTema = new JLabel("Tema");
+		lblTema.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblTema.setBounds(142, 274, 136, 65);
+		panelStudentNotifications.add(lblTema);
 		
-		JPanel panelAdministrataAddDepartament = new JPanel();
+		JLabel lblStudentNjoftimetTema = new JLabel("");
+		lblStudentNjoftimetTema.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).getImage()
+				.getScaledInstance(800, 100, Image.SCALE_SMOOTH)));
+		lblStudentNjoftimetTema.setBounds(301, 248, 800, 127);
+		panelStudentNotifications.add(lblStudentNjoftimetTema);
+		
+		JLabel lblStudentNotificationsMessage = new JLabel("");
+		lblStudentNotificationsMessage.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).getImage()
+				.getScaledInstance(800, 300, Image.SCALE_SMOOTH)));
+		lblStudentNotificationsMessage.setBounds(301, 414, 800, 403);
+		panelStudentNotifications.add(lblStudentNotificationsMessage);
+		
+		JLabel lblMesazhi = new JLabel("Mesazhi");
+		lblMesazhi.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblMesazhi.setBounds(142, 468, 136, 65);
+		panelStudentNotifications.add(lblMesazhi);
+		panelStudentNotifications.setVisible(false);
+		
+		panelAdministrataAddDepartament = new JPanel();
 		panelAdministrataAddDepartament.setLayout(null);
 		panelAdministrataAddDepartament.setBackground(Color.WHITE);
 		panelAdministrataAddDepartament.setBounds(0, 0, 1427, 865);
 		panelMain.add(panelAdministrataAddDepartament);
+		
+		txtAdd_3 = new JTextField();
+		txtAdd_3.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		txtAdd_3.setText("ADD");
+		txtAdd_3.setOpaque(false);
+		txtAdd_3.setBorder(null);
+		txtAdd_3.setBounds(561, 548, 55, 46);
+		panelAdministrataAddDepartament.add(txtAdd_3);
+		txtAdd_3.setColumns(10);
 		
 		txtAdministrataShtoDepartamentEmri = new JTextField();
 		txtAdministrataShtoDepartamentEmri.setBorder(null);
@@ -432,11 +476,11 @@ public class frmMain extends JFrame {
 		panelAdministrataAddDepartament.add(txtAdministrataShtoDepartamentEmri);
 		txtAdministrataShtoDepartamentEmri.setColumns(10);
 		
-		JLabel lblAdministrataShtoDepartament = new JLabel("");
-		lblAdministrataShtoDepartament.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).getImage()
+		lblAdministrataAddDepartament = new JLabel("");
+		lblAdministrataAddDepartament.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).getImage()
 				.getScaledInstance(600, 80, Image.SCALE_SMOOTH)));
-		lblAdministrataShtoDepartament.setBounds(312, 246, 609, 90);
-		panelAdministrataAddDepartament.add(lblAdministrataShtoDepartament);
+		lblAdministrataAddDepartament.setBounds(312, 246, 609, 90);
+		panelAdministrataAddDepartament.add(lblAdministrataAddDepartament);
 		
 		JLabel lblShtoDepartamentTe = new JLabel("Shto Departament te ri");
 		lblShtoDepartamentTe.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -460,11 +504,26 @@ public class frmMain extends JFrame {
 		comboBoxFakultetet.setBounds(322, 374, 483, 62);
 		panelAdministrataAddDepartament.add(comboBoxFakultetet);
 		
-		JPanel panelAdministrataAddFakultet = new JPanel();
+		// Kur klikohet shtohet nje departament i ri
+		JLabel btnShtoDepartamentTeRi = new JLabel("");
+		btnShtoDepartamentTeRi.setIcon(new ImageIcon(frmMain.class.getResource("/Images/login_rectangle_login.png")));
+		btnShtoDepartamentTeRi.setBounds(486, 548, 200, 46);
+		panelAdministrataAddDepartament.add(btnShtoDepartamentTeRi);
+		
+		panelAdministrataAddFakultet = new JPanel();
 		panelAdministrataAddFakultet.setLayout(null);
 		panelAdministrataAddFakultet.setBackground(Color.WHITE);
 		panelAdministrataAddFakultet.setBounds(0, 0, 1427, 865);
 		panelMain.add(panelAdministrataAddFakultet);
+		
+		txtAdd_2 = new JTextField();
+		txtAdd_2.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		txtAdd_2.setText("ADD");
+		txtAdd_2.setOpaque(false);
+		txtAdd_2.setBorder(null);
+		txtAdd_2.setBounds(557, 600, 54, 46);
+		panelAdministrataAddFakultet.add(txtAdd_2);
+		txtAdd_2.setColumns(10);
 		
 		txtAdministrataShtoFakultetAdresa = new JTextField();
 		txtAdministrataShtoFakultetAdresa.setColumns(10);
@@ -517,11 +576,26 @@ public class frmMain extends JFrame {
 		lblAdministrataShtoFakultetAdresa.setBounds(312, 464, 609, 90);
 		panelAdministrataAddFakultet.add(lblAdministrataShtoFakultetAdresa);
 		
-		JPanel panelAdministrataAddUniversity = new JPanel();
+		// Kur klikohet shtohet nje fakultet i ri (administrata)
+		JLabel btnShtoFakultetTeRi = new JLabel("");
+		btnShtoFakultetTeRi.setIcon(new ImageIcon(frmMain.class.getResource("/Images/login_rectangle_login.png")));
+		btnShtoFakultetTeRi.setBounds(488, 600, 200, 46);
+		panelAdministrataAddFakultet.add(btnShtoFakultetTeRi);
+		
+		panelAdministrataAddUniversity = new JPanel();
 		panelAdministrataAddUniversity.setBackground(Color.WHITE);
 		panelAdministrataAddUniversity.setBounds(0, 0, 1427, 865);
 		panelMain.add(panelAdministrataAddUniversity);
 		panelAdministrataAddUniversity.setLayout(null);
+		
+		txtAdd_1 = new JTextField();
+		txtAdd_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		txtAdd_1.setText("ADD");
+		txtAdd_1.setBorder(null);
+		txtAdd_1.setOpaque(false);
+		txtAdd_1.setBounds(464, 419, 51, 46);
+		panelAdministrataAddUniversity.add(txtAdd_1);
+		txtAdd_1.setColumns(10);
 		
 		txtAdministrataShtoUniversitet = new JTextField();
 		txtAdministrataShtoUniversitet.setBounds(238, 259, 573, 62);
@@ -545,6 +619,53 @@ public class frmMain extends JFrame {
 		lblEmri.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		lblEmri.setBounds(78, 259, 144, 62);
 		panelAdministrataAddUniversity.add(lblEmri);
+		
+		JLabel btnShtoUniversitetTeRi = new JLabel("");
+		btnShtoUniversitetTeRi.setIcon(new ImageIcon(frmMain.class.getResource("/Images/login_rectangle_login.png")));
+		btnShtoUniversitetTeRi.setBounds(390, 419, 200, 46);
+		panelAdministrataAddUniversity.add(btnShtoUniversitetTeRi);
+		
+		panelAdministrataAddLenda = new JPanel();
+		panelAdministrataAddLenda.setLayout(null);
+		panelAdministrataAddLenda.setBackground(Color.WHITE);
+		panelAdministrataAddLenda.setBounds(0, 0, 1427, 865);
+		panelMain.add(panelAdministrataAddLenda);
+		
+		txtShto = new JTextField();
+		txtShto.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		txtShto.setText("ADD");
+		txtShto.setOpaque(false);
+		txtShto.setBorder(null);
+		txtShto.setBounds(574, 490, 48, 46);
+		panelAdministrataAddLenda.add(txtShto);
+		txtShto.setColumns(10);
+		
+		txtAdministrataShtoLendeEmri = new JTextField();
+		txtAdministrataShtoLendeEmri.setColumns(10);
+		txtAdministrataShtoLendeEmri.setBorder(null);
+		txtAdministrataShtoLendeEmri.setBounds(322, 259, 577, 62);
+		panelAdministrataAddLenda.add(txtAdministrataShtoLendeEmri);
+		
+		JLabel lblAdministrataShtoLende = new JLabel("");
+		lblAdministrataShtoLende.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).getImage()
+				.getScaledInstance(600, 80, Image.SCALE_SMOOTH)));
+		lblAdministrataShtoLende.setBounds(312, 246, 609, 90);
+		panelAdministrataAddLenda.add(lblAdministrataShtoLende);
+		
+		JLabel lblShtoLendeTe = new JLabel("Shto lende te re");
+		lblShtoLendeTe.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblShtoLendeTe.setBounds(312, 65, 373, 62);
+		panelAdministrataAddLenda.add(lblShtoLendeTe);
+		
+		JLabel label_5 = new JLabel("Emri");
+		label_5.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		label_5.setBounds(78, 259, 144, 62);
+		panelAdministrataAddLenda.add(label_5);
+		
+		JLabel btnShtoLendeTeRe = new JLabel("");
+		btnShtoLendeTeRe.setIcon(new ImageIcon(frmMain.class.getResource("/Images/login_rectangle_login.png")));
+		btnShtoLendeTeRe.setBounds(501, 490, 200, 46);
+		panelAdministrataAddLenda.add(btnShtoLendeTeRe);
 		panelAdministrataSettingsShto.setBounds(0, 0, 1427, 865);
 		panelMain.add(panelAdministrataSettingsShto);
 		panelAdministrataSettingsShto.setLayout(null);
@@ -636,51 +757,6 @@ public class frmMain extends JFrame {
 		lblShtoDepartamentRectangle.setBounds(348, 499, 271, 198);
 		lblShtoDepartamentRectangle.setIcon(new ImageIcon(frmMain.class.getResource("/Images/settings_button.png")));
 		panelAdministrataSettingsShto.add(lblShtoDepartamentRectangle);
-		
-		panelStudentNotifications = new JPanel();
-		panelStudentNotifications.setBackground(Color.WHITE);
-		panelStudentNotifications.setBounds(0, 0, 1427, 865);
-		panelMain.add(panelStudentNotifications);
-		panelStudentNotifications.setLayout(null);
-		
-		// Mesazhi qe do shfaqet kur nje studenti i vjen nje notification(Studenti)
-		txtStudentNotificationsMessage = new JTextField();
-		txtStudentNotificationsMessage.setColumns(10);
-		txtStudentNotificationsMessage.setBounds(328, 487, 752, 259);
-		panelStudentNotifications.add(txtStudentNotificationsMessage);
-		
-		// Tema qe do te shfaqet per te cilen i vie notifications(Studenti)
-		txtStudentNotificationsTema = new JTextField();
-		txtStudentNotificationsTema.setBounds(313, 274, 773, 77);
-		panelStudentNotifications.add(txtStudentNotificationsTema);
-		txtStudentNotificationsTema.setColumns(10);
-		
-		JLabel lblNjoftimet = new JLabel("NJOFTIMET");
-		lblNjoftimet.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		lblNjoftimet.setBounds(578, 66, 196, 65);
-		panelStudentNotifications.add(lblNjoftimet);
-		
-		JLabel lblTema = new JLabel("Tema");
-		lblTema.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		lblTema.setBounds(142, 274, 136, 65);
-		panelStudentNotifications.add(lblTema);
-		
-		JLabel lblStudentNjoftimetTema = new JLabel("");
-		lblStudentNjoftimetTema.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).getImage()
-				.getScaledInstance(800, 100, Image.SCALE_SMOOTH)));
-		lblStudentNjoftimetTema.setBounds(301, 248, 800, 127);
-		panelStudentNotifications.add(lblStudentNjoftimetTema);
-		
-		JLabel lblStudentNotificationsMessage = new JLabel("");
-		lblStudentNotificationsMessage.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).getImage()
-				.getScaledInstance(800, 300, Image.SCALE_SMOOTH)));
-		lblStudentNotificationsMessage.setBounds(301, 414, 800, 403);
-		panelStudentNotifications.add(lblStudentNotificationsMessage);
-		
-		JLabel lblMesazhi = new JLabel("Mesazhi");
-		lblMesazhi.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		lblMesazhi.setBounds(142, 468, 136, 65);
-		panelStudentNotifications.add(lblMesazhi);
 		
 		panelStudentDiploma.setBounds(0, 0, 1427, 865);
 		panelMain.add(panelStudentDiploma);
@@ -1283,30 +1359,35 @@ public class frmMain extends JFrame {
 		labelHighlight.add(lblHighlightSettings);
 		labelHighlight.add(lblHighlightStatistics);
 	*/
+		
+		// All panels false
+		 panelAdministrataNjoftimet.setVisible(false);
+		 panelAdministrataSettings.setVisible(false);
+		 panelAdministrataSettingsShto.setVisible(false);
+		 panelAdministrataBtnKontrollo.setVisible(false);
+		 panelAdministrataThesis.setVisible(false);
+		 panelAdministrataStats.setVisible(false);
+		 panelAdministrataAddDepartament.setVisible(false);
+		 panelAdministrataAddUniversity.setVisible(false);
+		 panelAdministrataAddLenda.setVisible(false);
+		 panelAdministrataAddFakultet.setVisible(false);
+		 panelStudentMyAccount.setVisible(false);
+		 panelStudentProfile.setVisible(false);
+		 panelStudentStats.setVisible(false);
+		 panelStudentDiploma.setVisible(false);
+		 panelStudentSettings.setVisible(false);
+		
+		
 		if(newLogin.getLloji().equals("Student")) {
-			panelStudentMyAccount.setVisible(false);
-			panelStudentProfile.setVisible(true);
-			panelStudentStats.setVisible(false);
-			panelStudentDiploma.setVisible(false);
-			panelStudentSettings.setVisible(false);
-			panelStudentNotifications.setVisible(false);
+			panelStudentDiploma.setVisible(true);
 		}else if(newLogin.getLloji().equals("Profesor")) {
-			panelStudentMyAccount.setVisible(false);
-			panelStudentProfile.setVisible(true);
-			panelStudentStats.setVisible(false);
-			panelStudentDiploma.setVisible(false);
-			panelStudentSettings.setVisible(false);
+			panelStudentDiploma.setVisible(true);
 		}else {
-			panelAdministrataNjoftimet.setVisible(true);
-			panelAdministrataSettings.setVisible(false);
-			panelAdministrataSettingsShto.setVisible(false);
-			panelAdministrataThesis.setVisible(false);
-			panelAdministrataStats.setVisible(false);
-			panelAdministrataBtnKontrollo.setVisible(true);	
+			panelAdministrataNjoftimet.setVisible(true);			
 		}
 		
-		lblHighlightNotifications.setVisible(true);
-		lblHighlightThesis.setVisible(false);
+		lblHighlightNotifications.setVisible(false);
+		lblHighlightThesis.setVisible(true);
 		lblHighlightSettings.setVisible(false);
 		lblHighlightStatistics.setVisible(false);
 		
@@ -1337,7 +1418,11 @@ public class frmMain extends JFrame {
 					panelAdministrataSettingsShto.setVisible(false);
 					panelAdministrataThesis.setVisible(false);
 					panelAdministrataStats.setVisible(false);
-					panelAdministrataBtnKontrollo.setVisible(true);	
+					panelAdministrataBtnKontrollo.setVisible(false);	
+					panelAdministrataAddDepartament.setVisible(false);
+					panelAdministrataAddLenda.setVisible(false);
+					panelAdministrataAddFakultet.setVisible(false);
+					panelAdministrataAddUniversity.setVisible(false);
 				}
 				
 				lblHighlightNotifications.setVisible(true);
@@ -1373,7 +1458,11 @@ public class frmMain extends JFrame {
 					panelAdministrataSettingsShto.setVisible(false);
 					panelAdministrataThesis.setVisible(true);
 					panelAdministrataStats.setVisible(false);
-					panelAdministrataBtnKontrollo.setVisible(true);	
+					panelAdministrataBtnKontrollo.setVisible(false);	
+					panelAdministrataAddDepartament.setVisible(false);
+					panelAdministrataAddLenda.setVisible(false);
+					panelAdministrataAddFakultet.setVisible(false);
+					panelAdministrataAddUniversity.setVisible(false);
 				}
 				
 				
@@ -1411,6 +1500,10 @@ public class frmMain extends JFrame {
 					panelAdministrataThesis.setVisible(false);
 					panelAdministrataStats.setVisible(false);
 					panelAdministrataBtnKontrollo.setVisible(true);	
+					panelAdministrataAddDepartament.setVisible(false);
+					panelAdministrataAddLenda.setVisible(false);
+					panelAdministrataAddFakultet.setVisible(false);
+					panelAdministrataAddUniversity.setVisible(false);
 				}
 				
 				lblHighlightNotifications.setVisible(false);
@@ -1456,6 +1549,10 @@ public class frmMain extends JFrame {
 					panelAdministrataThesis.setVisible(false);
 					panelAdministrataStats.setVisible(true);
 					panelAdministrataBtnKontrollo.setVisible(true);	
+					panelAdministrataAddDepartament.setVisible(false);
+					panelAdministrataAddLenda.setVisible(false);
+					panelAdministrataAddFakultet.setVisible(false);
+					panelAdministrataAddUniversity.setVisible(false);
 				}
 				
 				lblHighlightNotifications.setVisible(false);
