@@ -105,7 +105,7 @@ public class frmMain extends JFrame {
 	public static JPanel panelAdministrataSettings;
 	public static JPanel panelAdministrataSettingsShto;
 	public static JPanel panelAdministrataBtnKontrollo;
-	public static JPanel panelAdministrataThesis;
+	public static JPanel panelAdministrataDiploma;
 	public static JPanel panelAdministrataStats;
 	public static JPanel panelAdministrataAddDepartament;
 	public static JLabel lblAdministrataAddDepartament;
@@ -118,6 +118,7 @@ public class frmMain extends JFrame {
 	public static JPanel panelStudentDiploma;
 	public static JPanel panelStudentSettings;
 	public static JPanel panelStudentNotifications;
+	public static JPanel panelProfesorDiploma;
 	public static JPanel panel;
 	public static JPanel panelMain;
 	public static JPanel panelPerson;
@@ -148,6 +149,7 @@ public class frmMain extends JFrame {
 	private JTextField txtAdd_1;
 	private JTextField txtAdd_2;
 	private JTextField txtAdd_3;
+	private JTable tableProfesoriDiploma;
 	
 	
 	/**
@@ -385,8 +387,8 @@ public class frmMain extends JFrame {
 		{"Data Mining", "Blend Arifaj","Kompjuterike","2017", new Integer(10), new Boolean(false)}
 		};
 		
-		panelAdministrataThesis = new JPanel();
-		panelAdministrataThesis.setVisible(false);
+		panelAdministrataDiploma = new JPanel();
+		panelAdministrataDiploma.setVisible(false);
 		
 		panelStudentStats = new JPanel();
 		panelStudentStats.setVisible(false);
@@ -403,6 +405,26 @@ public class frmMain extends JFrame {
 		panelAdministrataSettingsShto = new JPanel();
 		panelAdministrataSettingsShto.setVisible(false);
 		
+		panelProfesorDiploma = new JPanel();
+		panelProfesorDiploma.setBackground(Color.WHITE);
+		panelProfesorDiploma.setBounds(0, 0, 1427, 865);
+		panelMain.add(panelProfesorDiploma);
+		panelProfesorDiploma.setLayout(null);
+		
+		JLabel lblLita = new JLabel("Lista e temave te diplomes");
+		lblLita.setFont(new Font("Tahoma", Font.PLAIN, 35));
+		lblLita.setBounds(430, 104, 420, 127);
+		panelProfesorDiploma.add(lblLita);
+		
+		JScrollPane scrollPane_3 = new JScrollPane();
+		scrollPane_3.setBounds(212, 318, 871, 88);
+		panelProfesorDiploma.add(scrollPane_3);
+		
+		tableProfesoriDiploma = new JTable(Administratadata,AdministrataColumnNamesThesis);
+		tableProfesoriDiploma.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		scrollPane_3.setViewportView(tableProfesoriDiploma);
+		panelProfesorDiploma.setVisible(false);
+				
 		panelStudentNotifications = new JPanel();
 		panelStudentNotifications.setBackground(Color.WHITE);
 		panelStudentNotifications.setBounds(0, 0, 1427, 865);
@@ -998,24 +1020,24 @@ public class frmMain extends JFrame {
 		txtStatistikat.setBorder(null);
 		txtStatistikat.setBounds(586, 447, 148, 59);
 		panelStudentStats.add(txtStatistikat);
-		panelAdministrataThesis.setBounds(0, 0, 1427, 865);
-		panelMain.add(panelAdministrataThesis);
-		panelAdministrataThesis.setBackground(Color.WHITE);
-		panelAdministrataThesis.setLayout(null);
+		panelAdministrataDiploma.setBounds(0, 0, 1427, 865);
+		panelMain.add(panelAdministrataDiploma);
+		panelAdministrataDiploma.setBackground(Color.WHITE);
+		panelAdministrataDiploma.setLayout(null);
 		
 		JLabel lblSearchThesis = new JLabel("");
 		lblSearchThesis.setBounds(226, 150, 616, 109);
 		lblSearchThesis.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).getImage().getScaledInstance(600, 100, Image.SCALE_SMOOTH)));
-		panelAdministrataThesis.add(lblSearchThesis);
+		panelAdministrataDiploma.add(lblSearchThesis);
 		
 		JLabel lblSearchThesisIcon = new JLabel("");
 		lblSearchThesisIcon.setBounds(879, 150, 100, 100);
 		lblSearchThesisIcon.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/search.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
-		panelAdministrataThesis.add(lblSearchThesisIcon);
+		panelAdministrataDiploma.add(lblSearchThesisIcon);
 		
 		JScrollPane scrollPane_2 = new JScrollPane();
 		scrollPane_2.setBounds(226, 319, 743, 91);
-		panelAdministrataThesis.add(scrollPane_2);
+		panelAdministrataDiploma.add(scrollPane_2);
 		
 		table_3 = new JTable(Administratadata,AdministrataColumnNamesThesis);
 		table_3.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -1365,7 +1387,7 @@ public class frmMain extends JFrame {
 		 panelAdministrataSettings.setVisible(false);
 		 panelAdministrataSettingsShto.setVisible(false);
 		 panelAdministrataBtnKontrollo.setVisible(false);
-		 panelAdministrataThesis.setVisible(false);
+		 panelAdministrataDiploma.setVisible(false);
 		 panelAdministrataStats.setVisible(false);
 		 panelAdministrataAddDepartament.setVisible(false);
 		 panelAdministrataAddUniversity.setVisible(false);
@@ -1376,14 +1398,16 @@ public class frmMain extends JFrame {
 		 panelStudentStats.setVisible(false);
 		 panelStudentDiploma.setVisible(false);
 		 panelStudentSettings.setVisible(false);
+		 panelProfesorDiploma.setVisible(false);
+		 
 		
 		
 		if(newLogin.getLloji().equals("Student")) {
 			panelStudentDiploma.setVisible(true);
 		}else if(newLogin.getLloji().equals("Profesor")) {
-			panelStudentDiploma.setVisible(true);
+			panelProfesorDiploma.setVisible(true);
 		}else {
-			panelAdministrataNjoftimet.setVisible(true);			
+			panelAdministrataDiploma.setVisible(true);			
 		}
 		
 		lblHighlightNotifications.setVisible(false);
@@ -1408,7 +1432,7 @@ public class frmMain extends JFrame {
 					panelStudentMyAccount.setVisible(false);
 					panelStudentProfile.setVisible(false);
 					panelStudentStats.setVisible(false);
-					panelStudentDiploma.setVisible(false);
+					panelProfesorDiploma.setVisible(false);
 					panelStudentSettings.setVisible(false);
 					panelStudentNotifications.setVisible(true);
 					//Profesori
@@ -1416,7 +1440,7 @@ public class frmMain extends JFrame {
 					panelAdministrataNjoftimet.setVisible(true);
 					panelAdministrataSettings.setVisible(false);
 					panelAdministrataSettingsShto.setVisible(false);
-					panelAdministrataThesis.setVisible(false);
+					panelAdministrataDiploma.setVisible(false);
 					panelAdministrataStats.setVisible(false);
 					panelAdministrataBtnKontrollo.setVisible(false);	
 					panelAdministrataAddDepartament.setVisible(false);
@@ -1449,14 +1473,14 @@ public class frmMain extends JFrame {
 					panelStudentMyAccount.setVisible(false);
 					panelStudentProfile.setVisible(false);
 					panelStudentStats.setVisible(false);
-					panelStudentDiploma.setVisible(true);
+					panelProfesorDiploma.setVisible(true);
 					panelStudentSettings.setVisible(false);
 					panelStudentNotifications.setVisible(false);
 				}else {
 					panelAdministrataNjoftimet.setVisible(false);
 					panelAdministrataSettings.setVisible(false);
 					panelAdministrataSettingsShto.setVisible(false);
-					panelAdministrataThesis.setVisible(true);
+					panelAdministrataDiploma.setVisible(true);
 					panelAdministrataStats.setVisible(false);
 					panelAdministrataBtnKontrollo.setVisible(false);	
 					panelAdministrataAddDepartament.setVisible(false);
@@ -1490,14 +1514,14 @@ public class frmMain extends JFrame {
 					panelStudentMyAccount.setVisible(false);
 					panelStudentProfile.setVisible(false);
 					panelStudentStats.setVisible(false);
-					panelStudentDiploma.setVisible(false);
+					panelProfesorDiploma.setVisible(false);
 					panelStudentSettings.setVisible(true);
 					panelStudentNotifications.setVisible(false);
 				}else {
 					panelAdministrataNjoftimet.setVisible(false);
 					panelAdministrataSettings.setVisible(true);
 					panelAdministrataSettingsShto.setVisible(false);
-					panelAdministrataThesis.setVisible(false);
+					panelAdministrataDiploma.setVisible(false);
 					panelAdministrataStats.setVisible(false);
 					panelAdministrataBtnKontrollo.setVisible(true);	
 					panelAdministrataAddDepartament.setVisible(false);
@@ -1539,14 +1563,14 @@ public class frmMain extends JFrame {
 					panelStudentMyAccount.setVisible(false);
 					panelStudentProfile.setVisible(false);
 					panelStudentStats.setVisible(true);
-					panelStudentDiploma.setVisible(false);
+					panelProfesorDiploma.setVisible(false);
 					panelStudentSettings.setVisible(false);			
 					panelStudentNotifications.setVisible(false);
 				}else {
 					panelAdministrataNjoftimet.setVisible(false);
 					panelAdministrataSettings.setVisible(false);
 					panelAdministrataSettingsShto.setVisible(false);
-					panelAdministrataThesis.setVisible(false);
+					panelAdministrataDiploma.setVisible(false);
 					panelAdministrataStats.setVisible(true);
 					panelAdministrataBtnKontrollo.setVisible(true);	
 					panelAdministrataAddDepartament.setVisible(false);
