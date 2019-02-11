@@ -38,6 +38,8 @@ import java.awt.Point;
 import java.awt.ComponentOrientation;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class LoginForm {
 
@@ -201,6 +203,13 @@ public class LoginForm {
 		lblMessage.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel lblRegister = new JLabel("New user? Register here");
+		lblRegister.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				RegisterUser register = new RegisterUser();
+				register.frame.setVisible(true);
+			}
+		});
 		lblRegister.setBounds(73, 618, 288, 22);
 		loginPanel.add(lblRegister);
 		lblRegister.setForeground(new Color(0, 0, 0));

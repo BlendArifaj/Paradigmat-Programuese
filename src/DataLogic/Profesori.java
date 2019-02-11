@@ -16,6 +16,10 @@ public class Profesori extends Person implements ProfesoriFunctions {
 		this.lenda = lenda;
 		this.isAprovuar = false;
 	}
+	public Profesori(String ID,String emri,String mbiemri, String email, String pass, String tel) {
+		super(ID,emri,mbiemri,email,pass,tel);
+		this.isAprovuar = false;
+	}
 	public List<String> getLenda() {
 		return this.lenda;
 	}
