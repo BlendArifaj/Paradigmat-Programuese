@@ -45,6 +45,20 @@ public class Administrata extends Person implements AdministrataFunctions{
 		}
 		
 	}
+	public boolean aprovoStudentin(Studenti student) {
+		//Procedura
+		try {
+			DBConnect objDB = new DBConnect("FIEKDB");
+			List<Object> param = new ArrayList<Object>();
+			param.add(student.getID());
+			ResultSet res = objDB.executeProcedure("aprovoStudentin", param);
+			objDB.terminate();
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return false;
+		}
+	}
 	public void getAdministrata(String username) {
 		try {
 			DBConnect objDB = new DBConnect("FIEKDB");
