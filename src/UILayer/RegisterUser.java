@@ -19,12 +19,17 @@ import DataLogic.Fakulteti;
 import DataLogic.Hash;
 import DataLogic.Profesori;
 import DataLogic.Studenti;
+import DataLogic.Universiteti;
 
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Window.Type;
 import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.Enumeration;
 
 public class RegisterUser {
 
@@ -50,6 +55,8 @@ public class RegisterUser {
 	private JComboBox cmbDepartamentet;
 	private JComboBox cmbNiveli;
 	private JComboBox cmbQytetet;
+	private JComboBox cmbFakulteti;
+	private JComboBox cmbUniversiteti;
 	/**
 	 * Launch the application.
 	 */
@@ -80,13 +87,13 @@ public class RegisterUser {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setType(Type.POPUP);
-		frame.setBounds(100, 100, 1006, 738);
+		frame.setBounds(100, 100, 1015, 797);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		studentPanel = new JPanel();
 		studentPanel.setLayout(null);
-		studentPanel.setBounds(12, 13, 964, 665);
+		studentPanel.setBounds(12, 13, 973, 724);
 		frame.getContentPane().add(studentPanel);
 		
 		JLabel label_1 = new JLabel("Mbush te dhenat e meposhtme");
@@ -101,51 +108,51 @@ public class RegisterUser {
 		
 		JLabel label_3 = new JLabel("EMRI :");
 		label_3.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		label_3.setBounds(44, 141, 261, 26);
+		label_3.setBounds(44, 131, 261, 26);
 		studentPanel.add(label_3);
 		
 		JLabel label_4 = new JLabel("MBIEMRI :");
 		label_4.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		label_4.setBounds(44, 201, 261, 26);
+		label_4.setBounds(44, 181, 261, 26);
 		studentPanel.add(label_4);
 		
 		JLabel label_5 = new JLabel("PASSWORD :");
 		label_5.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		label_5.setBounds(44, 261, 261, 26);
+		label_5.setBounds(44, 231, 261, 26);
 		studentPanel.add(label_5);
 		
 		JLabel label_6 = new JLabel("EMAIL :");
 		label_6.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		label_6.setBounds(44, 321, 261, 26);
+		label_6.setBounds(44, 281, 261, 26);
 		studentPanel.add(label_6);
 		
 		textField = new JTextField();
 		textField.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		textField.setColumns(10);
-		textField.setBounds(317, 76, 299, 37);
+		textField.setBounds(260, 76, 299, 37);
 		studentPanel.add(textField);
 		
 		textField_1 = new JTextField();
 		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		textField_1.setColumns(10);
-		textField_1.setBounds(317, 136, 299, 37);
+		textField_1.setBounds(260, 126, 299, 37);
 		studentPanel.add(textField_1);
 		
 		textField_2 = new JTextField();
 		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		textField_2.setColumns(10);
-		textField_2.setBounds(317, 196, 299, 37);
+		textField_2.setBounds(260, 176, 299, 37);
 		studentPanel.add(textField_2);
 		
 		textField_3 = new JTextField();
 		textField_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		textField_3.setColumns(10);
-		textField_3.setBounds(317, 376, 299, 37);
+		textField_3.setBounds(260, 326, 299, 37);
 		studentPanel.add(textField_3);
 		
 		passwordField = new JPasswordField();
 		passwordField.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		passwordField.setBounds(317, 256, 299, 37);
+		passwordField.setBounds(260, 226, 299, 37);
 		studentPanel.add(passwordField);
 		
 		JButton button = new JButton("Register");
@@ -165,7 +172,7 @@ public class RegisterUser {
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.PLAIN, 21));
-		button.setBounds(685, 595, 115, 57);
+		button.setBounds(686, 654, 115, 57);
 		studentPanel.add(button);
 		
 		JButton button_1 = new JButton("Cancel");
@@ -177,35 +184,52 @@ public class RegisterUser {
 			}
 		});
 		button_1.setFont(new Font("Tahoma", Font.PLAIN, 21));
-		button_1.setBounds(849, 595, 115, 57);
+		button_1.setBounds(846, 654, 115, 57);
 		studentPanel.add(button_1);
 		
 		JLabel label_7 = new JLabel("TEL :");
 		label_7.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		label_7.setBounds(44, 381, 261, 26);
+		label_7.setBounds(44, 331, 261, 26);
 		studentPanel.add(label_7);
 		
 		textField_4 = new JTextField();
 		textField_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		textField_4.setColumns(10);
-		textField_4.setBounds(317, 316, 299, 37);
+		textField_4.setBounds(260, 276, 299, 37);
 		studentPanel.add(textField_4);
 		
 		JLabel lblDepartamenti = new JLabel("DEPARTAMENTI :");
 		lblDepartamenti.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		lblDepartamenti.setBounds(44, 441, 261, 26);
+		lblDepartamenti.setBounds(44, 501, 261, 26);
 		studentPanel.add(lblDepartamenti);
 		
 		cmbDepartamentet = new JComboBox();
+		cmbDepartamentet.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(cmbFakulteti.getSelectedIndex() != 0) {
+					Fakulteti fk = new Fakulteti();
+					fk.inicializoFakultetin(cmbFakulteti.getSelectedItem().toString());
+					for (Departamenti dept : fk.getDepartamentet()) {
+						cmbDepartamentet.addItem(dept.getDeparamenti());
+					}
+				}else {
+					JOptionPane.showMessageDialog(null, "Zgjedheni nje fakultet se pari!");
+				}
+				
+			}
+		});
+		cmbDepartamentet.setModel(new DefaultComboBoxModel(new String[] {"Zgjedhe departamentin!"}));
 		cmbDepartamentet.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		cmbDepartamentet.setBounds(317, 436, 299, 37);
+		cmbDepartamentet.setBounds(260, 496, 299, 37);
 		studentPanel.add(cmbDepartamentet);
 		//Shtimi i departamenteve
 		Departamenti dept = new Departamenti();
 		Fakulteti fk = new Fakulteti();
 		cmbNiveli = new JComboBox();
+		cmbNiveli.setModel(new DefaultComboBoxModel(new String[] {"Zgjedhe nivelin e studimeve!", "Bachelor", "Master"}));
 		cmbNiveli.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		cmbNiveli.setBounds(317, 498, 299, 37);
+		cmbNiveli.setBounds(260, 556, 299, 37);
 		studentPanel.add(cmbNiveli);
 		//Shtimi i niveleve
 		cmbNiveli.addItem("Zgjdhe nivelin e studimeve!");
@@ -214,17 +238,17 @@ public class RegisterUser {
 
 		JLabel lblNiveliIStudimeve = new JLabel("NIVELI I STUDIMEVE :");
 		lblNiveliIStudimeve.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		lblNiveliIStudimeve.setBounds(44, 501, 261, 26);
+		lblNiveliIStudimeve.setBounds(44, 561, 261, 26);
 		studentPanel.add(lblNiveliIStudimeve);
 		
-		JLabel lblQyteti = new JLabel("NIVELI I STUDIMEVE :");
+		JLabel lblQyteti = new JLabel("QYTETI :");
 		lblQyteti.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		lblQyteti.setBounds(44, 561, 261, 26);
+		lblQyteti.setBounds(44, 621, 261, 26);
 		studentPanel.add(lblQyteti);
 		
 		cmbQytetet = new JComboBox();
 		cmbQytetet.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		cmbQytetet.setBounds(317, 556, 299, 37);
+		cmbQytetet.setBounds(260, 616, 299, 37);
 		studentPanel.add(cmbQytetet);
 		//Shtimi i qyteteve
 		cmbQytetet.addItem("Zgjedhe qytetin!");
@@ -233,6 +257,47 @@ public class RegisterUser {
 		cmbQytetet.addItem("Prizren");
 		cmbQytetet.addItem("Gjakove");
 		cmbQytetet.addItem("Mitrovice");
+		
+		JLabel lblFakulteti = new JLabel("FAKULTETI :");
+		lblFakulteti.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		lblFakulteti.setBounds(44, 441, 261, 26);
+		studentPanel.add(lblFakulteti);
+		
+		cmbFakulteti = new JComboBox();
+		cmbFakulteti.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if(cmbUniversiteti.getSelectedIndex() != 0) {
+					Universiteti uni = new Universiteti();
+					uni.inicializoUniversitetin(cmbUniversiteti.getSelectedItem().toString());
+					System.out.println(uni.getID());
+					System.out.println(uni.getFakultetet());
+				}else {
+					JOptionPane.showMessageDialog(null, "Zgjedheni nje universitet se pari!");
+				}
+				
+			}
+		});
+		cmbFakulteti.setModel(new DefaultComboBoxModel(new String[] {"Zgjedhe fakultetin!"}));
+		cmbFakulteti.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		cmbFakulteti.setBounds(260, 436, 299, 37);
+		studentPanel.add(cmbFakulteti);
+		
+		JLabel lblUniversiteti = new JLabel("UNIVERSITETI :");
+		lblUniversiteti.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		lblUniversiteti.setBounds(44, 381, 261, 26);
+		studentPanel.add(lblUniversiteti);
+		
+		cmbUniversiteti = new JComboBox();
+		cmbUniversiteti.setModel(new DefaultComboBoxModel(new String[] {"Zgjedhe Universitetin!"}));
+		cmbUniversiteti.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		cmbUniversiteti.setBounds(260, 376, 299, 37);
+		studentPanel.add(cmbUniversiteti);
+		Universiteti uni = new Universiteti();
+		Enumeration<String> universitetet = uni.getUniversitetet();
+		while(universitetet.hasMoreElements()) {
+			cmbUniversiteti.addItem(universitetet.nextElement());
+		}
 		profesorPanel = new JPanel();
 		profesorPanel.setBounds(12, 13, 0, 0);
 		frame.getContentPane().add(profesorPanel);

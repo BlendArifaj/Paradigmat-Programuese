@@ -68,9 +68,10 @@ public class DBConnect{
 						variable = (String)parameters.get(i);
 						this.cstmt.setString(i+1,variable);
 					}else if(parameters.get(i).getClass().getSimpleName().equals("Integer")) {
-						this.cstmt.setInt(i+1, Integer.parseInt((String) parameters.get(i)));
+						//this.cstmt.setInt(i+1, Integer.parseInt((String) parameters.get(i)));
+						this.cstmt.setInt(i+1, (int) parameters.get(i));
 					}else if(parameters.get(i).getClass().getSimpleName().equals("Boolean")) {
-						this.cstmt.setBoolean(i+1, Boolean.parseBoolean((String)parameters.get(i)));
+						this.cstmt.setBoolean(i+1, (boolean) parameters.get(i));
 					}
 				}
 				this.cstmt.execute();

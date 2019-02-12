@@ -20,7 +20,20 @@ public class Universiteti {
 		this.inicializoUniversitetin(this.emri);
 	}
 	public Enumeration<String> getUniversitetet() {
-		return this.universitetet;
+		try {
+			DBConnect objDB = new DBConnect("FIEKDB");
+			List<Object> param = new ArrayList<Object>();
+			ResultSet res = objDB.executeProcedure("getAllUniversitetet", param);		
+			while(res.next()) {
+				univeristetetIDs.put(res.getInt("id"), res.getString("universiteti"));	
+			}
+			objDB.terminate();
+		} catch (Exception e) {
+		
+		}
+	        this.universitetet = univeristetetIDs.elements(); 
+	        
+	        return this.universitetet;
 	}
 	public int getID() {
 		return ID;
@@ -41,21 +54,18 @@ public class Universiteti {
 		this.fakultetet = fakultetet;
 	}
 	public List<Fakulteti> fakultetet(){
-		//PROCEDUREN
 		List<Fakulteti> fakultetet = new ArrayList<Fakulteti>();
 		try {
 			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();
 			param.add(this.ID);
-			ResultSet res = objDB.executeProcedure("getFakultetet", param);
+			ResultSet res = objDB.executeProcedure("getFakultetetUniversiteti", param);
 			while(res.next()) {
 				Fakulteti newFk = new Fakulteti(res.getString("id"),res.getString("emri"),this,res.getString("adresa"));
 				fakultetet.add(newFk);
 			}
-			if(!objDB.isOk) {
-				return null;
-			}
 		} catch (Exception e) {
+			System.out.println(e.toString());
 			return null;
 		}
 		return fakultetet;

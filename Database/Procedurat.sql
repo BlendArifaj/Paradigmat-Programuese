@@ -280,12 +280,13 @@ END //
 DELIMITER //;
 
 #PROCEDURA E CILA E MERR UNIVERSITETIN
+drop procedure getUniversiteti;
 DELIMITER //
 CREATE PROCEDURE getUniversiteti(
 IN UNINAME VARCHAR(50))
 BEGIN
 SELECT * 
-FROM UNIVERSITETI
+FROM UNIVERSITETI U
 WHERE U.UNIVERSITETI = UNINAME;
 END //
 DELIMITER //;
@@ -415,14 +416,14 @@ UNION
 	 FROM NJOFTIMETSTUDENTI NS WHERE NS.IDSTUDENTI = PERSONID;
 END$$
 DELIMITER ;
-
+USE FIEKDB;
 #Procedura e cila i merr te gjitha universitetet
 DROP procedure IF EXISTS `getAllUniversitetet`;
 DELIMITER $$
 USE `fiekdb`$$
 CREATE PROCEDURE getAllUniversitetet()
 BEGIN
-SELECT * 
+SELECT distinct * 
 FROM UNIVERSITETI;
 END$$
 DELIMITER ;
@@ -449,6 +450,19 @@ CREATE PROCEDURE `getAllLendet`()
 BEGIN
 SELECT *
 FROM lenda;
+END$$
+DELIMITER ;
+
+#getFakultetetUniversiteti
+#PROCEDURA E CILA I MERR TE GJITHA FAKULTETET
+DROP procedure IF EXISTS `getFakultetetUniversiteti`;
+DELIMITER $$
+USE `fiekdb`$$
+CREATE PROCEDURE `getFakultetetUniversiteti`(IN uniID INT) 
+BEGIN
+SELECT F.ID as 'id', F.EMRI AS 'emri', F.ADRESA as 'adresa'
+FROM FAKULTETI F 
+WHERE F.universitetiId = uniID;
 END$$
 DELIMITER ;
 
