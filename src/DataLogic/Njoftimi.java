@@ -33,8 +33,8 @@ public class Njoftimi {
 	}
 	public void getNjoftimi() {
 		//Procedura
+		DBConnect objDB = new DBConnect("FIEKDB");
 			try {
-				DBConnect objDB = new DBConnect("FIEKDB");
 				List<Object> param = new ArrayList<Object>();
 				param.add(this.njoftimId);
 				ResultSet res = objDB.executeProcedure("getNjoftimi", param);
@@ -47,13 +47,13 @@ public class Njoftimi {
 				}
 				objDB.terminate();
 			} catch (Exception e) {
-			
+				objDB.terminate();
 			}
 	}
 	public Boolean shtoNjoftimin() {
 		//Procedura
+		DBConnect objDB = new DBConnect("FIEKDB");
 		try {
-			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();
 			param.add(this.personId);
 			param.add(this.punimId);
@@ -67,13 +67,14 @@ public class Njoftimi {
 			}
 			return true;
 		} catch (Exception e) {
+			objDB.terminate();
 			return false;
 		}
 	}
 	public Boolean updateStatusi() {
 		//Procedura
+		DBConnect objDB = new DBConnect("FIEKDB");
 				try {
-					DBConnect objDB = new DBConnect("FIEKDB");
 					List<Object> param = new ArrayList<Object>();
 					param.add(this.njoftimId);
 					@SuppressWarnings("unused")
@@ -84,6 +85,7 @@ public class Njoftimi {
 					}
 					return true;
 				} catch (Exception e) {
+					objDB.terminate();
 					return false;
 				}
 	}

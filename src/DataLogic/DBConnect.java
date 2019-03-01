@@ -12,10 +12,11 @@ public class DBConnect{
 		this.conn = this.Connect2DB(dbname);
 	}
 	
-	public Connection Connect2DB(String dbname){
+	public static Connection Connect2DB(String dbname){
     try{
 		Class.forName("com.mysql.jdbc.Driver");
 		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost/"+dbname,"root","root");
+		
 		return conn;	
 	  }catch (Exception e){
 		  

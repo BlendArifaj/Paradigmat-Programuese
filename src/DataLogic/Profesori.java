@@ -36,8 +36,8 @@ public class Profesori extends Person implements ProfesoriFunctions {
 		this.fakulteti = fakulteti;
 	}
 	public void getProfesori(String profesorID) {
+		DBConnect objDB = new DBConnect("FIEKDB");
 		try {
-			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();
 			param.add(profesorID);
 			ResultSet res = objDB.executeProcedure("getProfesori", param);
@@ -63,12 +63,12 @@ public class Profesori extends Person implements ProfesoriFunctions {
 			}
 			objDB.terminate();
 		} catch (Exception e) {
-
+			objDB.terminate();
 		}
 	}
 	public Boolean insertNewProfesor() {
+		DBConnect objDB = new DBConnect("FIEKDB");
 		try {
-			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();
 			param.add(this.ID);
 			param.add(this.emri);
@@ -84,12 +84,13 @@ public class Profesori extends Person implements ProfesoriFunctions {
 			}
 			return true;
 		} catch (Exception e) {
+			objDB.terminate();
 			return false;
 		}	
 	}
 	public Boolean insertProfesorLenda() {
+		DBConnect objDB = new DBConnect("FIEKDB");
 		try {
-			DBConnect objDB = new DBConnect("FIEKDB");
 			@SuppressWarnings("unused")
 			ResultSet res = null;
 			List<Object> param = new ArrayList<Object>();
@@ -105,12 +106,13 @@ public class Profesori extends Person implements ProfesoriFunctions {
 			}
 			return true;
 		} catch (Exception e) {
+			objDB.terminate();
 			return false;
 		}	
 	}
 	public Boolean insertProfesorFakulteti() {
+		DBConnect objDB = new DBConnect("FIEKDB");
 		try {
-			DBConnect objDB = new DBConnect("FIEKDB");
 			@SuppressWarnings("unused")
 			ResultSet res = null;
 			List<Object> param = new ArrayList<Object>();
@@ -126,6 +128,7 @@ public class Profesori extends Person implements ProfesoriFunctions {
 			}
 			return true;
 		} catch (Exception e) {
+			objDB.terminate();
 			return false;
 		}	
 	}

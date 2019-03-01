@@ -41,12 +41,10 @@ public class Login implements LoginFunctions{
 	}
 	public Login() {
 
-	}	
-	
+	}		
 	public Boolean kontrolloPW() {
 		return this.userStoredHash.equals(Hash.saltedHashString(this.password,this.username));
 	}
-	
 	public void setParameters() {
 		DBConnect objDB = new DBConnect("FIEKDB");
 		List<Object> param = new ArrayList<Object>();
@@ -58,11 +56,12 @@ public class Login implements LoginFunctions{
 				 this.lloji = res.getString("Lloji");
 				 this.access = res.getInt("Access");
 			}
+			objDB.terminate();
+
 		}catch (SQLException e) {
-			// TODO Auto-generated catch block
+			objDB.terminate();
 			e.printStackTrace();
 		}	
-		objDB.terminate();
 		
 	}
 	public int getAccess() {

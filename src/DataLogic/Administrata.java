@@ -1,4 +1,5 @@
 package DataLogic;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,7 @@ public class Administrata extends Person implements AdministrataFunctions{
 	}
 	public boolean aprovoProfesorin(Profesori prof) {
 		try {
+			Connection conn= DBConnect.Connect2DB("fiekdb");
 			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();
 			param.add(prof.getID());
@@ -47,23 +49,24 @@ public class Administrata extends Person implements AdministrataFunctions{
 	}
 	public boolean aprovoStudentin(Studenti student) {
 		//Procedura
+		DBConnect objDB = new DBConnect("FIEKDB");
+		List<Object> param = new ArrayList<Object>();
+		param.add(student.getID());
 		try {
-			DBConnect objDB = new DBConnect("FIEKDB");
-			List<Object> param = new ArrayList<Object>();
-			param.add(student.getID());
 			ResultSet res = objDB.executeProcedure("aprovoStudentin", param);
 			objDB.terminate();
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception
+			objDB.terminate();
 			return false;
 		}
 	}
 	public void getAdministrata(String username) {
+		DBConnect objDB = new DBConnect("fiekdb");
+		List<Object> param = new ArrayList<Object>();
+		param.add(username);
 		try {
-			DBConnect objDB = new DBConnect("FIEKDB");
-			List<Object> param = new ArrayList<Object>();
-			param.add(username);
 			ResultSet res = objDB.executeProcedure("getAdministrata", param);
 			while(res.next()) {
 				this.ID = res.getString("id");
@@ -78,14 +81,15 @@ public class Administrata extends Person implements AdministrataFunctions{
 			}
 			objDB.terminate();
 		} catch (Exception e) {
-		
+			objDB.terminate();
 		}
 	}
 	public Boolean addNewUniversitet(Universiteti newUni) {
+
+		DBConnect objDB = new DBConnect("FIEKDB");
+		List<Object> param = new ArrayList<Object>();
+		param.add(newUni.getEmri());
 		try {
-			DBConnect objDB = new DBConnect("FIEKDB");
-			List<Object> param = new ArrayList<Object>();
-			param.add(newUni.getEmri());
 			ResultSet res = objDB.executeProcedure("addNewUniversity", param);
 			objDB.terminate();
 			if(!objDB.isOk) {
@@ -93,22 +97,25 @@ public class Administrata extends Person implements AdministrataFunctions{
 			}
 			return true;
 		} catch (Exception e) {
+			objDB.terminate();
 			return false;
 		}
 	}
 	
 	public Boolean addNewLenda(Lenda newLenda) {
+
+		DBConnect objDB = new DBConnect("FIEKDB");
+		List<Object> param = new ArrayList<Object>();
+		param.add(newLenda.getLenda());
+		ResultSet res = objDB.executeProcedure("addNewLenda", param);
 		try {
-			DBConnect objDB = new DBConnect("FIEKDB");
-			List<Object> param = new ArrayList<Object>();
-			param.add(newLenda.getLenda());
-			ResultSet res = objDB.executeProcedure("addNewLenda", param);
 			objDB.terminate();
 			if(!objDB.isOk) {
 				return false;
 			}
 			return true;
 		} catch (Exception e) {
+			objDB.terminate();
 			return false;
 		}
 	}

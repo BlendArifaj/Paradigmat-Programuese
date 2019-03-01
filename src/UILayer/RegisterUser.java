@@ -65,7 +65,6 @@ public class RegisterUser {
 			public void run() {
 				try {
 					window = new RegisterUser();
-					
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -159,16 +158,38 @@ public class RegisterUser {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String passwordi = Hash.saltedHashString(new String(txtPassword.getPassword()),txtID.getText());
-				System.out.println(cmbDepartamentet.getSelectedItem().toString());
-
-				Studenti newStudent = new Studenti(txtID.getText(),txtEmri.getText(),txtMbiemri.getText(),txtEmail.getText(),passwordi,txtTel.getText(),cmbDepartamentet.getSelectedItem().toString(),cmbQytetet.getSelectedItem().toString(),cmbNiveli.getSelectedItem().toString());
-				UserRegister newUser = new UserRegister(1);
-				newUser.setRegisterStudent(newStudent);
-				if(newUser.registerStudent()) {
+				Studenti newStudent = new Studenti();
+				//cmbNiveli.getSelectedItem().toString()
+				newStudent.setID(txtID.getText());
+				newStudent.setEmri(txtEmri.getText());
+				newStudent.setMbiemri(txtMbiemri.getText());
+				newStudent.setEmail(txtEmail.getText());
+				newStudent.setPass(passwordi);
+				newStudent.setTel(txtTel.getText());
+				
+				Departamenti stdDpt = new Departamenti();
+				stdDpt.inicializoDepartamentin(cmbDepartamentet.getSelectedItem().toString());
+				newStudent.setDepartamenti(stdDpt);
+				
+				newStudent.setQyteti(cmbQytetet.getSelectedItem().toString());
+				newStudent.setNiveliStudimeve(cmbNiveli.getSelectedItem().toString());
+				Fakulteti stdFk = new Fakulteti();
+				stdFk.inicializoFakultetin(cmbFakulteti.getSelectedItem().toString());
+				newStudent.setFakulteti(stdFk);
+				Universiteti stdUni = new Universiteti();
+				stdUni.inicializoUniversitetin(cmbUniversiteti.getSelectedItem().toString());
+				newStudent.setUniversiteti(stdUni);
+				if(newStudent.insertNewStudent()) {
 					JOptionPane.showMessageDialog(null, "Jeni regjistruar me sukses! Jeni ne listen e pritjes se Administrates per pranim!");
+
 				}else {
 					JOptionPane.showMessageDialog(null, "Gabim gjate regjistrimit! Ju lutem kontrolloni te dhenat!");
 				}
+				//UserRegister newUser = new UserRegister(1);
+				//newUser.setRegisterStudent(newStudent);
+				//if(newUser.registerStudent()) {
+				//}else {
+				//}
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.PLAIN, 21));
@@ -204,37 +225,38 @@ public class RegisterUser {
 		studentPanel.add(lblDepartamenti);
 		
 		cmbDepartamentet = new JComboBox();
-		cmbDepartamentet.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(cmbFakulteti.getSelectedIndex() != 0) {
-					Fakulteti fk = new Fakulteti();
-					fk.inicializoFakultetin(cmbFakulteti.getSelectedItem().toString());
-					for (Departamenti dept : fk.getDepartamentet()) {
-						cmbDepartamentet.addItem(dept.getDeparamenti());
-					}
-				}else {
-					JOptionPane.showMessageDialog(null, "Zgjedheni nje fakultet se pari!");
-				}
-				
-			}
-		});
+//		cmbDepartamentet.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+//				if(cmbFakulteti.getSelectedIndex() != 0) {
+//					Fakulteti fk = new Fakulteti();
+//					fk.inicializoFakultetin(cmbFakulteti.getSelectedItem().toString());
+//					for (Departamenti dept : fk.getDepartamentet()) {
+//						cmbDepartamentet.addItem(dept.getDeparamenti());
+//					}
+//				}else {
+//					JOptionPane.showMessageDialog(null, "Zgjedheni nje fakultet se pari!");
+//				}
+//				
+//			}
+//		});
 		cmbDepartamentet.setModel(new DefaultComboBoxModel(new String[] {"Zgjedhe departamentin!"}));
 		cmbDepartamentet.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		cmbDepartamentet.setBounds(260, 496, 299, 37);
 		studentPanel.add(cmbDepartamentet);
 		//Shtimi i departamenteve
 		Departamenti dept = new Departamenti();
-		Fakulteti fk = new Fakulteti();
+		Enumeration<String> departamentet = dept.getDepartamentet();
+		while(departamentet.hasMoreElements()) {
+			cmbDepartamentet.addItem(departamentet.nextElement());
+		}
+		///
+		
 		cmbNiveli = new JComboBox();
 		cmbNiveli.setModel(new DefaultComboBoxModel(new String[] {"Zgjedhe nivelin e studimeve!", "Bachelor", "Master"}));
 		cmbNiveli.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		cmbNiveli.setBounds(260, 556, 299, 37);
 		studentPanel.add(cmbNiveli);
-		//Shtimi i niveleve
-		cmbNiveli.addItem("Zgjdhe nivelin e studimeve!");
-		cmbNiveli.addItem("Bachelor");
-		cmbNiveli.addItem("Master");
 
 		JLabel lblNiveliIStudimeve = new JLabel("NIVELI I STUDIMEVE :");
 		lblNiveliIStudimeve.setFont(new Font("Tahoma", Font.PLAIN, 19));
@@ -264,21 +286,28 @@ public class RegisterUser {
 		studentPanel.add(lblFakulteti);
 		
 		cmbFakulteti = new JComboBox();
-		cmbFakulteti.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				if(cmbUniversiteti.getSelectedIndex() != 0) {
-					Universiteti uni = new Universiteti();
-					uni.inicializoUniversitetin(cmbUniversiteti.getSelectedItem().toString());
-					System.out.println(uni.getID());
-					System.out.println(uni.getFakultetet());
-				}else {
-					JOptionPane.showMessageDialog(null, "Zgjedheni nje universitet se pari!");
-				}
-				
-			}
-		});
+//		cmbFakulteti.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseClicked(MouseEvent arg0) {
+//				if(cmbUniversiteti.getSelectedIndex() != 0) {
+//					Universiteti uni = new Universiteti();
+//					uni.inicializoUniversitetin(cmbUniversiteti.getSelectedItem().toString());
+//					System.out.println(uni.getID());
+//					System.out.println(uni.getFakultetet());
+//				}else {
+//					JOptionPane.showMessageDialog(null, "Zgjedheni nje universitet se pari!");
+//				}
+//				
+//			}
+//		});
 		cmbFakulteti.setModel(new DefaultComboBoxModel(new String[] {"Zgjedhe fakultetin!"}));
+		///
+		Fakulteti fakulteti = new Fakulteti();
+		Enumeration<String> fakultetet = fakulteti.getFakultetet();
+		while(fakultetet.hasMoreElements()) {
+			cmbFakulteti.addItem(fakultetet.nextElement());
+		}
+		///
 		cmbFakulteti.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		cmbFakulteti.setBounds(260, 436, 299, 37);
 		studentPanel.add(cmbFakulteti);

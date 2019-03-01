@@ -432,12 +432,21 @@ DELIMITER ;
 DROP procedure IF EXISTS `getAllFakultetet`;
 DELIMITER $$
 USE `fiekdb`$$
-CREATE PROCEDURE `getAllFakultetet`(
-IN UNIID INT)
+CREATE PROCEDURE `getAllFakultetet`()
 BEGIN
 SELECT F.ID AS id, F.EMRI AS fakulteti
-FROM FAKULTETI F
-WHERE F.UNIVERSITETIID = UNIID;
+FROM FAKULTETI F;
+END$$
+DELIMITER ;
+
+#Procedura e cila i merr te gjitha departamentet
+DROP procedure IF EXISTS `getAllDepartamentet`;
+DELIMITER $$
+USE `fiekdb`$$
+CREATE PROCEDURE `getAllDepartamentet`()
+BEGIN
+SELECT D.ID AS id, D.Departamenti AS Departamenti
+FROM Departamenti D;
 END$$
 DELIMITER ;
 
@@ -453,7 +462,6 @@ FROM lenda;
 END$$
 DELIMITER ;
 
-#getFakultetetUniversiteti
 #PROCEDURA E CILA I MERR TE GJITHA FAKULTETET
 DROP procedure IF EXISTS `getFakultetetUniversiteti`;
 DELIMITER $$

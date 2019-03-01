@@ -45,8 +45,8 @@ public class Punimi implements PunimiFunctions{
 	}
 	
 	public boolean insertNewPunim() {
+		DBConnect objDB = new DBConnect("FIEKDB");
 		try {
-			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();
 			param.add(this.titulli);
 			param.add(this.permbajtja);
@@ -61,6 +61,7 @@ public class Punimi implements PunimiFunctions{
 			}
 			return true;
 		} catch (Exception e) {
+			objDB.terminate();
 			return false;
 		}		
 	}

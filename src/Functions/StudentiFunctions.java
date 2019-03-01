@@ -8,3 +8,9 @@ public interface StudentiFunctions {
 	public Boolean insertNewStudent();
 	public void getStudenti(String stdId);
 }
+
+
+
+
+
+

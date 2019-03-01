@@ -41,8 +41,8 @@ public class Person {
 		this.newNjoftim = newNjoftim;
 	}
 	protected void inicializoNjoftimet() {
+		DBConnect objDB = new DBConnect("FIEKDB");
 		try {
-			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();
 			param.add(this.ID);
 			ResultSet res = objDB.executeProcedure("getNjoftimetFromDB", param);
@@ -66,7 +66,7 @@ public class Person {
 			}
 			objDB.terminate();
 		} catch (Exception e) {
-		
+			objDB.terminate();
 		}
 	}
 	public String getID() {
@@ -112,8 +112,8 @@ public class Person {
 		this.njoftimet = njoftimet;
 	}
 	public Boolean update() {
+		DBConnect objDB = new DBConnect("FIEKDB");
 		try {
-			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();
 			param.add(this.ID);
 			param.add(this.emri);
@@ -128,6 +128,7 @@ public class Person {
 			}
 			return true;
 		} catch (Exception e) {
+			objDB.terminate();
 			return false;
 		}
 	}

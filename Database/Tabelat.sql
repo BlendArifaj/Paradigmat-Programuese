@@ -82,6 +82,8 @@ foreign key(lendaId) references Lenda(id));
 create table Access(
 id int auto_increment primary key,
 access varchar(20) not null);
+insert into Access Values(1,'Head Admin');
+insert into Access Values(2,'Admin');
 
 create table Administrata(
 id varchar(20) primary key,

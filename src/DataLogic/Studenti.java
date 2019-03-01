@@ -13,7 +13,8 @@ public class Studenti extends Person implements StudentiFunctions{
 	private String niveliStudimeve = null;
 	private List<Punimi> punimet = new ArrayList<Punimi>();
 	
-	public Studenti(String ID,String emri,String mbiemri,String email,String pass,String tel, String departamenti, String qyteti,String niveliStudimeve) {
+	public Studenti(String ID,String emri,String mbiemri,String email,String pass,
+			String tel, String departamenti, String qyteti,String niveliStudimeve) {
 		super(ID,emri,mbiemri,email,pass,tel);
 		this.departamenti.inicializoDepartamentin(departamenti);
 		this.qyteti = qyteti;
@@ -60,8 +61,8 @@ public class Studenti extends Person implements StudentiFunctions{
 		this.punimet = punimet;
 	}
 	public Boolean insertNewStudent() {
+		DBConnect objDB = new DBConnect("FIEKDB");
 		try {
-			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();
 			param.add(this.ID);
 			param.add(this.emri);
@@ -74,19 +75,21 @@ public class Studenti extends Person implements StudentiFunctions{
 			param.add(this.niveliStudimeve);
 			@SuppressWarnings("unused")
 			ResultSet res = objDB.executeProcedure("insertStudent", param);
+			res.close();
 			objDB.terminate();
 			if(!objDB.isOk) {
 				return false;
 			}
 			return true;
 		} catch (Exception e) {
+			objDB.terminate();
 			return false;
 		}
 	}	
 	public List<Punimi> getPunimet(){
 		List<Punimi> returnPunimet = new ArrayList<Punimi>();
+		DBConnect objDB = new DBConnect("FIEKDB");
 		try {
-			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();
 			param.add(this.ID);
 			ResultSet res = objDB.executeProcedure("getPunimet", param);
@@ -99,11 +102,13 @@ public class Studenti extends Person implements StudentiFunctions{
 						res.getBoolean("administrataPergjigje"),res.getBytes("permbajtja"));
 				returnPunimet.add(objP);
 			}
+			objDB.terminate();
 			if(!objDB.isOk) {
 				return null;
 			}
 			return returnPunimet; 
 		} catch (Exception e) {
+			objDB.terminate();
 			return null;
 		}
 	}
@@ -113,8 +118,8 @@ public class Studenti extends Person implements StudentiFunctions{
 		return newPunim.insertNewPunim();
 	}
 	public void getStudenti(String stdId){
+		DBConnect objDB = new DBConnect("FIEKDB");
 		try {
-			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();
 			param.add(stdId);
 			ResultSet res = objDB.executeProcedure("getStudenti", param);
@@ -135,7 +140,7 @@ public class Studenti extends Person implements StudentiFunctions{
 			}
 			objDB.terminate();
 		} catch (Exception e) {
-		
+			objDB.terminate();
 		}
 	}
 	

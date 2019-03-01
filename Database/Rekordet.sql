@@ -1,10 +1,24 @@
 #ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
-#insert into Universiteti values(null,'Universiteti i Prishtines');
-#insert into Fakulteti values('07011','Fakulteti i Inxhinieris Elektrike dhe Kompjuterike',1,'Prishtine');
-#insert into Departamenti values('07011','Inxhinieri Kompjuterike','07011');
+#Inserto Universitetet
+insert into Universiteti values(null,'Universiteti i Prishtines');
+insert into Universiteti values(null,'Universiteti i Prizrenit');
+insert into Universiteti values(null,'Universiteti i Pejes');
+insert into Universiteti values(null,'Universiteti i Gjakoves');
+
+
+insert into Fakulteti values('07011','Fakulteti i Inxhinieris Elektrike dhe Kompjuterike',1,'Prishtine');
+insert into Fakulteti values('07012','Fakulteti i Inxhinieris Mekanike',1,'Prishtine');
+
+insert into Departamenti values('07011','Inxhinieri Kompjuterike','07011');
+insert into Departamenti values('07012','Telekomunikacion','07011');
+
 insert into Student values('150714110030','Blend','Arifaj','blend.arifaj@uni-pr.edu',
 '8d9d4a07cea1ee15873b306c654f3fa8c5637b6791f2656351325516fae53ce2',
 '049130642','07011','Prishtine','Master');
+
+
+select * from administrata;
+insert into Administrata values('ADMIN001','Blend','Arifaj','blendarifaj@hotmail.com','8d9d4a07cea1ee15873b306c654f3fa8c5637b6791f2656351325516fae53ce2','044444555','07011',1);
 
 insert into Lenda values(null,'Database');
 insert into Lenda values(null,'Paradigmat Programuese');
@@ -25,3 +39,18 @@ D.fakultetiId = F.id and
 F.universitetiId = u.id;
 
 select * from Student;
+
+select * from Fakulteti;
+select * from Departamenti;
+delete from departamenti where id=1;
+
+
+CREATE USER 'root'@'localhost' IDENTIFIED BY 'root';
+
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION;
+
+CREATE USER 'root'@'%' IDENTIFIED BY 'root';
+
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
+
+FLUSH PRIVILEGES;

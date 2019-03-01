@@ -20,16 +20,18 @@ public class Universiteti {
 		this.inicializoUniversitetin(this.emri);
 	}
 	public Enumeration<String> getUniversitetet() {
+		DBConnect objDB = new DBConnect("FIEKDB");
 		try {
-			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();
 			ResultSet res = objDB.executeProcedure("getAllUniversitetet", param);		
 			while(res.next()) {
 				univeristetetIDs.put(res.getInt("id"), res.getString("universiteti"));	
 			}
+			res.close();
 			objDB.terminate();
 		} catch (Exception e) {
-		
+			objDB.terminate();
+
 		}
 	        this.universitetet = univeristetetIDs.elements(); 
 	        
@@ -55,8 +57,8 @@ public class Universiteti {
 	}
 	public List<Fakulteti> fakultetet(){
 		List<Fakulteti> fakultetet = new ArrayList<Fakulteti>();
+		DBConnect objDB = new DBConnect("FIEKDB");
 		try {
-			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();
 			param.add(this.ID);
 			ResultSet res = objDB.executeProcedure("getFakultetetUniversiteti", param);
@@ -64,15 +66,19 @@ public class Universiteti {
 				Fakulteti newFk = new Fakulteti(res.getString("id"),res.getString("emri"),this,res.getString("adresa"));
 				fakultetet.add(newFk);
 			}
+			res.close();
+			objDB.conn.close();
+			objDB.cstmt.close();
+			objDB.terminate();
 		} catch (Exception e) {
-			System.out.println(e.toString());
+			objDB.terminate();
 			return null;
 		}
 		return fakultetet;
 	}
 	public void inicializoUniversitetin(String emri) {
+		DBConnect objDB = new DBConnect("FIEKDB");
 		try {
-			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();
 			param.add(emri);
 			ResultSet res = objDB.executeProcedure("getUniversiteti", param);
@@ -81,14 +87,17 @@ public class Universiteti {
 				this.emri = res.getString("universiteti");
 			}
 			this.fakultetet = this.fakultetet();
+			res.close();
+			objDB.conn.close();
+			objDB.cstmt.close();
 			objDB.terminate();
 		} catch (Exception e) {
-		
+			objDB.terminate();
 		}
 	}
 	public Boolean addFakultetet(List<Fakulteti> fakulteti) {
+		DBConnect objDB = new DBConnect("FIEKDB");
 		try {
-			DBConnect objDB = new DBConnect("FIEKDB");
 			for(int i = 0;i<fakulteti.size();i++) {
 				List<Object> param = new ArrayList<Object>();
 				param.add(fakulteti.get(i).getID());
@@ -102,21 +111,27 @@ public class Universiteti {
 			}
 			return true;
 		} catch (Exception e) {
+			objDB.terminate();
 			return false;
 		}
 	}
 
 	public Hashtable<Integer, String> getAllUniversitetet() {
+		DBConnect objDB = new DBConnect("FIEKDB");
 		try {
-			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();
 			ResultSet res = objDB.executeProcedure("getAllUniversitetet", param);		
 			while(res.next()) {
 				univeristetetIDs.put(res.getInt("id"), res.getString("universiteti"));	
 			}
+			res.close();
+			objDB.conn.close();
+			objDB.cstmt.close();
 			objDB.terminate();
+
 		} catch (Exception e) {
-		
+			objDB.terminate();
+
 		}
 	        this.universitetet = univeristetetIDs.elements(); 
 	        /*

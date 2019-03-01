@@ -34,8 +34,8 @@ public class Lenda {
 		this.lenda = lenda;
 	}
 	public boolean insertLenda() {
+		DBConnect objDB = new DBConnect("FIEKDB");
 		try {
-			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();
 			param.add(this.lenda);
 			ResultSet res = objDB.executeProcedure("insertLenda", param);
@@ -45,12 +45,13 @@ public class Lenda {
 			}
 			return true;
 		} catch (Exception e) {
+			objDB.terminate();
 			return false;
 		}
 	}
 	public void getLenden(String lenda) {
+		DBConnect objDB = new DBConnect("FIEKDB");
 				try {
-					DBConnect objDB = new DBConnect("FIEKDB");
 					List<Object> param = new ArrayList<Object>();
 					param.add(this.lenda);
 					ResultSet res = objDB.executeProcedure("getLendaEmri", param);
@@ -60,12 +61,12 @@ public class Lenda {
 					}
 					objDB.terminate();
 				} catch (Exception e) {
-
+					objDB.terminate();
 				}
 	}
 	public Hashtable<Integer, String> getAllLendet() {
+		DBConnect objDB = new DBConnect("FIEKDB");
 		try {
-			DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();
 			ResultSet res = objDB.executeProcedure("getAllLendet", param);		
 			while(res.next()) {
@@ -73,7 +74,7 @@ public class Lenda {
 			}
 			objDB.terminate();
 		} catch (Exception e) {
-		
+			objDB.terminate();
 		}
 	        this.lendet = lendetIDs.elements(); 
 	        /*
