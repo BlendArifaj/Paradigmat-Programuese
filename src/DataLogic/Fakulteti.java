@@ -37,7 +37,7 @@ public class Fakulteti {
 		try {
 			ResultSet res = DBConnect.executeProcedure(conn,cstmt,"getDepartamentetFakultetit", param);
 			while(res.next()) {
-				Departamenti newDept = new Departamenti(res.getInt("ID"),res.getString("DEPARTAMENTI"),res.getString("FAKULTETI"));
+				Departamenti newDept = new Departamenti(res.getString("ID"),res.getString("DEPARTAMENTI"),res.getString("FAKULTETI"));
 				departamentet.add(newDept);
 			}
 			res.close();
@@ -161,7 +161,23 @@ public class Fakulteti {
 			return false;
 		}
 	}
-	
+	public Boolean insertNewDepartament(Departamenti dept) {
+		Connection conn = DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;
+		//DBConnect objDB = new DBConnect("FIEKDB");
+		try {
+				List<Object> param = new ArrayList<Object>();
+				param.add(dept.getDeparamenti());
+				param.add(this.ID);
+				ResultSet res = DBConnect.executeProcedure(conn,cstmt,"addNewDepartamentFakulteti", param);	
+				res.close();
+			conn.close();
+			cstmt.close();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
 	public Enumeration<String> getFakultetet(){
 		Connection conn = DBConnect.Connect2DB("fiekdb");
 		CallableStatement cstmt = null;

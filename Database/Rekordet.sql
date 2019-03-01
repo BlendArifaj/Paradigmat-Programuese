@@ -14,10 +14,11 @@ insert into Departamenti values('07012','Telekomunikacion','07011');
 insert into Student values('150714110030','Blend','Arifaj','blend.arifaj@uni-pr.edu',
 '8d9d4a07cea1ee15873b306c654f3fa8c5637b6791f2656351325516fae53ce2',
 '049130642','07011','Prishtine','Master');
-
+select * from Student;
 
 select * from administrata;
 insert into Administrata values('ADMIN001','Blend','Arifaj','blendarifaj@hotmail.com','8d9d4a07cea1ee15873b306c654f3fa8c5637b6791f2656351325516fae53ce2','044444555','07011',1);
+insert into Administrata values('ADMIN002','Blend','Arifaj','blendarifaj@hotmail.com','','044444555','07011',1);
 
 insert into Lenda values(null,'Database');
 insert into Lenda values(null,'Paradigmat Programuese');

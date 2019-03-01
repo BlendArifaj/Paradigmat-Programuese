@@ -46,11 +46,14 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import Business.Login;
+import DataLogic.Departamenti;
+import DataLogic.Fakulteti;
 import javafx.scene.layout.Pane;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.swing.JTextArea;
@@ -151,6 +154,7 @@ public class frmMain extends JFrame {
 	private JTextField txtAdd_3;
 	private JTable tableProfesoriDiploma;
 	private JTextField txtSingleNotification;
+	private JTextField txtAdministrataShtoDepartamentID;
 	
 	
 	/**
@@ -406,6 +410,100 @@ public class frmMain extends JFrame {
 		panelAdministrataSettingsShto = new JPanel();
 		panelAdministrataSettingsShto.setVisible(false);
 		
+		panelAdministrataAddDepartament = new JPanel();
+		panelAdministrataAddDepartament.setLayout(null);
+		panelAdministrataAddDepartament.setBackground(Color.WHITE);
+		panelAdministrataAddDepartament.setBounds(0, 0, 1427, 865);
+		panelMain.add(panelAdministrataAddDepartament);
+		
+		txtAdd_3 = new JTextField();
+		txtAdd_3.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		txtAdd_3.setText("ADD");
+		txtAdd_3.setOpaque(false);
+		txtAdd_3.setBorder(null);
+		txtAdd_3.setBounds(561, 594, 55, 46);
+		panelAdministrataAddDepartament.add(txtAdd_3);
+		txtAdd_3.setColumns(10);
+		
+		txtAdministrataShtoDepartamentEmri = new JTextField();
+		txtAdministrataShtoDepartamentEmri.setBorder(null);
+		txtAdministrataShtoDepartamentEmri.setBounds(322, 261, 577, 62);
+		panelAdministrataAddDepartament.add(txtAdministrataShtoDepartamentEmri);
+		txtAdministrataShtoDepartamentEmri.setColumns(10);
+		
+		lblAdministrataAddDepartament = new JLabel("");
+		lblAdministrataAddDepartament.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).getImage()
+				.getScaledInstance(600, 80, Image.SCALE_SMOOTH)));
+		lblAdministrataAddDepartament.setBounds(312, 246, 609, 90);
+		panelAdministrataAddDepartament.add(lblAdministrataAddDepartament);
+		
+		JLabel lblShtoDepartamentTe = new JLabel("Shto Departament te ri");
+		lblShtoDepartamentTe.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblShtoDepartamentTe.setBounds(312, 65, 373, 62);
+		panelAdministrataAddDepartament.add(lblShtoDepartamentTe);
+		
+		JLabel label_3 = new JLabel("Emri");
+		label_3.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		label_3.setBounds(78, 261, 144, 62);
+		panelAdministrataAddDepartament.add(label_3);
+		
+		JLabel label_4 = new JLabel("Universiteti");
+		label_4.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		label_4.setBounds(78, 470, 201, 62);
+		panelAdministrataAddDepartament.add(label_4);
+		
+		JComboBox cmbFakultetet = new JComboBox();
+		cmbFakultetet.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		cmbFakultetet.setModel(new DefaultComboBoxModel(new String[] {"FIEK", "EKONOMI", "JURIDIK"}));
+		cmbFakultetet.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		cmbFakultetet.setBounds(322, 470, 483, 62);
+		panelAdministrataAddDepartament.add(cmbFakultetet);
+		cmbFakultetet.addItem("Zgjedheni fakultetin!");
+		Fakulteti fakulteti = new Fakulteti();
+		Enumeration<String> fakultetet = fakulteti.getFakultetet();
+		while(fakultetet.hasMoreElements()) {
+			cmbFakultetet.addItem(fakultetet.nextElement());
+		}
+		// Kur klikohet shtohet nje departament i ri
+		JLabel btnShtoDepartamentTeRi = new JLabel("");
+		btnShtoDepartamentTeRi.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if(cmbFakultetet.getSelectedIndex() != 0) {
+					Departamenti newDept = new Departamenti();
+					newDept.setDeparamenti(txtAdministrataShtoDepartamentEmri.getText());
+					newDept.setID(txtAdministrataShtoDepartamentID.getText());
+					fakulteti.inicializoFakultetin(cmbFakultetet.getSelectedItem().toString());
+					if(fakulteti.insertNewDepartament(newDept)) {
+						System.out.println("AS");
+					}else {
+						System.out.println("AsS");
+
+					}
+				}
+			}
+		});
+		btnShtoDepartamentTeRi.setIcon(new ImageIcon(frmMain.class.getResource("/Images/login_rectangle_login.png")));
+		btnShtoDepartamentTeRi.setBounds(486, 594, 200, 46);
+		panelAdministrataAddDepartament.add(btnShtoDepartamentTeRi);
+		
+		JLabel lblId = new JLabel("ID");
+		lblId.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblId.setBounds(78, 366, 144, 62);
+		panelAdministrataAddDepartament.add(lblId);
+		
+		txtAdministrataShtoDepartamentID = new JTextField();
+		txtAdministrataShtoDepartamentID.setColumns(10);
+		txtAdministrataShtoDepartamentID.setBorder(null);
+		txtAdministrataShtoDepartamentID.setBounds(322, 373, 393, 62);
+		panelAdministrataAddDepartament.add(txtAdministrataShtoDepartamentID);
+		
+		JLabel labelID = new JLabel("");
+		labelID.setBounds(312, 349, 455, 108);
+		labelID.setIcon(new ImageIcon(frmMain.class.getResource("/Images/myaccount_rectangle.png")));
+		panelAdministrataAddDepartament.add(labelID);
+		panelAdministrataAddDepartament.setVisible(false);
+		
 
 		panelAdministrataNjoftimet = new JPanel();
 		panelAdministrataNjoftimet.setBounds(0, 0, 1660, 900);
@@ -576,61 +674,6 @@ public class frmMain extends JFrame {
 		lblMesazhi.setBounds(142, 468, 136, 65);
 		panelStudentNotifications.add(lblMesazhi);
 		panelStudentNotifications.setVisible(false);
-		
-		panelAdministrataAddDepartament = new JPanel();
-		panelAdministrataAddDepartament.setLayout(null);
-		panelAdministrataAddDepartament.setBackground(Color.WHITE);
-		panelAdministrataAddDepartament.setBounds(0, 0, 1427, 865);
-		panelMain.add(panelAdministrataAddDepartament);
-		
-		txtAdd_3 = new JTextField();
-		txtAdd_3.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		txtAdd_3.setText("ADD");
-		txtAdd_3.setOpaque(false);
-		txtAdd_3.setBorder(null);
-		txtAdd_3.setBounds(561, 548, 55, 46);
-		panelAdministrataAddDepartament.add(txtAdd_3);
-		txtAdd_3.setColumns(10);
-		
-		txtAdministrataShtoDepartamentEmri = new JTextField();
-		txtAdministrataShtoDepartamentEmri.setBorder(null);
-		txtAdministrataShtoDepartamentEmri.setBounds(322, 259, 577, 62);
-		panelAdministrataAddDepartament.add(txtAdministrataShtoDepartamentEmri);
-		txtAdministrataShtoDepartamentEmri.setColumns(10);
-		
-		lblAdministrataAddDepartament = new JLabel("");
-		lblAdministrataAddDepartament.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).getImage()
-				.getScaledInstance(600, 80, Image.SCALE_SMOOTH)));
-		lblAdministrataAddDepartament.setBounds(312, 246, 609, 90);
-		panelAdministrataAddDepartament.add(lblAdministrataAddDepartament);
-		
-		JLabel lblShtoDepartamentTe = new JLabel("Shto Departament te ri");
-		lblShtoDepartamentTe.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		lblShtoDepartamentTe.setBounds(312, 65, 373, 62);
-		panelAdministrataAddDepartament.add(lblShtoDepartamentTe);
-		
-		JLabel label_3 = new JLabel("Emri");
-		label_3.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		label_3.setBounds(78, 259, 144, 62);
-		panelAdministrataAddDepartament.add(label_3);
-		
-		JLabel label_4 = new JLabel("Universiteti");
-		label_4.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		label_4.setBounds(78, 374, 201, 62);
-		panelAdministrataAddDepartament.add(label_4);
-		
-		JComboBox comboBoxFakultetet = new JComboBox();
-		comboBoxFakultetet.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		comboBoxFakultetet.setModel(new DefaultComboBoxModel(new String[] {"FIEK", "EKONOMI", "JURIDIK"}));
-		comboBoxFakultetet.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		comboBoxFakultetet.setBounds(322, 374, 483, 62);
-		panelAdministrataAddDepartament.add(comboBoxFakultetet);
-		
-		// Kur klikohet shtohet nje departament i ri
-		JLabel btnShtoDepartamentTeRi = new JLabel("");
-		btnShtoDepartamentTeRi.setIcon(new ImageIcon(frmMain.class.getResource("/Images/login_rectangle_login.png")));
-		btnShtoDepartamentTeRi.setBounds(486, 548, 200, 46);
-		panelAdministrataAddDepartament.add(btnShtoDepartamentTeRi);
 		
 		panelAdministrataAddFakultet = new JPanel();
 		panelAdministrataAddFakultet.setLayout(null);
@@ -1412,7 +1455,6 @@ public class frmMain extends JFrame {
 		 panelAdministrataBtnKontrollo.setVisible(false);
 		 panelAdministrataDiploma.setVisible(false);
 		 panelAdministrataStats.setVisible(false);
-		 panelAdministrataAddDepartament.setVisible(false);
 		 panelAdministrataAddUniversity.setVisible(false);
 		 panelAdministrataAddLenda.setVisible(false);
 		 panelAdministrataAddFakultet.setVisible(false);

@@ -11,7 +11,7 @@ import java.util.List;
 import Functions.DepartamentiFunctions;
 
 public class Departamenti implements DepartamentiFunctions{
-	private int ID;
+	private String ID;
 	private String deparamenti;
 	private Fakulteti fakulteti = new Fakulteti();
 	public Hashtable<String, String> departamentsID = new Hashtable<String, String>();
@@ -19,7 +19,7 @@ public class Departamenti implements DepartamentiFunctions{
 	public Departamenti() {
 		
 	}
-	public Departamenti(int deptID, String departamenti,String fakulteti){
+	public Departamenti(String deptID, String departamenti,String fakulteti){
 		this.ID = deptID;
 		this.fakulteti.inicializoFakultetin(fakulteti);
 		this.deparamenti = departamenti;
@@ -27,10 +27,10 @@ public class Departamenti implements DepartamentiFunctions{
 	public void getPunimet() {
 		
 	}
-	public int getID() {
+	public String getID() {
 		return this.ID;
 	}
-	public void setID(int deptID) {
+	public void setID(String deptID) {
 		this.ID = deptID;
 	}
 	public Fakulteti getFakulteti() {
@@ -99,7 +99,7 @@ public class Departamenti implements DepartamentiFunctions{
 		try {
 			ResultSet res = DBConnect.executeProcedure(conn,cstmt,"getDepartamenti", param);
 			while(res.next()) {
-				this.ID = res.getInt("id");
+				this.ID = res.getString("id");
 				this.deparamenti = res.getString("departamenti");
 				this.fakulteti.inicializoFakultetin(res.getString("fakultetiId"));
 			}

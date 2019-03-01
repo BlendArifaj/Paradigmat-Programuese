@@ -60,10 +60,10 @@ public class Login implements LoginFunctions{
 				 this.lloji = res.getString("Lloji");
 				 this.access = res.getInt("Access");
 			}
-conn.close();
-cstmt.close();
-res.close();
+			conn.close();
+			res.close();
 		}catch (SQLException e) {
+			System.out.println("AS");
 			e.printStackTrace();
 		}	
 		

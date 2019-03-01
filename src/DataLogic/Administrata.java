@@ -100,21 +100,14 @@ public class Administrata extends Person implements AdministrataFunctions{
 				this.email = res.getString("email");
 				this.passHash = res.getString("passhash");
 				this.tel = res.getString("tel");
-				this.fakulteti.inicializoFakultetin(res.getString("fakultetiId"));
+				//this.fakulteti.inicializoFakultetin(res.getString("fakultetiId"));
 				this.access = res.getInt("access");
-				this.inicializoNjoftimet();
+				//this.inicializoNjoftimet();
 			}
 			conn.close();
-			cstmt.close();
 			res.close();
 		} catch (Exception e) {
-			try {
-				conn.close();
-				cstmt.close();
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			System.out.println(e);
 		}
 	}
 	public Boolean addNewUniversitet(Universiteti newUni) {
