@@ -23,6 +23,7 @@ import java.awt.CardLayout;
 import javax.swing.UIManager;
 import javax.swing.JTextField;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.border.BevelBorder;
 import javax.swing.ListSelectionModel;
 import javax.swing.JComboBox;
@@ -454,7 +455,6 @@ public class frmMain extends JFrame {
 		
 		JComboBox cmbFakultetet = new JComboBox();
 		cmbFakultetet.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		cmbFakultetet.setModel(new DefaultComboBoxModel(new String[] {"FIEK", "EKONOMI", "JURIDIK"}));
 		cmbFakultetet.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		cmbFakultetet.setBounds(322, 470, 483, 62);
 		panelAdministrataAddDepartament.add(cmbFakultetet);
@@ -475,9 +475,9 @@ public class frmMain extends JFrame {
 					newDept.setID(txtAdministrataShtoDepartamentID.getText());
 					fakulteti.inicializoFakultetin(cmbFakultetet.getSelectedItem().toString());
 					if(fakulteti.insertNewDepartament(newDept)) {
-						System.out.println("AS");
+						JOptionPane.showMessageDialog(null, "Me sukses keni shtuar nje departament te ri!");
 					}else {
-						System.out.println("AsS");
+						JOptionPane.showMessageDialog(null, "Ju lutem te kontrolloni te dhenat!");
 
 					}
 				}
@@ -1584,8 +1584,8 @@ public class frmMain extends JFrame {
 					panelStudentNotifications.setVisible(false);
 				}else {
 					panelAdministrataNjoftimet.setVisible(false);
-					panelAdministrataSettings.setVisible(true);
-					panelAdministrataSettingsShto.setVisible(false);
+					panelAdministrataSettings.setVisible(false);
+					panelAdministrataSettingsShto.setVisible(true);
 					panelAdministrataDiploma.setVisible(false);
 					panelAdministrataStats.setVisible(false);
 					panelAdministrataBtnKontrollo.setVisible(true);	
@@ -1611,7 +1611,105 @@ public class frmMain extends JFrame {
 			}
 		});
 		
-
+		lblShtoUniversitetRectangle.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//caktoVisible("panelAdministrataStats");
+				//labelHighlight.add(lblHighlightStatistics);
+				
+					panelAdministrataNjoftimet.setVisible(false);
+					panelAdministrataSettings.setVisible(false);
+					panelAdministrataSettingsShto.setVisible(false);
+					panelAdministrataDiploma.setVisible(false);
+					panelAdministrataStats.setVisible(false);
+					panelAdministrataBtnKontrollo.setVisible(false);	
+					panelAdministrataAddDepartament.setVisible(false);
+					panelAdministrataAddLenda.setVisible(false);
+					panelAdministrataAddFakultet.setVisible(false);
+					panelAdministrataAddUniversity.setVisible(true);
+			
+				
+				lblHighlightNotifications.setVisible(false);
+				lblHighlightThesis.setVisible(false);
+				lblHighlightSettings.setVisible(true);
+				lblHighlightStatistics.setVisible(false);	
+			}
+		});
+		
+		lblShtoFakultetRectangle.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//caktoVisible("panelAdministrataStats");
+				//labelHighlight.add(lblHighlightStatistics);
+				
+					panelAdministrataNjoftimet.setVisible(false);
+					panelAdministrataSettings.setVisible(false);
+					panelAdministrataSettingsShto.setVisible(false);
+					panelAdministrataDiploma.setVisible(false);
+					panelAdministrataStats.setVisible(false);
+					panelAdministrataBtnKontrollo.setVisible(true);	
+					panelAdministrataAddDepartament.setVisible(false);
+					panelAdministrataAddLenda.setVisible(false);
+					panelAdministrataAddFakultet.setVisible(true);
+					panelAdministrataAddUniversity.setVisible(false);
+			
+				
+				lblHighlightNotifications.setVisible(false);
+				lblHighlightThesis.setVisible(false);
+				lblHighlightSettings.setVisible(true);
+				lblHighlightStatistics.setVisible(false);	
+			}
+		});
+		
+		lblShtoDepartamentRectangle.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//caktoVisible("panelAdministrataStats");
+				//labelHighlight.add(lblHighlightStatistics);
+				
+					panelAdministrataNjoftimet.setVisible(false);
+					panelAdministrataSettings.setVisible(false);
+					panelAdministrataSettingsShto.setVisible(false);
+					panelAdministrataDiploma.setVisible(false);
+					panelAdministrataStats.setVisible(false);
+					panelAdministrataBtnKontrollo.setVisible(true);	
+					panelAdministrataAddDepartament.setVisible(true);
+					panelAdministrataAddLenda.setVisible(false);
+					panelAdministrataAddFakultet.setVisible(false);
+					panelAdministrataAddUniversity.setVisible(false);
+			
+				
+				lblHighlightNotifications.setVisible(false);
+				lblHighlightThesis.setVisible(false);
+				lblHighlightSettings.setVisible(true);
+				lblHighlightStatistics.setVisible(false);	
+			}
+		});
+		
+		lblShtoLendaRectangle.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//caktoVisible("panelAdministrataStats");
+				//labelHighlight.add(lblHighlightStatistics);
+				
+					panelAdministrataNjoftimet.setVisible(false);
+					panelAdministrataSettings.setVisible(false);
+					panelAdministrataSettingsShto.setVisible(false);
+					panelAdministrataDiploma.setVisible(false);
+					panelAdministrataStats.setVisible(false);
+					panelAdministrataBtnKontrollo.setVisible(false);	
+					panelAdministrataAddDepartament.setVisible(false);
+					panelAdministrataAddLenda.setVisible(true);
+					panelAdministrataAddFakultet.setVisible(false);
+					panelAdministrataAddUniversity.setVisible(false);
+			
+				
+				lblHighlightNotifications.setVisible(false);
+				lblHighlightThesis.setVisible(false);
+				lblHighlightSettings.setVisible(true);
+				lblHighlightStatistics.setVisible(false);	
+			}
+		});
 		panelMenuStats.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

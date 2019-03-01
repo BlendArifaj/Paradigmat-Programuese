@@ -61,10 +61,6 @@ public class Fakulteti {
 		param.add(this.adresa);
 		try {
 			ResultSet res = DBConnect.executeProcedure(conn,cstmt,"insertFakulteti", param);
-
-			if(!DBConnect.isOk) {
-				return false;
-			}
 			res.close();
 			conn.close();
 			cstmt.close();
@@ -115,12 +111,12 @@ public class Fakulteti {
 	public void setAdresa(String adresa) {
 		this.adresa = adresa;
 	}
-	public void inicializoFakultetin(String fakulteti) {
+	public void inicializoFakultetin(String fk) {
 		//DBConnect objDB = new DBConnect("FIEKDB");
 		Connection conn = DBConnect.Connect2DB("fiekdb");
 		CallableStatement cstmt = null;
 		List<Object> param = new ArrayList<Object>();
-		param.add(fakulteti);
+		param.add(fk);
 		try {
 			ResultSet res = DBConnect.executeProcedure(conn,cstmt,"getFakulteti", param);
 			while(res.next()) {
@@ -128,13 +124,12 @@ public class Fakulteti {
 				this.emri = res.getString("FAKULTETI");
 				this.universiteti.inicializoUniversitetin(res.getString("UNIVERSITETI"));
 				this.adresa = res.getString("ADRESA");
-				this.departamentet = this.getDepartamentet();
+				//this.departamentet = this.getDepartamentet();
 			}
 			res.close();
 			conn.close();
-			cstmt.close();
 		} catch (Exception e) {
-		
+			System.out.println(e.toString());
 		}
 	}
 	
@@ -167,14 +162,14 @@ public class Fakulteti {
 		//DBConnect objDB = new DBConnect("FIEKDB");
 		try {
 				List<Object> param = new ArrayList<Object>();
+				param.add(dept.getID());
 				param.add(dept.getDeparamenti());
 				param.add(this.ID);
 				ResultSet res = DBConnect.executeProcedure(conn,cstmt,"addNewDepartamentFakulteti", param);	
-				res.close();
 			conn.close();
-			cstmt.close();
 			return true;
 		} catch (Exception e) {
+			System.out.println(e.toString());
 			return false;
 		}
 	}

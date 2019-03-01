@@ -3,7 +3,9 @@ package DataLogic;
 public class ASDFGHJKL {
 
 	public static void main(String[] args) {
-		System.out.println(Hash.saltedHashString("blendarifaj", "ADMIN001"));
+		Fakulteti fakulteti = new Fakulteti();
+		fakulteti.inicializoFakultetin("Fakulteti i Inxhinieris Mekanike");
+		System.out.println(fakulteti.getAdresa());
 	}
 
 }

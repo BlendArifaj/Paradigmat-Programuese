@@ -92,10 +92,9 @@ public class Universiteti {
 				this.ID = res.getInt("id");
 				this.emri = res.getString("universiteti");
 			}
-			this.fakultetet = this.fakultetet();
+			//this.fakultetet = this.fakultetet();
 			res.close();
 			conn.close();
-			cstmt.close();
 		} catch (Exception e) {
 		}
 	}
