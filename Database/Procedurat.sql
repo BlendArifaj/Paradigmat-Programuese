@@ -2,6 +2,7 @@ USE FIEKDB;
 #Krijimi i procedurave
 
 #Krijimi i procedures per te bere insertimin e nje studenti
+
 DELIMITER //
 CREATE PROCEDURE insertStudent (IN id varchar(20),
 IN emri varchar(30),
@@ -9,7 +10,7 @@ IN mbiemri varchar(30),
 IN email varchar(40),
 IN passhash varchar(260),
 IN tel varchar(15),
-IN departamenti varchar(50),
+IN departamenti varchar(100),
 IN qyteti varchar(40),
 IN niveliStudimeve varchar(20))
 BEGIN
@@ -20,7 +21,7 @@ BEGIN
     email,
     passhash,
     tel,
-    (select d.id from Departamenti d where d.emri=departamenti),
+    (select d.id from Departamenti d where d.DEPARTAMENTI=departamenti),
     qyteti,
     niveliStudimeve);
 END //
@@ -271,11 +272,11 @@ DELIMITER //;
 #PROCEDURA E CILA E MERR DEPARTAMENTIN
 DELIMITER //
 CREATE PROCEDURE getDepartamenti(
-IN DEPTID VARCHAR(10))
+IN DEPT VARCHAR(100))
 BEGIN
 SELECT * 
 FROM DEPARTAMENTI D
-WHERE D.ID = DEPTID;
+WHERE D.departamenti = DEPT;
 END //
 DELIMITER //;
 
@@ -321,7 +322,7 @@ SELECT P.idNjoftimi AS id,
     P.njoftimi as njoftim,
     P.statusiNjoftimit as statusi
 FROM NjoftimetProfesori P
-WHERE P.idStudenti = PERSONID
+WHERE P.idProfesori = PERSONID
 UNION
 SELECT A.idNjoftimi AS id,
 	A.idAdministrata as personId,
@@ -329,7 +330,7 @@ SELECT A.idNjoftimi AS id,
     A.njoftimi as njoftim,
     A.statusiNjoftimit as statusi
 FROM NjoftimetAdministrata A
-WHERE A.idStudenti = PERSONID;
+WHERE A.idAdministrata = PERSONID;
 END //
 DELIMITER ;
 

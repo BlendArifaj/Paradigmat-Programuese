@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
 import Business.Login;
+import DataLogic.Studenti;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -69,6 +70,7 @@ public class LoginForm {
 	 */
 	public LoginForm() {
 		initialize();
+		
 	}
 
 	/**

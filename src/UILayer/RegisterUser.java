@@ -34,29 +34,30 @@ import java.util.Enumeration;
 public class RegisterUser {
 
 	JFrame frame;
-	private JTextField txtID;
-	private JTextField txtEmri;
-	private JTextField txtMbiemri;
-	private JTextField txtTel;
-	private JPasswordField txtPassword;
-	private JTextField txtEmail;
+	private JTextField txtPID;
+	private JTextField txtPEmri;
+	private JTextField txtPMbiemri;
+	private JTextField txtPTel;
+	private JPasswordField pwdP;
+	private JTextField txtPEmail;
 	private static RegisterUser window;
 	static int HEIGHT = 665;
 	static int WIDTH = 964;
 	private JPanel panel;
 	private JPanel profesorPanel;
 	private JPanel studentPanel;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JPasswordField passwordField;
-	private JTextField textField_4;
-	private JComboBox cmbDepartamentet;
-	private JComboBox cmbNiveli;
-	private JComboBox cmbQytetet;
-	private JComboBox cmbFakulteti;
-	private JComboBox cmbUniversiteti;
+	public static JTextField txtStdID;
+	public static JTextField txtStdEmri;
+	public static JTextField txtStdMbiemri;
+	public static JTextField txtStdTel;
+	public static JPasswordField pwdStd;
+	public static JTextField txtStdEmail;
+	public static JButton button;
+	public static JComboBox cmbDepartamentet;
+	public static JComboBox cmbNiveli;
+	public static JComboBox cmbQytetet;
+	public static JComboBox cmbFakulteti;
+	public static JComboBox cmbUniversiteti;
 	/**
 	 * Launch the application.
 	 */
@@ -122,76 +123,36 @@ public class RegisterUser {
 		label_6.setBounds(44, 281, 261, 26);
 		studentPanel.add(label_6);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		textField.setColumns(10);
-		textField.setBounds(260, 76, 299, 37);
-		studentPanel.add(textField);
+		txtStdID = new JTextField();
+		txtStdID.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		txtStdID.setColumns(10);
+		txtStdID.setBounds(260, 76, 299, 37);
+		studentPanel.add(txtStdID);
 		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		textField_1.setColumns(10);
-		textField_1.setBounds(260, 126, 299, 37);
-		studentPanel.add(textField_1);
+		txtStdEmri = new JTextField();
+		txtStdEmri.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		txtStdEmri.setColumns(10);
+		txtStdEmri.setBounds(260, 126, 299, 37);
+		studentPanel.add(txtStdEmri);
 		
-		textField_2 = new JTextField();
-		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		textField_2.setColumns(10);
-		textField_2.setBounds(260, 176, 299, 37);
-		studentPanel.add(textField_2);
+		txtStdMbiemri = new JTextField();
+		txtStdMbiemri.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		txtStdMbiemri.setColumns(10);
+		txtStdMbiemri.setBounds(260, 176, 299, 37);
+		studentPanel.add(txtStdMbiemri);
 		
-		textField_3 = new JTextField();
-		textField_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		textField_3.setColumns(10);
-		textField_3.setBounds(260, 326, 299, 37);
-		studentPanel.add(textField_3);
+		txtStdTel = new JTextField();
+		txtStdTel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		txtStdTel.setColumns(10);
+		txtStdTel.setBounds(260, 326, 299, 37);
+		studentPanel.add(txtStdTel);
 		
-		passwordField = new JPasswordField();
-		passwordField.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		passwordField.setBounds(260, 226, 299, 37);
-		studentPanel.add(passwordField);
+		pwdStd = new JPasswordField();
+		pwdStd.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		pwdStd.setBounds(260, 226, 299, 37);
+		studentPanel.add(pwdStd);
 		
-		JButton button = new JButton("Register");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String passwordi = Hash.saltedHashString(new String(txtPassword.getPassword()),txtID.getText());
-				Studenti newStudent = new Studenti();
-				//cmbNiveli.getSelectedItem().toString()
-				newStudent.setID(txtID.getText());
-				newStudent.setEmri(txtEmri.getText());
-				newStudent.setMbiemri(txtMbiemri.getText());
-				newStudent.setEmail(txtEmail.getText());
-				newStudent.setPass(passwordi);
-				newStudent.setTel(txtTel.getText());
-				
-				Departamenti stdDpt = new Departamenti();
-				stdDpt.inicializoDepartamentin(cmbDepartamentet.getSelectedItem().toString());
-				newStudent.setDepartamenti(stdDpt);
-				
-				newStudent.setQyteti(cmbQytetet.getSelectedItem().toString());
-				newStudent.setNiveliStudimeve(cmbNiveli.getSelectedItem().toString());
-				Fakulteti stdFk = new Fakulteti();
-				stdFk.inicializoFakultetin(cmbFakulteti.getSelectedItem().toString());
-				newStudent.setFakulteti(stdFk);
-				Universiteti stdUni = new Universiteti();
-				stdUni.inicializoUniversitetin(cmbUniversiteti.getSelectedItem().toString());
-				newStudent.setUniversiteti(stdUni);
-				if(newStudent.insertNewStudent()) {
-					JOptionPane.showMessageDialog(null, "Jeni regjistruar me sukses! Jeni ne listen e pritjes se Administrates per pranim!");
-
-				}else {
-					JOptionPane.showMessageDialog(null, "Gabim gjate regjistrimit! Ju lutem kontrolloni te dhenat!");
-				}
-				//UserRegister newUser = new UserRegister(1);
-				//newUser.setRegisterStudent(newStudent);
-				//if(newUser.registerStudent()) {
-				//}else {
-				//}
-			}
-		});
-		button.setFont(new Font("Tahoma", Font.PLAIN, 21));
-		button.setBounds(686, 654, 115, 57);
-		studentPanel.add(button);
+	
 		
 		JButton button_1 = new JButton("Cancel");
 		button_1.addActionListener(new ActionListener() {
@@ -202,7 +163,7 @@ public class RegisterUser {
 			}
 		});
 		button_1.setFont(new Font("Tahoma", Font.PLAIN, 21));
-		button_1.setBounds(846, 654, 115, 57);
+		button_1.setBounds(846, 606, 115, 57);
 		studentPanel.add(button_1);
 		
 		JLabel label_7 = new JLabel("TEL :");
@@ -210,11 +171,11 @@ public class RegisterUser {
 		label_7.setBounds(44, 331, 261, 26);
 		studentPanel.add(label_7);
 		
-		textField_4 = new JTextField();
-		textField_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		textField_4.setColumns(10);
-		textField_4.setBounds(260, 276, 299, 37);
-		studentPanel.add(textField_4);
+		txtStdEmail = new JTextField();
+		txtStdEmail.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		txtStdEmail.setColumns(10);
+		txtStdEmail.setBounds(260, 276, 299, 37);
+		studentPanel.add(txtStdEmail);
 		
 		JLabel lblDepartamenti = new JLabel("DEPARTAMENTI :");
 		lblDepartamenti.setFont(new Font("Tahoma", Font.PLAIN, 19));
@@ -359,76 +320,74 @@ public class RegisterUser {
 		lblEmail.setBounds(44, 321, 261, 26);
 		profesorPanel.add(lblEmail);
 		
-		txtID = new JTextField();
-		txtID.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		txtID.setBounds(317, 76, 299, 37);
-		profesorPanel.add(txtID);
-		txtID.setColumns(10);
+		txtPID = new JTextField();
+		txtPID.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		txtPID.setBounds(317, 76, 299, 37);
+		profesorPanel.add(txtPID);
+		txtPID.setColumns(10);
 		
-		txtEmri = new JTextField();
-		txtEmri.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		txtEmri.setColumns(10);
-		txtEmri.setBounds(317, 136, 299, 37);
-		profesorPanel.add(txtEmri);
+		txtPEmri = new JTextField();
+		txtPEmri.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		txtPEmri.setColumns(10);
+		txtPEmri.setBounds(317, 136, 299, 37);
+		profesorPanel.add(txtPEmri);
 		
-		txtMbiemri = new JTextField();
-		txtMbiemri.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		txtMbiemri.setColumns(10);
-		txtMbiemri.setBounds(317, 196, 299, 37);
-		profesorPanel.add(txtMbiemri);
+		txtPMbiemri = new JTextField();
+		txtPMbiemri.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		txtPMbiemri.setColumns(10);
+		txtPMbiemri.setBounds(317, 196, 299, 37);
+		profesorPanel.add(txtPMbiemri);
 		
-		txtTel = new JTextField();
-		txtTel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		txtTel.setColumns(10);
-		txtTel.setBounds(317, 376, 299, 37);
-		profesorPanel.add(txtTel);
+		txtPTel = new JTextField();
+		txtPTel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		txtPTel.setColumns(10);
+		txtPTel.setBounds(317, 376, 299, 37);
+		profesorPanel.add(txtPTel);
 		
-		txtPassword = new JPasswordField();
-		txtPassword.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		txtPassword.setBounds(317, 256, 299, 37);
-		profesorPanel.add(txtPassword);
+		pwdP = new JPasswordField();
+		pwdP.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		pwdP.setBounds(317, 256, 299, 37);
+		profesorPanel.add(pwdP);
 		
-		JButton btnRegister = new JButton("Register");
-		btnRegister.addActionListener(new ActionListener() {
+		JButton btnPRegister = new JButton("Register");
+		btnPRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String password = Hash.saltedHashString(new String(txtPassword.getPassword()),txtID.getText());
-				Profesori newProfesori = new Profesori(txtID.getText(),txtEmri.getText(),txtMbiemri.getText(),txtEmail.getText(),password,txtTel.getText());
-				UserRegister newUser = new UserRegister(0);
-				newUser.setRegisterProfesor(newProfesori);
-				if(newUser.registerProfesor()) {
+				String password = Hash.saltedHashString(new String(pwdP.getPassword()),txtPID.getText());
+				Profesori newProfesori = new Profesori(txtPID.getText(),txtPEmri.getText(),txtPMbiemri.getText(),txtPEmail.getText(),password,txtPTel.getText());
+				if(newProfesori.insertNewProfesor()) {
 					JOptionPane.showMessageDialog(null, "Jeni regjistruar me sukses! Jeni ne listen e pritjes se Administrates per pranim!");
+
 				}else {
 					JOptionPane.showMessageDialog(null, "Gabim gjate regjistrimit! Ju lutem kontrolloni te dhenat!");
 				}
-				
 			}
 		});
-		btnRegister.setFont(new Font("Tahoma", Font.PLAIN, 21));
-		btnRegister.setBounds(317, 452, 115, 57);
-		profesorPanel.add(btnRegister);
+		btnPRegister.setFont(new Font("Tahoma", Font.PLAIN, 21));
+		btnPRegister.setBounds(317, 452, 115, 57);
+		profesorPanel.add(btnPRegister);
 		
-		JButton btnCancel = new JButton("Cancel");
-		btnCancel.addActionListener(new ActionListener() {
+		JButton btnPCancel = new JButton("Cancel");
+		btnPCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				profesorPanel.setSize(new Dimension(0, 0));
 				studentPanel.setSize(new Dimension(0, 0));
 				panel.setSize(new Dimension(WIDTH, HEIGHT));
 			}
 		});
-		btnCancel.setFont(new Font("Tahoma", Font.PLAIN, 21));
-		btnCancel.setBounds(501, 452, 115, 57);
-		profesorPanel.add(btnCancel);
+		btnPCancel.setFont(new Font("Tahoma", Font.PLAIN, 21));
+		btnPCancel.setBounds(501, 452, 115, 57);
+		profesorPanel.add(btnPCancel);
 		
 		JLabel label = new JLabel("TEL :");
 		label.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		label.setBounds(44, 381, 261, 26);
 		profesorPanel.add(label);
 		
-		txtEmail = new JTextField();
-		txtEmail.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		txtEmail.setColumns(10);
-		txtEmail.setBounds(317, 316, 299, 37);
-		profesorPanel.add(txtEmail);
+		txtPEmail = new JTextField();
+		txtPEmail.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		txtPEmail.setColumns(10);
+		txtPEmail.setBounds(317, 316, 299, 37);
+		profesorPanel.add(txtPEmail);
 		
 		panel = new JPanel();
 		panel.setBounds(12, 13, 0, 0);
@@ -464,5 +423,24 @@ public class RegisterUser {
 		lblRegisterAs.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		lblRegisterAs.setBounds(246, 215, 223, 29);
 		panel.add(lblRegisterAs);
+		
+		button = new JButton("Register");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {	
+				
+				Studenti newStudent = new Studenti(txtStdID.getText(),txtStdEmri.getText(),txtStdMbiemri.getText(),
+						txtStdEmail.getText(),new String(pwdStd.getPassword()),txtStdTel.getText(),
+						cmbDepartamentet.getSelectedItem().toString(), cmbQytetet.getSelectedItem().toString(),cmbNiveli.getSelectedItem().toString());
+				if(newStudent.insertNewStudent()) {
+					JOptionPane.showMessageDialog(null, "Jeni regjistruar me sukses! Jeni ne listen e pritjes se Administrates per pranim!");
+				}else {
+					JOptionPane.showMessageDialog(null, "Gabim gjate regjistrimit! Ju lutem kontrolloni te dhenat!");
+				}
+	
+			}
+		});
+		button.setFont(new Font("Tahoma", Font.PLAIN, 21));
+		button.setBounds(686, 606, 115, 57);
+		studentPanel.add(button);
 	}
 }

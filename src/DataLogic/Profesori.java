@@ -84,16 +84,11 @@ public class Profesori extends Person implements ProfesoriFunctions {
 			param.add(this.email);
 			param.add(this.passHash);
 			param.add(this.tel);
-			@SuppressWarnings("unused")
 			ResultSet res = DBConnect.executeProcedure(conn,cstmt,"insertProfesor", param);
 			conn.close();
-			cstmt.close();
-			res.close();
-			if(!DBConnect.isOk) {
-				return false;
-			}
 			return true;
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			return false;
 		}	
 	}

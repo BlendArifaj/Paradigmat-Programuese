@@ -21,7 +21,7 @@ public class Studenti extends Person implements StudentiFunctions{
 		this.departamenti.inicializoDepartamentin(departamenti);
 		this.qyteti = qyteti;
 		this.niveliStudimeve = niveliStudimeve;
-		this.punimet = this.getPunimet();
+		//this.punimet = this.getPunimet();
 	}
 	public Studenti() {
 		super();
@@ -62,6 +62,7 @@ public class Studenti extends Person implements StudentiFunctions{
 	public void setPunimet(List<Punimi> punimet) {
 		this.punimet = punimet;
 	}
+
 	public Boolean insertNewStudent() {
 		Connection conn = DBConnect.Connect2DB("fiekdb");
 		CallableStatement cstmt = null;
@@ -74,21 +75,14 @@ public class Studenti extends Person implements StudentiFunctions{
 			param.add(this.email);
 			param.add(this.passHash);
 			param.add(this.tel);
-			param.add(this.fakulteti);
+			param.add(this.departamenti.getDeparamenti());
 			param.add(this.qyteti);
 			param.add(this.niveliStudimeve);
-			@SuppressWarnings("unused")
 			ResultSet res = DBConnect.executeProcedure(conn,cstmt,"insertStudent", param);
-			res.close();
 			conn.close();
-			cstmt.close();
-			
-			if(!DBConnect.isOk) {
-				return false;
-			}
 			return true;
-		} catch (Exception e) {
-			
+		}catch (Exception e) {
+			System.out.println(e);
 			return false;
 		}
 	}	
@@ -112,9 +106,7 @@ public class Studenti extends Person implements StudentiFunctions{
 			}
 			conn.close();
 			cstmt.close();
-			if(!DBConnect.isOk) {
-				return null;
-			}
+		
 			return returnPunimet; 
 		} catch (Exception e) {
 			

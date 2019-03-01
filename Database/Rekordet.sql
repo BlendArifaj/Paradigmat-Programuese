@@ -1,10 +1,9 @@
-#ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
 #Inserto Universitetet
 insert into Universiteti values(null,'Universiteti i Prishtines');
 insert into Universiteti values(null,'Universiteti i Prizrenit');
 insert into Universiteti values(null,'Universiteti i Pejes');
 insert into Universiteti values(null,'Universiteti i Gjakoves');
-
 
 insert into Fakulteti values('07011','Fakulteti i Inxhinieris Elektrike dhe Kompjuterike',1,'Prishtine');
 insert into Fakulteti values('07012','Fakulteti i Inxhinieris Mekanike',1,'Prishtine');
@@ -54,3 +53,10 @@ CREATE USER 'root'@'%' IDENTIFIED BY 'root';
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
 
 FLUSH PRIVILEGES;
+
+
+show databases;
+use fiedb;
+UPDATE mysql.user 
+    SET authentication_string = PASSWORD('root'), password_expired = 'N'
+    WHERE User = '' AND Host = 'localhost';
