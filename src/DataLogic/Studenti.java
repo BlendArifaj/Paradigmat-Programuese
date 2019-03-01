@@ -1,4 +1,6 @@
 package DataLogic;
+import java.sql.CallableStatement;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +63,9 @@ public class Studenti extends Person implements StudentiFunctions{
 		this.punimet = punimet;
 	}
 	public Boolean insertNewStudent() {
-		DBConnect objDB = new DBConnect("FIEKDB");
+		Connection conn = DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;
+		//DBConnect objDB = new DBConnect("FIEKDB");
 		try {
 			List<Object> param = new ArrayList<Object>();
 			param.add(this.ID);
@@ -74,25 +78,29 @@ public class Studenti extends Person implements StudentiFunctions{
 			param.add(this.qyteti);
 			param.add(this.niveliStudimeve);
 			@SuppressWarnings("unused")
-			ResultSet res = objDB.executeProcedure("insertStudent", param);
+			ResultSet res = DBConnect.executeProcedure(conn,cstmt,"insertStudent", param);
 			res.close();
-			objDB.terminate();
-			if(!objDB.isOk) {
+			conn.close();
+			cstmt.close();
+			
+			if(!DBConnect.isOk) {
 				return false;
 			}
 			return true;
 		} catch (Exception e) {
-			objDB.terminate();
+			
 			return false;
 		}
 	}	
 	public List<Punimi> getPunimet(){
+		Connection conn = DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;
 		List<Punimi> returnPunimet = new ArrayList<Punimi>();
-		DBConnect objDB = new DBConnect("FIEKDB");
+		//DBConnect objDB = new DBConnect("FIEKDB");
 		try {
 			List<Object> param = new ArrayList<Object>();
 			param.add(this.ID);
-			ResultSet res = objDB.executeProcedure("getPunimet", param);
+			ResultSet res = DBConnect.executeProcedure(conn,cstmt,"getPunimet", param);
 			while(res.next()) {
 				//int iD, String titulli, String profesorID, String studentID, String fakulteti, String dataDorezimit,
 				//String lenda, boolean profesorPergjigje, boolean administratPergjigje, byte[] permbajtja
@@ -102,13 +110,14 @@ public class Studenti extends Person implements StudentiFunctions{
 						res.getBoolean("administrataPergjigje"),res.getBytes("permbajtja"));
 				returnPunimet.add(objP);
 			}
-			objDB.terminate();
-			if(!objDB.isOk) {
+			conn.close();
+			cstmt.close();
+			if(!DBConnect.isOk) {
 				return null;
 			}
 			return returnPunimet; 
 		} catch (Exception e) {
-			objDB.terminate();
+			
 			return null;
 		}
 	}
@@ -118,11 +127,13 @@ public class Studenti extends Person implements StudentiFunctions{
 		return newPunim.insertNewPunim();
 	}
 	public void getStudenti(String stdId){
-		DBConnect objDB = new DBConnect("FIEKDB");
+		Connection conn = DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;
+		//DBConnect objDB = new DBConnect("FIEKDB");
 		try {
 			List<Object> param = new ArrayList<Object>();
 			param.add(stdId);
-			ResultSet res = objDB.executeProcedure("getStudenti", param);
+			ResultSet res = DBConnect.executeProcedure(conn,cstmt,"getStudenti", param);
 			while(res.next()) {
 				this.ID = res.getString("id");
 				this.emri = res.getString("emri");
@@ -138,9 +149,11 @@ public class Studenti extends Person implements StudentiFunctions{
 				this.punimet = this.getPunimet();
 				this.inicializoNjoftimet();
 			}
-			objDB.terminate();
+			res.close();
+			conn.close();
+			cstmt.close();
 		} catch (Exception e) {
-			objDB.terminate();
+
 		}
 	}
 	

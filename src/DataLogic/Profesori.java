@@ -1,5 +1,7 @@
 package DataLogic;
 
+import java.sql.CallableStatement;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,11 +38,13 @@ public class Profesori extends Person implements ProfesoriFunctions {
 		this.fakulteti = fakulteti;
 	}
 	public void getProfesori(String profesorID) {
-		DBConnect objDB = new DBConnect("FIEKDB");
+		//DBConnect objDB = new DBConnect("FIEKDB");
+		Connection conn = DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;
 		try {
 			List<Object> param = new ArrayList<Object>();
 			param.add(profesorID);
-			ResultSet res = objDB.executeProcedure("getProfesori", param);
+			ResultSet res = DBConnect.executeProcedure(conn,cstmt,"getProfesori", param);
 			while(res.next()) {
 				this.ID = profesorID;
 				this.emri = res.getString("emri");
@@ -51,23 +55,27 @@ public class Profesori extends Person implements ProfesoriFunctions {
 				this.isAprovuar = res.getBoolean("aprovuar");
 				this.inicializoNjoftimet();
 			}
-			res = objDB.executeProcedure("getProfesoriLendet", param);
+			res = DBConnect.executeProcedure(conn,cstmt,"getProfesoriLendet", param);
 			this.lenda = new ArrayList<String>();
 			while(res.next()) {
 				this.lenda.add(res.getString("Lenda"));
 			}
-			res = objDB.executeProcedure("getProfesoriLendet", param);
+			res = DBConnect.executeProcedure(conn,cstmt,"getProfesoriLendet", param);
 			this.fakulteti = new ArrayList<String>();
 			while(res.next()) {
 				this.fakulteti.add(res.getString("Fakulteti"));
 			}
-			objDB.terminate();
+		conn.close();
+		cstmt.close();
+		res.close();
 		} catch (Exception e) {
-			objDB.terminate();
+
 		}
 	}
 	public Boolean insertNewProfesor() {
-		DBConnect objDB = new DBConnect("FIEKDB");
+		Connection conn = DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;
+		//DBConnect objDB = new DBConnect("FIEKDB");
 		try {
 			List<Object> param = new ArrayList<Object>();
 			param.add(this.ID);
@@ -77,19 +85,22 @@ public class Profesori extends Person implements ProfesoriFunctions {
 			param.add(this.passHash);
 			param.add(this.tel);
 			@SuppressWarnings("unused")
-			ResultSet res = objDB.executeProcedure("insertProfesor", param);
-			objDB.terminate();
-			if(!objDB.isOk) {
+			ResultSet res = DBConnect.executeProcedure(conn,cstmt,"insertProfesor", param);
+			conn.close();
+			cstmt.close();
+			res.close();
+			if(!DBConnect.isOk) {
 				return false;
 			}
 			return true;
 		} catch (Exception e) {
-			objDB.terminate();
 			return false;
 		}	
 	}
 	public Boolean insertProfesorLenda() {
-		DBConnect objDB = new DBConnect("FIEKDB");
+		Connection conn = DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;
+		//DBConnect objDB = new DBConnect("FIEKDB");
 		try {
 			@SuppressWarnings("unused")
 			ResultSet res = null;
@@ -97,21 +108,24 @@ public class Profesori extends Person implements ProfesoriFunctions {
 			param.add(this.ID);
 			for(int i =0;i<this.lenda.size();i++) {
 				param.add(this.lenda.get(i));
-				res = objDB.executeProcedure("insertProfesorLenda", param);
+				res = DBConnect.executeProcedure(conn,cstmt,"insertProfesorLenda", param);
 				param.remove(1);
 			}
-			objDB.terminate();
-			if(!objDB.isOk) {
+			conn.close();
+			cstmt.close();
+			res.close();
+			if(!DBConnect.isOk) {
 				return false;
 			}
 			return true;
 		} catch (Exception e) {
-			objDB.terminate();
 			return false;
 		}	
 	}
 	public Boolean insertProfesorFakulteti() {
-		DBConnect objDB = new DBConnect("FIEKDB");
+		//DBConnect objDB = new DBConnect("FIEKDB");
+		Connection conn = DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;
 		try {
 			@SuppressWarnings("unused")
 			ResultSet res = null;
@@ -119,16 +133,17 @@ public class Profesori extends Person implements ProfesoriFunctions {
 			param.add(this.ID);
 			for(int i =0;i<this.fakulteti.size();i++) {
 				param.add(this.fakulteti.get(i));
-				res = objDB.executeProcedure("insertProfesorFakulteti", param);
+				res = DBConnect.executeProcedure(conn,cstmt,"insertProfesorFakulteti", param);
 				param.remove(1);
 			}
-			objDB.terminate();
-			if(!objDB.isOk) {
+			conn.close();
+			cstmt.close();
+			res.close();
+			if(!DBConnect.isOk) {
 				return false;
 			}
 			return true;
 		} catch (Exception e) {
-			objDB.terminate();
 			return false;
 		}	
 	}

@@ -1,5 +1,7 @@
 package DataLogic;
 
+import java.sql.CallableStatement;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,11 +35,13 @@ public class Njoftimi {
 	}
 	public void getNjoftimi() {
 		//Procedura
-		DBConnect objDB = new DBConnect("FIEKDB");
+		Connection conn = DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;	
+		//DBConnect objDB = new DBConnect("FIEKDB");
 			try {
 				List<Object> param = new ArrayList<Object>();
 				param.add(this.njoftimId);
-				ResultSet res = objDB.executeProcedure("getNjoftimi", param);
+				ResultSet res = DBConnect.executeProcedure(conn,cstmt,"getNjoftimi", param);
 				while(res.next()) {
 					this.njoftimId = res.getInt("id");
 					this.personId = res.getString("personId");
@@ -45,14 +49,18 @@ public class Njoftimi {
 					this.njoftim = res.getString("njoftimi");
 					this.statusi = res.getBoolean("statusi");
 				}
-				objDB.terminate();
+				conn.close();
+				cstmt.close();
+				res.close();
 			} catch (Exception e) {
-				objDB.terminate();
+
 			}
 	}
 	public Boolean shtoNjoftimin() {
 		//Procedura
-		DBConnect objDB = new DBConnect("FIEKDB");
+		//DBConnect objDB = new DBConnect("FIEKDB");
+		Connection conn = DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;	
 		try {
 			List<Object> param = new ArrayList<Object>();
 			param.add(this.personId);
@@ -60,32 +68,36 @@ public class Njoftimi {
 			param.add(this.njoftim);
 
 			@SuppressWarnings("unused")
-			ResultSet res = objDB.executeProcedure("insertNjoftim", param);
-			objDB.terminate();
-			if(!objDB.isOk) {
+			ResultSet res = DBConnect.executeProcedure(conn,cstmt,"insertNjoftim", param);
+			conn.close();
+			cstmt.close();
+			res.close();
+			if(!DBConnect.isOk) {
 				return false;
 			}
 			return true;
 		} catch (Exception e) {
-			objDB.terminate();
 			return false;
 		}
 	}
 	public Boolean updateStatusi() {
 		//Procedura
-		DBConnect objDB = new DBConnect("FIEKDB");
+		Connection conn = DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;
+		//DBConnect objDB = new DBConnect("FIEKDB");
 				try {
 					List<Object> param = new ArrayList<Object>();
 					param.add(this.njoftimId);
 					@SuppressWarnings("unused")
-					ResultSet res = objDB.executeProcedure("updateStatusi", param);
-					objDB.terminate();
-					if(!objDB.isOk) {
+					ResultSet res = DBConnect.executeProcedure(conn,cstmt,"updateStatusi", param);
+					conn.close();
+					cstmt.close();
+					res.close();
+					if(!DBConnect.isOk) {
 						return false;
 					}
 					return true;
 				} catch (Exception e) {
-					objDB.terminate();
 					return false;
 				}
 	}

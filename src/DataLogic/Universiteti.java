@@ -1,5 +1,7 @@
 package DataLogic;
 
+import java.sql.CallableStatement;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -20,17 +22,19 @@ public class Universiteti {
 		this.inicializoUniversitetin(this.emri);
 	}
 	public Enumeration<String> getUniversitetet() {
-		DBConnect objDB = new DBConnect("FIEKDB");
+		//DBConnect objDB = new DBConnect("FIEKDB");
+		Connection conn = DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;
 		try {
 			List<Object> param = new ArrayList<Object>();
-			ResultSet res = objDB.executeProcedure("getAllUniversitetet", param);		
+			ResultSet res = DBConnect.executeProcedure(conn,cstmt,"getAllUniversitetet", param);		
 			while(res.next()) {
 				univeristetetIDs.put(res.getInt("id"), res.getString("universiteti"));	
 			}
 			res.close();
-			objDB.terminate();
+			conn.close();
+			cstmt.close();
 		} catch (Exception e) {
-			objDB.terminate();
 
 		}
 	        this.universitetet = univeristetetIDs.elements(); 
@@ -56,47 +60,49 @@ public class Universiteti {
 		this.fakultetet = fakultetet;
 	}
 	public List<Fakulteti> fakultetet(){
+		Connection conn = DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;
 		List<Fakulteti> fakultetet = new ArrayList<Fakulteti>();
-		DBConnect objDB = new DBConnect("FIEKDB");
+		//DBConnect objDB = new DBConnect("FIEKDB");
 		try {
 			List<Object> param = new ArrayList<Object>();
 			param.add(this.ID);
-			ResultSet res = objDB.executeProcedure("getFakultetetUniversiteti", param);
+			ResultSet res = DBConnect.executeProcedure(conn,cstmt,"getFakultetetUniversiteti", param);
 			while(res.next()) {
 				Fakulteti newFk = new Fakulteti(res.getString("id"),res.getString("emri"),this,res.getString("adresa"));
 				fakultetet.add(newFk);
 			}
 			res.close();
-			objDB.conn.close();
-			objDB.cstmt.close();
-			objDB.terminate();
+			conn.close();
+			cstmt.close();
 		} catch (Exception e) {
-			objDB.terminate();
 			return null;
 		}
 		return fakultetet;
 	}
 	public void inicializoUniversitetin(String emri) {
-		DBConnect objDB = new DBConnect("FIEKDB");
+		//DBConnect objDB = new DBConnect("FIEKDB");
+		Connection conn = DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;
 		try {
 			List<Object> param = new ArrayList<Object>();
 			param.add(emri);
-			ResultSet res = objDB.executeProcedure("getUniversiteti", param);
+			ResultSet res = DBConnect.executeProcedure(conn,cstmt,"getUniversiteti", param);
 			while(res.next()) {
 				this.ID = res.getInt("id");
 				this.emri = res.getString("universiteti");
 			}
 			this.fakultetet = this.fakultetet();
 			res.close();
-			objDB.conn.close();
-			objDB.cstmt.close();
-			objDB.terminate();
+			conn.close();
+			cstmt.close();
 		} catch (Exception e) {
-			objDB.terminate();
 		}
 	}
 	public Boolean addFakultetet(List<Fakulteti> fakulteti) {
-		DBConnect objDB = new DBConnect("FIEKDB");
+		//DBConnect objDB = new DBConnect("FIEKDB");
+		Connection conn = DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;
 		try {
 			for(int i = 0;i<fakulteti.size();i++) {
 				List<Object> param = new ArrayList<Object>();
@@ -105,32 +111,32 @@ public class Universiteti {
 				param.add(this.ID);
 				param.add(fakulteti.get(i).getAdresa());		
 			}
-			objDB.terminate();
-			if(!objDB.isOk) {
+			conn.close();
+			cstmt.close();
+			if(!DBConnect.isOk) {
 				return false;
 			}
 			return true;
 		} catch (Exception e) {
-			objDB.terminate();
 			return false;
 		}
 	}
 
 	public Hashtable<Integer, String> getAllUniversitetet() {
-		DBConnect objDB = new DBConnect("FIEKDB");
+		//DBConnect objDB = new DBConnect("FIEKDB");
+		Connection conn = DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;
 		try {
 			List<Object> param = new ArrayList<Object>();
-			ResultSet res = objDB.executeProcedure("getAllUniversitetet", param);		
+			ResultSet res = DBConnect.executeProcedure(conn,cstmt,"getAllUniversitetet", param);		
 			while(res.next()) {
 				univeristetetIDs.put(res.getInt("id"), res.getString("universiteti"));	
 			}
 			res.close();
-			objDB.conn.close();
-			objDB.cstmt.close();
-			objDB.terminate();
+			conn.close();
+			cstmt.close();
 
 		} catch (Exception e) {
-			objDB.terminate();
 
 		}
 	        this.universitetet = univeristetetIDs.elements(); 

@@ -5,11 +5,9 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 public class DBConnect{
-	Connection conn=null;
-	CallableStatement cstmt = null;
-	public Boolean isOk = false;
+
+	public static Boolean isOk = false;
 	public DBConnect(String dbname) {
-		this.conn = this.Connect2DB(dbname);
 	}
 	
 	public static Connection Connect2DB(String dbname){
@@ -30,7 +28,7 @@ public class DBConnect{
 		
 	}
 	
-	public String getParam(int num) {
+	public static String getParam(int num) {
 		String returnString = "";
 		for(int i = 0; i<num; i++) {
 			if(i==num-1) {
@@ -42,49 +40,42 @@ public class DBConnect{
 		return returnString;
 	}
 	
-	public void terminate() {
-		try {
-			this.conn.close();
-			this.cstmt.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
+
 	
-	public ResultSet executeProcedure(String procName,List<Object> parameters){
+	public static ResultSet executeProcedure(Connection conn,CallableStatement cstmt,String procName,List<Object> parameters){
 		try{
 			if(parameters==null) {
 				String text = "{call "+procName+"()}";
-				this.cstmt = this.conn.prepareCall(text);
-				this.cstmt.execute();
-				ResultSet res =  this.cstmt.getResultSet();
-				this.isOk = true;
+				cstmt = conn.prepareCall(text);
+				cstmt.execute();
+				ResultSet res =  cstmt.getResultSet();
+				isOk = true;
 				return res;
 			}else {
-				String param = this.getParam(parameters.size());
+				String param = getParam(parameters.size());
 				String text = "{call "+procName+"("+param+")}";
 				String variable = "";
-				this.cstmt = this.conn.prepareCall(text);
+				cstmt = conn.prepareCall(text);
 				for(int i = 0;i<parameters.size();i++) {
 					if(parameters.get(i).getClass().getSimpleName().equals("String")){
 						variable = (String)parameters.get(i);
-						this.cstmt.setString(i+1,variable);
+						cstmt.setString(i+1,variable);
 					}else if(parameters.get(i).getClass().getSimpleName().equals("Integer")) {
 						//this.cstmt.setInt(i+1, Integer.parseInt((String) parameters.get(i)));
-						this.cstmt.setInt(i+1, (int) parameters.get(i));
+						cstmt.setInt(i+1, (int) parameters.get(i));
 					}else if(parameters.get(i).getClass().getSimpleName().equals("Boolean")) {
-						this.cstmt.setBoolean(i+1, (boolean) parameters.get(i));
+						cstmt.setBoolean(i+1, (boolean) parameters.get(i));
 					}
 				}
-				this.cstmt.execute();
-				ResultSet res =  this.cstmt.getResultSet();
-				this.isOk = true;
+				cstmt.execute();
+				ResultSet res =  cstmt.getResultSet();
+				isOk = true;
 				return res;
 			}
 			
 		} catch (SQLException e){
 			e.printStackTrace();
-			this.isOk = false;
+			isOk = false;
 			return null;
 		}
 	}	

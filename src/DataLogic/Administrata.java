@@ -1,6 +1,8 @@
 package DataLogic;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,40 +36,63 @@ public class Administrata extends Person implements AdministrataFunctions{
 		this.fakulteti = fakulteti;
 	}
 	public boolean aprovoProfesorin(Profesori prof) {
+		Connection conn = DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;
 		try {
-			Connection conn= DBConnect.Connect2DB("fiekdb");
-			DBConnect objDB = new DBConnect("FIEKDB");
+			//DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();
 			param.add(prof.getID());
-			ResultSet res = objDB.executeProcedure("aprovoProfesorin", param);
-			objDB.terminate();
+			ResultSet res = DBConnect.executeProcedure(conn,cstmt,"aprovoProfesorin", param);
+			conn.close();
+			cstmt.close();
+			res.close();
 			return true;
 		} catch (Exception e) {
+			try {
+				conn.close();
+				cstmt.close();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
 			return false;
 		}
 		
 	}
 	public boolean aprovoStudentin(Studenti student) {
 		//Procedura
-		DBConnect objDB = new DBConnect("FIEKDB");
+		Connection conn= DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;
+		//DBConnect objDB = new DBConnect("FIEKDB");
 		List<Object> param = new ArrayList<Object>();
 		param.add(student.getID());
 		try {
-			ResultSet res = objDB.executeProcedure("aprovoStudentin", param);
-			objDB.terminate();
+			ResultSet res = DBConnect.executeProcedure(conn, cstmt,"aprovoStudentin", param);
+			conn.close();
+			cstmt.close();
+			res.close();
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception
-			objDB.terminate();
+			try {
+				conn.close();
+				cstmt.close();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			return false;
 		}
 	}
 	public void getAdministrata(String username) {
-		DBConnect objDB = new DBConnect("fiekdb");
+		Connection conn= DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;
+		//DBConnect objDB = new DBConnect("fiekdb");
 		List<Object> param = new ArrayList<Object>();
 		param.add(username);
 		try {
-			ResultSet res = objDB.executeProcedure("getAdministrata", param);
+			ResultSet res = DBConnect.executeProcedure(conn,cstmt,"getAdministrata", param);
 			while(res.next()) {
 				this.ID = res.getString("id");
 				this.emri = res.getString("emri");
@@ -79,43 +104,71 @@ public class Administrata extends Person implements AdministrataFunctions{
 				this.access = res.getInt("access");
 				this.inicializoNjoftimet();
 			}
-			objDB.terminate();
+			conn.close();
+			cstmt.close();
+			res.close();
 		} catch (Exception e) {
-			objDB.terminate();
+			try {
+				conn.close();
+				cstmt.close();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 	public Boolean addNewUniversitet(Universiteti newUni) {
-
-		DBConnect objDB = new DBConnect("FIEKDB");
+		Connection conn= DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;
+		//DBConnect objDB = new DBConnect("FIEKDB");
 		List<Object> param = new ArrayList<Object>();
 		param.add(newUni.getEmri());
 		try {
-			ResultSet res = objDB.executeProcedure("addNewUniversity", param);
-			objDB.terminate();
-			if(!objDB.isOk) {
+			ResultSet res = DBConnect.executeProcedure(conn,cstmt,"addNewUniversity", param);
+			conn.close();
+			cstmt.close();
+			res.close();
+			if(!DBConnect.isOk) {
 				return false;
 			}
 			return true;
 		} catch (Exception e) {
-			objDB.terminate();
+			try {
+				conn.close();
+				cstmt.close();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				return false;
+			}
 			return false;
 		}
 	}
 	
 	public Boolean addNewLenda(Lenda newLenda) {
-
-		DBConnect objDB = new DBConnect("FIEKDB");
+		Connection conn= DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;
+		//DBConnect objDB = new DBConnect("FIEKDB");
 		List<Object> param = new ArrayList<Object>();
 		param.add(newLenda.getLenda());
-		ResultSet res = objDB.executeProcedure("addNewLenda", param);
+		ResultSet res = DBConnect.executeProcedure(conn,cstmt,"addNewLenda", param);
 		try {
-			objDB.terminate();
-			if(!objDB.isOk) {
+			conn.close();
+			cstmt.close();
+			res.close();
+			if(!DBConnect.isOk) {
 				return false;
 			}
 			return true;
 		} catch (Exception e) {
-			objDB.terminate();
+			try {
+				conn.close();
+				cstmt.close();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				return false;
+			}
 			return false;
 		}
 	}

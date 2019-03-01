@@ -72,10 +72,7 @@ public class RegisterUser {
 			}
 		});
 	}
-
-	/**
-	 * Create the application.
-	 */
+                               
 	public RegisterUser() {
 		initialize();
 	}

@@ -1,5 +1,7 @@
 package DataLogic;
 
+import java.sql.CallableStatement;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +47,9 @@ public class Punimi implements PunimiFunctions{
 	}
 	
 	public boolean insertNewPunim() {
-		DBConnect objDB = new DBConnect("FIEKDB");
+		Connection conn = DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;
+		//DBConnect objDB = new DBConnect("FIEKDB");
 		try {
 			List<Object> param = new ArrayList<Object>();
 			param.add(this.titulli);
@@ -54,14 +58,15 @@ public class Punimi implements PunimiFunctions{
 			param.add(this.studenti.getID());
 			param.add(this.departamenti);
 			param.add(this.lenda.getLenda());
-			ResultSet res = objDB.executeProcedure("insertPunim", param);
-			objDB.terminate();
-			if(!objDB.isOk) {
+			ResultSet res = DBConnect.executeProcedure(conn,cstmt,"insertPunim", param);
+			conn.close();
+			cstmt.close();
+			res.close();
+			if(!DBConnect.isOk) {
 				return false;
 			}
 			return true;
 		} catch (Exception e) {
-			objDB.terminate();
 			return false;
 		}		
 	}

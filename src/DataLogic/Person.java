@@ -1,5 +1,7 @@
 package DataLogic;
 
+import java.sql.CallableStatement;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,11 +43,13 @@ public class Person {
 		this.newNjoftim = newNjoftim;
 	}
 	protected void inicializoNjoftimet() {
-		DBConnect objDB = new DBConnect("FIEKDB");
+		//DBConnect objDB = new DBConnect("FIEKDB");
+		Connection conn = DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;
 		try {
 			List<Object> param = new ArrayList<Object>();
 			param.add(this.ID);
-			ResultSet res = objDB.executeProcedure("getNjoftimetFromDB", param);
+			ResultSet res = DBConnect.executeProcedure(conn,cstmt,"getNjoftimetFromDB", param);
 			while(res.next()) {
 				Boolean statusi = res.getBoolean("statusi");
 				Njoftimi objN = new Njoftimi(res.getInt("id"),
@@ -64,9 +68,11 @@ public class Person {
 			}else {
 				this.newNjoftim = false;
 			}
-			objDB.terminate();
+			conn.close();
+			cstmt.close();
+			res.close();
 		} catch (Exception e) {
-			objDB.terminate();
+
 		}
 	}
 	public String getID() {
@@ -112,7 +118,9 @@ public class Person {
 		this.njoftimet = njoftimet;
 	}
 	public Boolean update() {
-		DBConnect objDB = new DBConnect("FIEKDB");
+		//DBConnect objDB = new DBConnect("FIEKDB");
+		Connection conn = DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;
 		try {
 			List<Object> param = new ArrayList<Object>();
 			param.add(this.ID);
@@ -121,14 +129,15 @@ public class Person {
 			param.add(this.email);
 			param.add(this.passHash);
 			param.add(this.tel);
-			ResultSet res = objDB.executeProcedure("updatePerson", param);
-			objDB.terminate();
-			if(!objDB.isOk) {
+			ResultSet res = DBConnect.executeProcedure(conn,cstmt,"updatePerson", param);
+			conn.close();
+			cstmt.close();
+			res.close();
+			if(!DBConnect.isOk) {
 				return false;
 			}
 			return true;
 		} catch (Exception e) {
-			objDB.terminate();
 			return false;
 		}
 	}

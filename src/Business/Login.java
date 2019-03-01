@@ -4,6 +4,8 @@ import DataLogic.Profesori;
 import DataLogic.Studenti;
 import Functions.LoginFunctions;
 
+import java.sql.CallableStatement;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -46,20 +48,22 @@ public class Login implements LoginFunctions{
 		return this.userStoredHash.equals(Hash.saltedHashString(this.password,this.username));
 	}
 	public void setParameters() {
-		DBConnect objDB = new DBConnect("FIEKDB");
+		Connection conn = DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;
+		//DBConnect objDB = new DBConnect("FIEKDB");
 		List<Object> param = new ArrayList<Object>();
 		param.add(this.username);
-		ResultSet res = objDB.executeProcedure("getStoredHash", param);
+		ResultSet res = DBConnect.executeProcedure(conn,cstmt,"getStoredHash", param);
 		try {
 			while(res.next()) {
 				 this.userStoredHash = res.getString("Hash");
 				 this.lloji = res.getString("Lloji");
 				 this.access = res.getInt("Access");
 			}
-			objDB.terminate();
-
+conn.close();
+cstmt.close();
+res.close();
 		}catch (SQLException e) {
-			objDB.terminate();
 			e.printStackTrace();
 		}	
 		
