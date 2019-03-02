@@ -353,7 +353,14 @@ public class RegisterUser {
 		btnPRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String password = Hash.saltedHashString(new String(pwdP.getPassword()),txtPID.getText());
-				Profesori newProfesori = new Profesori(txtPID.getText(),txtPEmri.getText(),txtPMbiemri.getText(),txtPEmail.getText(),password,txtPTel.getText());
+				Profesori newProfesori = new Profesori(txtPID.getText(),txtPEmri.getText(),txtPMbiemri.getText(),txtPEmail.getText(),password,
+						txtPTel.getText());
+				
+				if(validateDataProfesori(newProfesori)) {
+					JOptionPane.showMessageDialog(null, "Ju lutem mbusheni te gjitha fushat me te dhena!");
+				}
+				
+				
 				if(newProfesori.insertNewProfesor()) {
 					JOptionPane.showMessageDialog(null, "Jeni regjistruar me sukses! Jeni ne listen e pritjes se Administrates per pranim!");
 
@@ -431,6 +438,12 @@ public class RegisterUser {
 				Studenti newStudent = new Studenti(txtStdID.getText(),txtStdEmri.getText(),txtStdMbiemri.getText(),
 						txtStdEmail.getText(),new String(pwdStd.getPassword()),txtStdTel.getText(),
 						cmbDepartamentet.getSelectedItem().toString(), cmbQytetet.getSelectedItem().toString(),cmbNiveli.getSelectedItem().toString());
+				
+				if(validateDataStudenti(newStudent)) {
+					JOptionPane.showMessageDialog(null, "Ju lutem mbusheni te gjitha fushat me te dhena!");
+				}
+				
+				
 				if(newStudent.insertNewStudent()) {
 					JOptionPane.showMessageDialog(null, "Jeni regjistruar me sukses! Jeni ne listen e pritjes se Administrates per pranim!");
 				}else {
@@ -443,4 +456,26 @@ public class RegisterUser {
 		button.setBounds(686, 606, 115, 57);
 		studentPanel.add(button);
 	}
+	
+	public boolean validateDataProfesori(Profesori newProfesor) {
+		
+		if (newProfesor.getID().isEmpty() && newProfesor.getEmri().isEmpty() && newProfesor.getMbiemri().isEmpty() &&
+				newProfesor.getEmail().isEmpty()) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public boolean validateDataStudenti(Studenti newStudent) {
+		
+		if (newStudent.getID().isEmpty() && newStudent.getEmri().isEmpty() && newStudent.getMbiemri().isEmpty() &&
+				newStudent.getEmail().isEmpty()) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	
 }
