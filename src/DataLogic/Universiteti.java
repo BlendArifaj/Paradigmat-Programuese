@@ -99,6 +99,27 @@ public class Universiteti {
 		} catch (Exception e) {
 		}
 	}
+	public void inicializoUniversitetin(int ID) {
+		//DBConnect objDB = new DBConnect("FIEKDB");
+		Connection conn = DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;
+		try {
+			List<Object> param = new ArrayList<Object>();
+			param.add(ID);
+			ResultSet res = DBConnect.executeProcedure(conn,cstmt,"getUniversitetiFromID", param);
+			while(res.next()) {
+				this.ID = res.getInt("id");
+				this.emri = res.getString("universiteti");
+			}
+			//this.fakultetet = this.fakultetet();
+			res.close();
+			conn.close();
+		} catch (Exception e) {
+		}
+	}
+	
+	
+	
 	public Boolean addFakultetet(List<Fakulteti> fakulteti) {
 		//DBConnect objDB = new DBConnect("FIEKDB");
 		Connection conn = DBConnect.Connect2DB("fiekdb");

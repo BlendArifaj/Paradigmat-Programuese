@@ -143,7 +143,6 @@ public class Studenti extends Person implements StudentiFunctions{
 			}
 			res.close();
 			conn.close();
-			cstmt.close();
 		} catch (Exception e) {
 
 		}
