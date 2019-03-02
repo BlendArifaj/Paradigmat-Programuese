@@ -105,7 +105,6 @@ public class Studenti extends Person implements StudentiFunctions{
 				returnPunimet.add(objP);
 			}
 			conn.close();
-			cstmt.close();
 		
 			return returnPunimet; 
 		} catch (Exception e) {
@@ -181,5 +180,18 @@ public class Studenti extends Person implements StudentiFunctions{
 		} catch (Exception e) {
 			return false;
 		}
+	}
+	public List<Object[]> getAllPunimetObj(){
+		Connection conn = DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;
+		try {
+			List<Object> param = new ArrayList<Object>();
+	
+			
+		} catch (Exception e) {
+			return null;
+		}
+		return null;
+		
 	}
 }

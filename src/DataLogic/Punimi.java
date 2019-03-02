@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import Functions.AbstractClass;
 import Functions.PunimiFunctions;
 
 import java.nio.file.Path;
@@ -13,7 +14,7 @@ import java.nio.file.Paths;
 import java.io.IOException;
 import java.nio.file.Files;
 
-public class Punimi implements PunimiFunctions{
+public class Punimi extends AbstractClass implements PunimiFunctions{
 	private int ID = 0;
 	private String titulli = null;
 	private Profesori profesori = new Profesori();

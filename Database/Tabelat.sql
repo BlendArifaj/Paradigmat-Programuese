@@ -63,7 +63,6 @@ create table PunimProcesi(
 id int auto_increment primary key,
 procesi varchar(50));
 
-drop table Punimi;
 create table Punimi(
 id int auto_increment primary key,
 tema varchar(60) not null,

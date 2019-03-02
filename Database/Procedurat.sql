@@ -614,3 +614,17 @@ BEGIN
 END $$
 DELIMITER ;
 
+
+USE `fiekdb`;
+DROP procedure IF EXISTS `getAllPunimet`;
+DELIMITER $$
+USE `fiekdb`$$
+#id varchar(20) not null primary key,
+#emri varchar(30) not null,
+#mbiemri varchar(30) not null,
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAllPunimet`(IN STUDENTID varchar(20))
+BEGIN
+	
+END $$
+DELIMITER ;
+

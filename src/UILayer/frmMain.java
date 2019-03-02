@@ -27,6 +27,7 @@ import javax.swing.JOptionPane;
 import javax.swing.border.BevelBorder;
 import javax.swing.ListSelectionModel;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JTextPane;
 import java.awt.SystemColor;
 import java.awt.Toolkit;
@@ -42,11 +43,14 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.SoftBevelBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileSystemView;
 import javax.swing.AbstractListModel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import Business.Login;
+import DataLogic.DBConnect;
 import DataLogic.Departamenti;
 import DataLogic.Fakulteti;
 import DataLogic.Hash;
@@ -59,6 +63,7 @@ import javafx.scene.layout.Pane;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -422,16 +427,20 @@ public class frmMain extends JFrame {
 		//DB
 		// Marrja e te dhenave nga Databasa (Tema per administraten)
 		String[] AdministrataColumnNamesThesis = {"Tema",
-                "Studenti",
-                "Departamenti",
+                "Studenti",   
+                "Fakulteti",
+                "Lenda",
                 "Profesori",
-                "Viti"};
+                "Viti",
+                "Statusi"};
 
 		Object[][] Administratadata = {
-		{"Data Mining", "Blend Arifaj","Kompjuterike","2017","Blerim Rexha", new Integer(10), new Boolean(false)},
-		{"Data Mining", "Arianit Lubishtani",	"Kompjuterike","2017","Lule Ahmedi", new Integer(10), new Boolean(false)},
-		{"Data Mining", "Fjolla Beqiri","Kompjuterike","2017","Agni Dika", new Integer(10), new Boolean(false)},
-		{"Data Mining", "Blend Arifaj","Kompjuterike","2017", "Blend Arifaj",new Integer(10), new Boolean(false)}
+		{"Analysis Using Data Mining", "Blend Arifaj","Fakulteti i Inxhinieris Elektrike dhe Kompjuterike","Data Mining","Lule Ahmedi","2018","Aprovuar"},
+		{"Analysis Using Data Mining", "Blend Arifaj","Fakulteti i Inxhinieris Elektrike dhe Kompjuterike","Data Mining","Lule Ahmedi","2018","Anuluar"},
+		{"Analiza e tregut", "Blend Arifaj","Fakulteti i Inxhinieris Elektrike dhe Kompjuterike","Data Mining","Lule Ahmedi","2018","Anuluar"},
+		{"Analysis Using Data Mining", "Blend Arifaj","Fakulteti i Inxhinieris Elektrike dhe Kompjuterike","Data Mining","Lule Ahmedi","2018","Anuluar"},
+		{"Siguria ne Internet", "Blend Arifaj","Fakulteti i Inxhinieris Elektrike dhe Kompjuterike","Data Mining","Lule Ahmedi","2018","Ne Shqyrtim"}
+
 		};
 		
 		panelAdministrataDiploma = new JPanel();
@@ -457,9 +466,251 @@ public class frmMain extends JFrame {
 		
 		panelStudentSettings = new JPanel();
 		panelStudentSettings.setVisible(false);
-		
-		panelStudentDiploma = new JPanel();
-		panelStudentDiploma.setVisible(false);
+				
+				panelStudentDiploma = new JPanel();
+				panelStudentDiploma.setVisible(false);
+				
+				panelStudentDiploma.setBounds(0, 0, 1427, 865);
+				panelMain.add(panelStudentDiploma);
+				panelStudentDiploma.setBackground(Color.WHITE);
+				panelStudentDiploma.setLayout(null);
+				
+				txtAdd = new JTextField();
+				txtAdd.setText("Add");
+				txtAdd.setOpaque(false);
+				txtAdd.setHorizontalAlignment(SwingConstants.CENTER);
+				txtAdd.setFont(new Font("Tahoma", Font.PLAIN, 20));
+				txtAdd.setColumns(10);
+				txtAdd.setBorder(null);
+				txtAdd.setBounds(824, 678, 71, 46);
+				panelStudentDiploma.add(txtAdd);
+				
+				JLabel lblStudentDiplomaShto = new JLabel("");
+				lblStudentDiplomaShto.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						if(cmbZgjedhProfesorin.getSelectedIndex() != 0 && cmbZgjedhLenden.getSelectedIndex() !=0) {
+							Profesori newProf = new Profesori();
+							newProf.getProfesoriFromEmri(cmbZgjedhProfesorin.getSelectedItem().toString());
+							Lenda newLenda = new Lenda();
+							newLenda.getLenden(cmbZgjedhLenden.getSelectedItem().toString());
+							Punimi newPunim = new Punimi(txtShkruajTemen.getText(),
+									newProf.getID(), newLenda.getLenda(),"x");
+							newPunim.setStudenti(newLogin.student);
+							newPunim.setDepartamenti(newLogin.student.getDepartamenti());
+							newPunim.setLenda(newLenda);
+							if(newPunim.insertNewPunim()) {
+								JOptionPane.showMessageDialog(null, "Keni shtuar me sukses punimin!");
+								txtShkruajTemen.setText("");
+								cmbZgjedhLenden.setSelectedIndex(0);
+								cmbZgjedhProfesorin.setSelectedIndex(0);
+							}else {
+								JOptionPane.showMessageDialog(null, "Gabim gjate shtimit te punimit - Ne server");
+							}
+						}else {
+							JOptionPane.showMessageDialog(null, "Gabim gjate shtimit te punimit");
+						}
+					
+								//Vendi ku kemi me shtu temen e diplomes
+					}
+				});
+				lblStudentDiplomaShto.setIcon(new ImageIcon(frmMain.class.getResource("/Images/login_rectangle_login.png")));
+				lblStudentDiplomaShto.setBounds(761, 678, 200, 46);
+				panelStudentDiploma.add(lblStudentDiplomaShto);
+				
+				txtUpload = new JTextField();
+				txtUpload.setText("Upload");
+				txtUpload.setOpaque(false);
+				txtUpload.setHorizontalAlignment(SwingConstants.CENTER);
+				txtUpload.setFont(new Font("Tahoma", Font.PLAIN, 20));
+				txtUpload.setColumns(10);
+				txtUpload.setBorder(null);
+				txtUpload.setBounds(807, 500, 114, 46);
+				panelStudentDiploma.add(txtUpload);
+				
+				JLabel lblStudentDiplomaUploadIcon = new JLabel("");
+				lblStudentDiplomaUploadIcon.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/upload.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
+				lblStudentDiplomaUploadIcon.setBounds(807, 376, 107, 111);
+				panelStudentDiploma.add(lblStudentDiplomaUploadIcon);
+				
+				txtShkruajTemen = new JTextField();
+				txtShkruajTemen.setHorizontalAlignment(SwingConstants.CENTER);
+				txtShkruajTemen.setFont(new Font("Tahoma", Font.PLAIN, 30));
+				txtShkruajTemen.setBounds(332, 140, 579, 79);
+				txtShkruajTemen.setBorder(null);
+				txtShkruajTemen.setOpaque(false);
+				panelStudentDiploma.add(txtShkruajTemen);
+				txtShkruajTemen.setColumns(10);
+				
+				JLabel lblStudentDiplomaTema = new JLabel("");
+				lblStudentDiplomaTema.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).getImage().getScaledInstance(600, 100, Image.SCALE_SMOOTH)));
+				lblStudentDiplomaTema.setBounds(322, 126, 608, 105);
+				panelStudentDiploma.add(lblStudentDiplomaTema);
+				
+				// DB
+				// Tek Faqja per uploadim te diplomes , mbushja e comboBox me te dhenat nga profesorat e departamentit
+				cmbZgjedhProfesorin = new JComboBox();
+				cmbZgjedhProfesorin.setFont(new Font("Tahoma", Font.PLAIN, 30));
+				cmbZgjedhProfesorin.setModel(new DefaultComboBoxModel(new String[] {"Zgjedheni Profesorin"}));
+				cmbZgjedhProfesorin.setBackground(Color.WHITE);
+				cmbZgjedhProfesorin.setBounds(322, 571, 363, 84);
+				panelStudentDiploma.add(cmbZgjedhProfesorin);
+				JLabel lblStudentDiplomaUpload = new JLabel("");
+				lblStudentDiplomaUpload.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent arg0) {
+						
+						JFileChooser chooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+						
+						String path;
+						
+						chooser.showSaveDialog(null);
+
+					    FileNameExtensionFilter filter = new FileNameExtensionFilter(
+					        "docx", "doc", "txt");
+					    chooser.setFileFilter(filter);
+					    
+					    int returnVal = chooser.showOpenDialog(frame);
+					    if(returnVal == JFileChooser.APPROVE_OPTION) {
+					    }
+					    
+					    //System.out.println(path.replace("\\", "\\\\"));
+
+					    //path = path.replace("\", "\\");
+//					    ReadFromFile2 read = new ReadFromFile2(path.replace("\\", "\\\\"));
+//					    String test = read.getText();
+//					    txtKerko.setText(test);
+						
+					}
+				});
+				lblStudentDiplomaUpload.setIcon(new ImageIcon(frmMain.class.getResource("/Images/settings_button.png")));
+				lblStudentDiplomaUpload.setBounds(761, 376, 200, 177);
+				panelStudentDiploma.add(lblStudentDiplomaUpload);
+				panels.add(panelStudentDiploma);
+				
+				txtTema = new JTextField();
+				txtTema.setEditable(false);
+				txtTema.setFont(new Font("Tahoma", Font.PLAIN, 25));
+				txtTema.setText("Tema");
+				txtTema.setBorder(null);
+				txtTema.setBounds(131, 147, 114, 69);
+				panelStudentDiploma.add(txtTema);
+				txtTema.setColumns(10);
+				
+				cmbZgjedhDepartamentin = new JComboBox();
+				cmbZgjedhDepartamentin.setFont(new Font("Tahoma", Font.PLAIN, 30));
+				cmbZgjedhDepartamentin.setBackground(Color.WHITE);
+				cmbZgjedhDepartamentin.setBounds(322, 474, 363, 84);
+				panelStudentDiploma.add(cmbZgjedhDepartamentin);
+				cmbZgjedhDepartamentin.setModel(new DefaultComboBoxModel(new String[] {newLogin.student.getDepartamenti().getDeparamenti()}));
+				
+				cmbZgjedhFakultetin = new JComboBox();
+				cmbZgjedhFakultetin.setFont(new Font("Tahoma", Font.PLAIN, 30));
+				cmbZgjedhFakultetin.setBackground(Color.WHITE);
+				cmbZgjedhFakultetin.setBounds(322, 376, 363, 84);
+				panelStudentDiploma.add(cmbZgjedhFakultetin);
+				cmbZgjedhFakultetin.setModel(new DefaultComboBoxModel(new String[] {newLogin.student.getFakulteti().getEmri()}));
+				
+						
+						txtFakulteti_1 = new JTextField();
+						txtFakulteti_1.setEditable(false);
+						txtFakulteti_1.setText("Fakulteti");
+						txtFakulteti_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
+						txtFakulteti_1.setColumns(10);
+						txtFakulteti_1.setBorder(null);
+						txtFakulteti_1.setBounds(131, 386, 114, 69);
+						panelStudentDiploma.add(txtFakulteti_1);
+						
+						txtDepartamenti_1 = new JTextField();
+						txtDepartamenti_1.setEditable(false);
+						txtDepartamenti_1.setText("Departamenti");
+						txtDepartamenti_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
+						txtDepartamenti_1.setColumns(10);
+						txtDepartamenti_1.setBorder(null);
+						txtDepartamenti_1.setBounds(132, 484, 153, 69);
+						panelStudentDiploma.add(txtDepartamenti_1);
+						
+						txtProfesori = new JTextField();
+						txtProfesori.setEditable(false);
+						txtProfesori.setText("Profesori");
+						txtProfesori.setFont(new Font("Tahoma", Font.PLAIN, 25));
+						txtProfesori.setColumns(10);
+						txtProfesori.setBorder(null);
+						txtProfesori.setBounds(131, 581, 129, 69);
+						panelStudentDiploma.add(txtProfesori);
+						
+						txtLenda_1 = new JTextField();
+						txtLenda_1.setText("Lenda");
+						txtLenda_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
+						txtLenda_1.setEditable(false);
+						txtLenda_1.setColumns(10);
+						txtLenda_1.setBorder(null);
+						txtLenda_1.setBounds(131, 678, 129, 69);
+						panelStudentDiploma.add(txtLenda_1);
+						
+						cmbZgjedhLenden = new JComboBox();
+						cmbZgjedhLenden.setModel(new DefaultComboBoxModel(new String[] {"Zgjedh Lenden"}));
+						cmbZgjedhLenden.setFont(new Font("Tahoma", Font.PLAIN, 30));
+						cmbZgjedhLenden.setBackground(Color.WHITE);
+						cmbZgjedhLenden.setBounds(322, 668, 363, 84);
+						panelStudentDiploma.add(cmbZgjedhLenden);
+						panelStudentDiploma.setVisible(false);
+				
+				panelStudentNotifications = new JPanel();
+				panelStudentNotifications.setBackground(Color.WHITE);
+				panelStudentNotifications.setBounds(0, 0, 1427, 865);
+				panelMain.add(panelStudentNotifications);
+				panelStudentNotifications.setLayout(null);
+				
+				// Mesazhi qe do shfaqet kur nje studenti i vjen nje notification(Studenti)
+				txtStudentNotificationsMessage = new JTextField();
+				txtStudentNotificationsMessage.setFont(new Font("Tahoma", Font.PLAIN, 25));
+				txtStudentNotificationsMessage.setOpaque(false);
+				txtStudentNotificationsMessage.setBorder(null);
+				txtStudentNotificationsMessage.setColumns(10);
+				txtStudentNotificationsMessage.setBounds(328, 487, 752, 259);
+				panelStudentNotifications.add(txtStudentNotificationsMessage);
+				
+				// Tema qe do te shfaqet per te cilen i vie notifications(Studenti)
+				txtStudentNotificationsTema = new JTextField();
+				txtStudentNotificationsTema.setFont(new Font("Tahoma", Font.PLAIN, 25));
+				txtStudentNotificationsTema.setOpaque(false);
+				txtStudentNotificationsTema.setBorder(null);
+				txtStudentNotificationsTema.setBounds(313, 274, 773, 77);
+				panelStudentNotifications.add(txtStudentNotificationsTema);
+				txtStudentNotificationsTema.setColumns(10);
+				
+				JLabel lblNjoftimet = new JLabel("NJOFTIMET");
+				lblNjoftimet.setFont(new Font("Tahoma", Font.PLAIN, 30));
+				lblNjoftimet.setBounds(578, 66, 196, 65);
+				panelStudentNotifications.add(lblNjoftimet);
+				
+				scrollPane_1 = new JScrollPane();
+				scrollPane_1.setBounds(317, 205, 725, 146);
+				panelStudentNotifications.add(scrollPane_1);
+				if(newLogin.getLloji().equals("Student")) {
+					table_1 = new JTable(Administratadata,AdministrataColumnNamesThesis);
+					table_1.setBackground(SystemColor.window);
+					table_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+					table_1.setFillsViewportHeight(true);
+					scrollPane_1.setViewportView(table_1);
+				}else if(newLogin.getLloji().equals("Profesor")) {
+					table_1 = new JTable(Administratadata,AdministrataColumnNamesThesis);
+					table_1.setBackground(SystemColor.window);
+					table_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+					table_1.setFillsViewportHeight(true);
+					scrollPane_1.setViewportView(table_1);
+				}
+				
+//				table_1 = new JTable(Administratadata,AdministrataColumnNamesThesis);
+//				table_1.setBackground(SystemColor.window);
+//				table_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+//				table_1.setFillsViewportHeight(true);
+//				scrollPane_1.setViewportView(table_1);
+				
+				
+				
+				panelStudentNotifications.setVisible(false);
 		
 				panelAdministrataNjoftimet = new JPanel();
 				panelAdministrataNjoftimet.setBounds(0, 0, 1660, 900);
@@ -580,49 +831,6 @@ public class frmMain extends JFrame {
 		panelProfesorDiploma.setVisible(false);
 		panelProfesorDiploma.setVisible(false);
 		
-		panelStudentNotifications = new JPanel();
-		panelStudentNotifications.setBackground(Color.WHITE);
-		panelStudentNotifications.setBounds(0, 0, 1427, 865);
-		panelMain.add(panelStudentNotifications);
-		panelStudentNotifications.setLayout(null);
-		
-		// Mesazhi qe do shfaqet kur nje studenti i vjen nje notification(Studenti)
-		txtStudentNotificationsMessage = new JTextField();
-		txtStudentNotificationsMessage.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		txtStudentNotificationsMessage.setOpaque(false);
-		txtStudentNotificationsMessage.setBorder(null);
-		txtStudentNotificationsMessage.setColumns(10);
-		txtStudentNotificationsMessage.setBounds(328, 487, 752, 259);
-		panelStudentNotifications.add(txtStudentNotificationsMessage);
-		
-		// Tema qe do te shfaqet per te cilen i vie notifications(Studenti)
-		txtStudentNotificationsTema = new JTextField();
-		txtStudentNotificationsTema.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		txtStudentNotificationsTema.setOpaque(false);
-		txtStudentNotificationsTema.setBorder(null);
-		txtStudentNotificationsTema.setBounds(313, 274, 773, 77);
-		panelStudentNotifications.add(txtStudentNotificationsTema);
-		txtStudentNotificationsTema.setColumns(10);
-		
-		JLabel lblNjoftimet = new JLabel("NJOFTIMET");
-		lblNjoftimet.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		lblNjoftimet.setBounds(578, 66, 196, 65);
-		panelStudentNotifications.add(lblNjoftimet);
-		
-		scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(317, 205, 725, 146);
-		panelStudentNotifications.add(scrollPane_1);
-		
-		table_1 = new JTable(Administratadata,AdministrataColumnNamesThesis);
-		table_1.setBackground(SystemColor.window);
-		table_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		table_1.setFillsViewportHeight(true);
-		scrollPane_1.setViewportView(table_1);
-		
-		
-		
-		panelStudentNotifications.setVisible(false);
-		
 		String[] StudentNotificationsColumns = {"Id",
 				"Tema",
                 "Studenti",
@@ -634,172 +842,18 @@ public class frmMain extends JFrame {
 		{"1","Data Mining", "Blend Arifaj","Kompjuterike","2017", "BlerimRexha"},
 		{"2","Data Mining", "Arianit Lubishtani",	"Kompjuterike","2017", "LuleAhmedi"}
 		};
-		
-		panelStudentDiploma.setBounds(0, 0, 1427, 865);
-		panelMain.add(panelStudentDiploma);
-		panelStudentDiploma.setBackground(Color.WHITE);
-		panelStudentDiploma.setLayout(null);
-		
-		txtAdd = new JTextField();
-		txtAdd.setText("Add");
-		txtAdd.setOpaque(false);
-		txtAdd.setHorizontalAlignment(SwingConstants.CENTER);
-		txtAdd.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		txtAdd.setColumns(10);
-		txtAdd.setBorder(null);
-		txtAdd.setBounds(824, 678, 71, 46);
-		panelStudentDiploma.add(txtAdd);
-		
-		JLabel lblStudentDiplomaShto = new JLabel("");
-		lblStudentDiplomaShto.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(cmbZgjedhProfesorin.getSelectedIndex() != 0 && cmbZgjedhLenden.getSelectedIndex() !=0) {
-					Profesori newProf = new Profesori();
-					newProf.getProfesoriFromEmri(cmbZgjedhProfesorin.getSelectedItem().toString());
-					Lenda newLenda = new Lenda();
-					newLenda.getLenden(cmbZgjedhLenden.getSelectedItem().toString());
-					Punimi newPunim = new Punimi(txtShkruajTemen.getText(),
-							newProf.getID(), newLenda.getLenda(),"x");
-					newPunim.setStudenti(newLogin.student);
-					newPunim.setDepartamenti(newLogin.student.getDepartamenti());
-					newPunim.setLenda(newLenda);
-					if(newPunim.insertNewPunim()) {
-						JOptionPane.showMessageDialog(null, "Keni shtuar me sukses punimin!");
-						txtShkruajTemen.setText("");
-						cmbZgjedhLenden.setSelectedIndex(0);
-						cmbZgjedhProfesorin.setSelectedIndex(0);
-					}else {
-						JOptionPane.showMessageDialog(null, "Gabim gjate shtimit te punimit - Ne server");
-					}
-				}else {
-					JOptionPane.showMessageDialog(null, "Gabim gjate shtimit te punimit");
-				}
-			
-						//Vendi ku kemi me shtu temen e diplomes
-			}
-		});
-		lblStudentDiplomaShto.setIcon(new ImageIcon(frmMain.class.getResource("/Images/login_rectangle_login.png")));
-		lblStudentDiplomaShto.setBounds(761, 678, 200, 46);
-		panelStudentDiploma.add(lblStudentDiplomaShto);
-		
-		txtUpload = new JTextField();
-		txtUpload.setText("Upload");
-		txtUpload.setOpaque(false);
-		txtUpload.setHorizontalAlignment(SwingConstants.CENTER);
-		txtUpload.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		txtUpload.setColumns(10);
-		txtUpload.setBorder(null);
-		txtUpload.setBounds(807, 500, 114, 46);
-		panelStudentDiploma.add(txtUpload);
-		
-		JLabel lblStudentDiplomaUploadIcon = new JLabel("");
-		lblStudentDiplomaUploadIcon.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/upload.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
-		lblStudentDiplomaUploadIcon.setBounds(807, 376, 107, 111);
-		panelStudentDiploma.add(lblStudentDiplomaUploadIcon);
-		
-		txtShkruajTemen = new JTextField();
-		txtShkruajTemen.setHorizontalAlignment(SwingConstants.CENTER);
-		txtShkruajTemen.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		txtShkruajTemen.setBounds(332, 140, 579, 79);
-		txtShkruajTemen.setBorder(null);
-		txtShkruajTemen.setOpaque(false);
-		panelStudentDiploma.add(txtShkruajTemen);
-		txtShkruajTemen.setColumns(10);
-		
-		JLabel lblStudentDiplomaTema = new JLabel("");
-		lblStudentDiplomaTema.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).getImage().getScaledInstance(600, 100, Image.SCALE_SMOOTH)));
-		lblStudentDiplomaTema.setBounds(322, 126, 608, 105);
-		panelStudentDiploma.add(lblStudentDiplomaTema);
-		
-		// DB
-		// Tek Faqja per uploadim te diplomes , mbushja e comboBox me te dhenat nga profesorat e departamentit
-		cmbZgjedhProfesorin = new JComboBox();
-		cmbZgjedhProfesorin.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		cmbZgjedhProfesorin.setModel(new DefaultComboBoxModel(new String[] {"Zgjedheni Profesorin"}));
-		cmbZgjedhProfesorin.setBackground(Color.WHITE);
-		cmbZgjedhProfesorin.setBounds(322, 571, 363, 84);
-		panelStudentDiploma.add(cmbZgjedhProfesorin);
 // Me i mor te gjith profesorat nga DB
 		Profesori prof = new Profesori();
 		Enumeration<String> profesoret = prof.getAllProfesoret();
 		while(profesoret.hasMoreElements()) {
 			cmbZgjedhProfesorin.addItem(profesoret.nextElement());
 		}
-		JLabel lblStudentDiplomaUpload = new JLabel("");
-		lblStudentDiplomaUpload.setIcon(new ImageIcon(frmMain.class.getResource("/Images/settings_button.png")));
-		lblStudentDiplomaUpload.setBounds(761, 376, 200, 177);
-		panelStudentDiploma.add(lblStudentDiplomaUpload);
-		panels.add(panelStudentDiploma);
-		
-		txtTema = new JTextField();
-		txtTema.setEditable(false);
-		txtTema.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		txtTema.setText("Tema");
-		txtTema.setBorder(null);
-		txtTema.setBounds(131, 147, 114, 69);
-		panelStudentDiploma.add(txtTema);
-		txtTema.setColumns(10);
-		
-		cmbZgjedhDepartamentin = new JComboBox();
-		cmbZgjedhDepartamentin.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		cmbZgjedhDepartamentin.setBackground(Color.WHITE);
-		cmbZgjedhDepartamentin.setBounds(322, 474, 363, 84);
-		panelStudentDiploma.add(cmbZgjedhDepartamentin);
-		cmbZgjedhDepartamentin.setModel(new DefaultComboBoxModel(new String[] {newLogin.student.getDepartamenti().getDeparamenti()}));
-
-		
-		cmbZgjedhFakultetin = new JComboBox();
-		cmbZgjedhFakultetin.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		cmbZgjedhFakultetin.setBackground(Color.WHITE);
-		cmbZgjedhFakultetin.setBounds(322, 376, 363, 84);
-		panelStudentDiploma.add(cmbZgjedhFakultetin);
-		cmbZgjedhFakultetin.setModel(new DefaultComboBoxModel(new String[] {newLogin.student.getFakulteti().getEmri()}));
-
-		
-		txtFakulteti_1 = new JTextField();
-		txtFakulteti_1.setEditable(false);
-		txtFakulteti_1.setText("Fakulteti");
-		txtFakulteti_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		txtFakulteti_1.setColumns(10);
-		txtFakulteti_1.setBorder(null);
-		txtFakulteti_1.setBounds(131, 386, 114, 69);
-		panelStudentDiploma.add(txtFakulteti_1);
-		
-		txtDepartamenti_1 = new JTextField();
-		txtDepartamenti_1.setEditable(false);
-		txtDepartamenti_1.setText("Departamenti");
-		txtDepartamenti_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		txtDepartamenti_1.setColumns(10);
-		txtDepartamenti_1.setBorder(null);
-		txtDepartamenti_1.setBounds(132, 484, 153, 69);
-		panelStudentDiploma.add(txtDepartamenti_1);
-		
-		txtProfesori = new JTextField();
-		txtProfesori.setEditable(false);
-		txtProfesori.setText("Profesori");
-		txtProfesori.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		txtProfesori.setColumns(10);
-		txtProfesori.setBorder(null);
-		txtProfesori.setBounds(131, 581, 129, 69);
-		panelStudentDiploma.add(txtProfesori);
-		
-		txtLenda_1 = new JTextField();
-		txtLenda_1.setText("Lenda");
-		txtLenda_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		txtLenda_1.setEditable(false);
-		txtLenda_1.setColumns(10);
-		txtLenda_1.setBorder(null);
-		txtLenda_1.setBounds(131, 678, 129, 69);
-		panelStudentDiploma.add(txtLenda_1);
-		
-		cmbZgjedhLenden = new JComboBox();
-		cmbZgjedhLenden.setModel(new DefaultComboBoxModel(new String[] {"Zgjedh Lenden"}));
-		cmbZgjedhLenden.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		cmbZgjedhLenden.setBackground(Color.WHITE);
-		cmbZgjedhLenden.setBounds(322, 668, 363, 84);
-		panelStudentDiploma.add(cmbZgjedhLenden);
-		panelStudentDiploma.setVisible(false);
+		try {
+		} catch (Exception e) {
+		}
+		try {
+		}catch (Exception e) {
+		}
 		Lenda lendet = new Lenda();
 		Enumeration<String> Lendet = lendet.getLendet();
 		while(Lendet.hasMoreElements()) {
