@@ -8,6 +8,8 @@ insert into Universiteti values(null,'Universiteti i Gjakoves');
 insert into Fakulteti values('07011','Fakulteti i Inxhinieris Elektrike dhe Kompjuterike',1,'Prishtine');
 insert into Fakulteti values('07012','Fakulteti i Inxhinieris Mekanike',1,'Prishtine');
 
+SELECT * FROM DEPARTAMENTI;
+
 insert into Departamenti values('07011','Inxhinieri Kompjuterike','07011');
 insert into Departamenti values('07012','Telekomunikacion','07011');
 
@@ -17,8 +19,8 @@ insert into Student values('150714110030','Blend','Arifaj','blend.arifaj@uni-pr.
 select * from Student;
 
 select * from administrata;
-insert into Administrata values('ADMIN001','Blend','Arifaj','blendarifaj@hotmail.com','8d9d4a07cea1ee15873b306c654f3fa8c5637b6791f2656351325516fae53ce2','044444555','07011',1);
-insert into Administrata values('ADMIN002','Blend','Arifaj','blendarifaj@hotmail.com','','044444555','07011',1);
+insert into Administrata values('ADMIN001','Blend','Arifaj','blendarifaj@hotmail.com','9fa1a77341addbe23893326cd4d5c6642ae223a8b42938def3417e67b2165a4d','044444555','07011',1);
+insert into Administrata values('ADMIN002','Blend','Arifaj','blendarifaj@hotmail.com','e62f46c0ba38ea3225556142cad88539b691546a7abe9fbdbf1318afddaf7bf0','044444555','07011',1);
 
 insert into Lenda values(null,'Database');
 insert into Lenda values(null,'Paradigmat Programuese');

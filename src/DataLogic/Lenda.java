@@ -21,7 +21,7 @@ public class Lenda {
 		return this.lendet;
 	}
 	public Lenda(String Lenda) {
-		
+		this.lenda=Lenda;
 	}
 	public int getID() {
 		return this.ID;
@@ -42,13 +42,8 @@ public class Lenda {
 		try {
 			List<Object> param = new ArrayList<Object>();
 			param.add(this.lenda);
-			ResultSet res = DBConnect.executeProcedure(conn,cstmt,"insertLenda", param);
+			DBConnect.executeProcedure(conn,cstmt,"insertLenda", param);
 			conn.close();
-			cstmt.close();
-			res.close();
-			if(!DBConnect.isOk) {
-				return false;
-			}
 			return true;
 		} catch (Exception e) {
 			return false;
@@ -67,7 +62,6 @@ public class Lenda {
 						this.lenda = res.getString("lenda");
 					}
 					conn.close();
-					cstmt.close();
 					res.close();
 		} catch (Exception e) {
 			
@@ -84,7 +78,6 @@ public class Lenda {
 				lendetIDs.put(res.getInt("id"), res.getString("lenda"));	
 			}
 			conn.close();
-			cstmt.close();
 			res.close();
 		} catch (Exception e) {
 		}

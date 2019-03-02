@@ -21,6 +21,7 @@ public class Universiteti {
 		this.emri = emri;
 		this.inicializoUniversitetin(this.emri);
 	}
+	
 	public Enumeration<String> getUniversitetet() {
 		//DBConnect objDB = new DBConnect("FIEKDB");
 		Connection conn = DBConnect.Connect2DB("fiekdb");
@@ -146,4 +147,19 @@ public class Universiteti {
 		*/
 	        return this.univeristetetIDs;
 	}	
+	public boolean insertUniversitetin() {
+		Connection conn = DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;
+		//DBConnect objDB = new DBConnect("FIEKDB");
+		List<Object> param = new ArrayList<Object>();
+		param.add(this.emri);
+
+		try {
+			DBConnect.executeProcedure(conn,cstmt,"insertUniversiteti", param);
+			conn.close();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}		
+	}
 }

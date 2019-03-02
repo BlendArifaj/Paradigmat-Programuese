@@ -75,6 +75,17 @@ adresa);
 END //
 DELIMITER //;
 
+#Krijimi i procedures qe e bene insertimin e nje fakulteti ne sistem
+DELIMITER //
+CREATE PROCEDURE insertUniversiteti(
+IN emri varchar(50))
+BEGIN
+INSERT INTO Universiteti values(
+null,
+emri);
+END //
+DELIMITER //;
+
 #Krijimi i procedures qe e bene insertimin e fakulteteve qe ligjeron profesori
 DELIMITER //
 CREATE PROCEDURE insertProfesorFakulteti(
@@ -391,11 +402,12 @@ DELIMITER //;
 #PROCEDURA E CILA E SHTON NJE DEPARTAMENT NE NJE FAKULTET TE CAKTUAR
 DELIMITER //
 CREATE PROCEDURE addNewDepartamentFakulteti(
+IN newDeptID varchar(10),
 IN newDepartament varchar(100),
 IN idFK VARCHAR(10)
 )
 BEGIN
-INSERT INTO DEPARTAMENTI VALUES(null,DEPTemri,DEPTfkid);
+INSERT INTO DEPARTAMENTI VALUES(newDeptID,newDepartament,idFK);
 END //
 DELIMITER //;
 

@@ -41,9 +41,7 @@ public class Fakulteti {
 				departamentet.add(newDept);
 			}
 			res.close();
-			conn.close();
-			cstmt.close();
-			
+			conn.close();			
 		} catch (Exception e) {
 
 			return null;
@@ -58,12 +56,11 @@ public class Fakulteti {
 		List<Object> param = new ArrayList<Object>();
 		param.add(this.ID);
 		param.add(this.emri);
+		param.add(this.universiteti.getEmri());
 		param.add(this.adresa);
 		try {
-			ResultSet res = DBConnect.executeProcedure(conn,cstmt,"insertFakulteti", param);
-			res.close();
+			DBConnect.executeProcedure(conn,cstmt,"insertFakulteti", param);
 			conn.close();
-			cstmt.close();
 			return true;
 		} catch (Exception e) {
 			return false;
@@ -92,6 +89,12 @@ public class Fakulteti {
 			return null;
 		}
 	}*/
+	public Universiteti getUniversiteti() {
+		return this.universiteti;
+	}
+	public void setUniversiteti(Universiteti newUni) {
+		this.universiteti = newUni;
+	}
 	
 	public String getID() {
 		return this.ID;
@@ -165,7 +168,7 @@ public class Fakulteti {
 				param.add(dept.getID());
 				param.add(dept.getDeparamenti());
 				param.add(this.ID);
-				ResultSet res = DBConnect.executeProcedure(conn,cstmt,"addNewDepartamentFakulteti", param);	
+				DBConnect.executeProcedure(conn,cstmt,"addNewDepartamentFakulteti", param);	
 			conn.close();
 			return true;
 		} catch (Exception e) {
