@@ -461,6 +461,125 @@ public class frmMain extends JFrame {
 		panelStudentDiploma = new JPanel();
 		panelStudentDiploma.setVisible(false);
 		
+				panelAdministrataNjoftimet = new JPanel();
+				panelAdministrataNjoftimet.setBounds(0, 0, 1660, 900);
+				panelMain.add(panelAdministrataNjoftimet);
+				panelAdministrataNjoftimet.setBackground(SystemColor.textHighlightText);
+				panelAdministrataNjoftimet.setLayout(null);
+				
+				txtSearch = new JTextField();
+				txtSearch.setFont(new Font("Tahoma", Font.PLAIN, 25));
+				txtSearch.setBounds(445, 56, 407, 63);
+				panelAdministrataNjoftimet.add(txtSearch);
+				txtSearch.setText("Search");
+				txtSearch.setBorder(null);
+				txtSearch.setColumns(10);
+				
+				JLabel lblSearch = new JLabel("");
+				lblSearch.setIcon(new ImageIcon(frmMain.class.getResource("/Images/myaccount_rectangle.png")));
+				lblSearch.setBounds(436, 40, 433, 94);
+				panelAdministrataNjoftimet.add(lblSearch);
+				
+				JLabel lblSearchIcon = new JLabel("");
+				lblSearchIcon.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/search.png")).getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
+				lblSearchIcon.setBounds(894, 56, 73, 69);
+				panelAdministrataNjoftimet.add(lblSearchIcon);
+				
+				JScrollPane scrollPane = new JScrollPane();
+				scrollPane.setViewportBorder(null);
+				scrollPane.setBounds(256, 171, 816, 75);
+				panelAdministrataNjoftimet.add(scrollPane);
+				
+				JTable tblAdministrataNotifications = new JTable(data, columnNames);
+				tblAdministrataNotifications.setBackground(SystemColor.window);
+				tblAdministrataNotifications.setFont(new Font("Tahoma", Font.PLAIN, 14));
+				scrollPane.setViewportView(tblAdministrataNotifications);
+				
+				panelNotificationClicked = new JPanel();
+				panelNotificationClicked.setBackground(Color.WHITE);
+				panelNotificationClicked.setBounds(0, 374, 1618, 491);
+				panelAdministrataNjoftimet.add(panelNotificationClicked);
+				panelNotificationClicked.setLayout(null);
+				
+				// Tema qe shfaqet pasi te klikohet nje item i tabeles (tblAdministrataNotifications)
+				txtSingleNotification = new JTextField();
+				txtSingleNotification.setFont(new Font("Tahoma", Font.PLAIN, 30));
+				txtSingleNotification.setBounds(274, 178, 670, 76);
+				txtSingleNotification.setBorder(null);
+				txtSingleNotification.setOpaque(false);
+				panelNotificationClicked.add(txtSingleNotification);
+				txtSingleNotification.setColumns(10);
+				
+				txtNoftimet = new JTextField();
+				txtNoftimet.setBounds(451, 66, 243, 61);
+				txtNoftimet.setBackground(Color.WHITE);
+				txtNoftimet.setFont(new Font("Tahoma", Font.PLAIN, 30));
+				txtNoftimet.setText("Njoftimi selektuar");
+				txtNoftimet.setBorder(null);
+				panelNotificationClicked.add(txtNoftimet);
+				txtNoftimet.setColumns(10);
+				
+				// Kur klikohet aplikohet algoritmi per plagjiature per temen perkatese dhe shfaqet dritarja per detaje
+				JLabel lblKontrolloTemen = new JLabel("");
+				lblKontrolloTemen.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				lblKontrolloTemen.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/control.png")).getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
+				lblKontrolloTemen.setBounds(1160, 196, 50, 50);
+				panelNotificationClicked.add(lblKontrolloTemen);
+				
+				txtKontrollo = new JTextField();
+				txtKontrollo.setFont(new Font("Tahoma", Font.PLAIN, 25));
+				txtKontrollo.setBackground(Color.WHITE);
+				txtKontrollo.setText("Kontrollo");
+				txtKontrollo.setBorder(null);
+				txtKontrollo.setBounds(1134, 144, 106, 41);
+				panelNotificationClicked.add(txtKontrollo);
+				txtKontrollo.setColumns(10);
+				
+				JLabel lblSingleNotification = new JLabel("");
+				lblSingleNotification.setBounds(258, 138, 705, 155);
+				lblSingleNotification.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).getImage()
+						.getScaledInstance(700, 100, Image.SCALE_SMOOTH)));
+				panelNotificationClicked.add(lblSingleNotification);
+				
+				// Kur klikohet hapet tema per te u lexuar
+				JLabel lblIconReadThesisPdf = new JLabel("");
+				lblIconReadThesisPdf.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/pdf.png")).getImage()
+						.getScaledInstance(70, 70, Image.SCALE_SMOOTH)));
+				lblIconReadThesisPdf.setBounds(985, 171, 70, 83);
+				panelNotificationClicked.add(lblIconReadThesisPdf);
+				
+				// All panels false
+				 panelAdministrataNjoftimet.setVisible(false);
+				 
+
+				 lblKontrolloTemen.addMouseListener(new MouseAdapter() {
+				 	@Override
+				 	public void mouseClicked(MouseEvent e) {
+				 		//ADMINISTRATA
+				 	}
+				 });
+		
+		panelProfesorDiploma = new JPanel();
+		panelProfesorDiploma.setBackground(Color.WHITE);
+		panelProfesorDiploma.setBounds(0, 0, 1427, 865);
+		panelMain.add(panelProfesorDiploma);
+		panelProfesorDiploma.setLayout(null);
+		
+		JLabel lblLita = new JLabel("Lista e temave te diplomes");
+		lblLita.setFont(new Font("Tahoma", Font.PLAIN, 35));
+		lblLita.setBounds(430, 104, 420, 127);
+		panelProfesorDiploma.add(lblLita);
+		
+		JScrollPane scrollPane_3 = new JScrollPane();
+		scrollPane_3.setBounds(212, 318, 871, 88);
+		panelProfesorDiploma.add(scrollPane_3);
+		
+		tableProfesoriDiploma = new JTable(Administratadata,AdministrataColumnNamesThesis);
+		tableProfesoriDiploma.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		scrollPane_3.setViewportView(tableProfesoriDiploma);
+		panelProfesorDiploma.setVisible(false);
+		panelProfesorDiploma.setVisible(false);
+		
 		panelStudentNotifications = new JPanel();
 		panelStudentNotifications.setBackground(Color.WHITE);
 		panelStudentNotifications.setBounds(0, 0, 1427, 865);
@@ -503,104 +622,6 @@ public class frmMain extends JFrame {
 		
 		
 		panelStudentNotifications.setVisible(false);
-
-		panelAdministrataNjoftimet = new JPanel();
-		panelAdministrataNjoftimet.setBounds(0, 0, 1660, 900);
-		panelMain.add(panelAdministrataNjoftimet);
-		panelAdministrataNjoftimet.setBackground(SystemColor.textHighlightText);
-		panelAdministrataNjoftimet.setLayout(null);
-		
-		txtSearch = new JTextField();
-		txtSearch.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		txtSearch.setBounds(445, 56, 407, 63);
-		panelAdministrataNjoftimet.add(txtSearch);
-		txtSearch.setText("Search");
-		txtSearch.setBorder(null);
-		txtSearch.setColumns(10);
-		
-		JLabel lblSearch = new JLabel("");
-		lblSearch.setIcon(new ImageIcon(frmMain.class.getResource("/Images/myaccount_rectangle.png")));
-		lblSearch.setBounds(436, 40, 433, 94);
-		panelAdministrataNjoftimet.add(lblSearch);
-		
-		JLabel lblSearchIcon = new JLabel("");
-		lblSearchIcon.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/search.png")).getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
-		lblSearchIcon.setBounds(894, 56, 73, 69);
-		panelAdministrataNjoftimet.add(lblSearchIcon);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setViewportBorder(null);
-		scrollPane.setBounds(256, 171, 816, 75);
-		panelAdministrataNjoftimet.add(scrollPane);
-		
-		JTable tblAdministrataNotifications = new JTable(data, columnNames);
-		tblAdministrataNotifications.setBackground(SystemColor.window);
-		tblAdministrataNotifications.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		scrollPane.setViewportView(tblAdministrataNotifications);
-		
-		panelNotificationClicked = new JPanel();
-		panelNotificationClicked.setBackground(Color.WHITE);
-		panelNotificationClicked.setBounds(0, 374, 1618, 491);
-		panelAdministrataNjoftimet.add(panelNotificationClicked);
-		panelNotificationClicked.setLayout(null);
-		
-		// Tema qe shfaqet pasi te klikohet nje item i tabeles (tblAdministrataNotifications)
-		txtSingleNotification = new JTextField();
-		txtSingleNotification.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		txtSingleNotification.setBounds(274, 178, 670, 76);
-		txtSingleNotification.setBorder(null);
-		txtSingleNotification.setOpaque(false);
-		panelNotificationClicked.add(txtSingleNotification);
-		txtSingleNotification.setColumns(10);
-		
-		txtNoftimet = new JTextField();
-		txtNoftimet.setBounds(451, 66, 243, 61);
-		txtNoftimet.setBackground(Color.WHITE);
-		txtNoftimet.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		txtNoftimet.setText("Njoftimi selektuar");
-		txtNoftimet.setBorder(null);
-		panelNotificationClicked.add(txtNoftimet);
-		txtNoftimet.setColumns(10);
-		
-		// Kur klikohet aplikohet algoritmi per plagjiature per temen perkatese dhe shfaqet dritarja per detaje
-		JLabel lblKontrolloTemen = new JLabel("");
-		lblKontrolloTemen.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblKontrolloTemen.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/control.png")).getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
-		lblKontrolloTemen.setBounds(1160, 196, 50, 50);
-		panelNotificationClicked.add(lblKontrolloTemen);
-		
-		txtKontrollo = new JTextField();
-		txtKontrollo.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		txtKontrollo.setBackground(Color.WHITE);
-		txtKontrollo.setText("Kontrollo");
-		txtKontrollo.setBorder(null);
-		txtKontrollo.setBounds(1134, 144, 106, 41);
-		panelNotificationClicked.add(txtKontrollo);
-		txtKontrollo.setColumns(10);
-		
-		JLabel lblSingleNotification = new JLabel("");
-		lblSingleNotification.setBounds(258, 138, 705, 155);
-		lblSingleNotification.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).getImage()
-				.getScaledInstance(700, 100, Image.SCALE_SMOOTH)));
-		panelNotificationClicked.add(lblSingleNotification);
-		
-		// Kur klikohet hapet tema per te u lexuar
-		JLabel lblIconReadThesisPdf = new JLabel("");
-		lblIconReadThesisPdf.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/pdf.png")).getImage()
-				.getScaledInstance(70, 70, Image.SCALE_SMOOTH)));
-		lblIconReadThesisPdf.setBounds(985, 171, 70, 83);
-		panelNotificationClicked.add(lblIconReadThesisPdf);
-		
-		// All panels false
-		 panelAdministrataNjoftimet.setVisible(false);
-		 
-
-		 lblKontrolloTemen.addMouseListener(new MouseAdapter() {
-		 	@Override
-		 	public void mouseClicked(MouseEvent e) {
-		 		//ADMINISTRATA
-		 	}
-		 });
 		
 		String[] StudentNotificationsColumns = {"Id",
 				"Tema",
@@ -1642,26 +1663,6 @@ public class frmMain extends JFrame {
 		labelID.setIcon(new ImageIcon(frmMain.class.getResource("/Images/myaccount_rectangle.png")));
 		panelAdministrataAddDepartament.add(labelID);
 		panelAdministrataAddDepartament.setVisible(false);
-		
-		panelProfesorDiploma = new JPanel();
-		panelProfesorDiploma.setBackground(Color.WHITE);
-		panelProfesorDiploma.setBounds(0, 0, 1427, 865);
-		panelMain.add(panelProfesorDiploma);
-		panelProfesorDiploma.setLayout(null);
-		
-		JLabel lblLita = new JLabel("Lista e temave te diplomes");
-		lblLita.setFont(new Font("Tahoma", Font.PLAIN, 35));
-		lblLita.setBounds(430, 104, 420, 127);
-		panelProfesorDiploma.add(lblLita);
-		
-		JScrollPane scrollPane_3 = new JScrollPane();
-		scrollPane_3.setBounds(212, 318, 871, 88);
-		panelProfesorDiploma.add(scrollPane_3);
-		
-		tableProfesoriDiploma = new JTable(Administratadata,AdministrataColumnNamesThesis);
-		tableProfesoriDiploma.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		scrollPane_3.setViewportView(tableProfesoriDiploma);
-		panelProfesorDiploma.setVisible(false);
 		panelAdministrataSettingsShto.setBounds(0, 0, 1427, 865);
 		panelMain.add(panelAdministrataSettingsShto);
 		panelAdministrataSettingsShto.setLayout(null);
@@ -1962,7 +1963,6 @@ public class frmMain extends JFrame {
 		 panelAdministrataDiploma.setVisible(false);
 		 panelAdministrataStats.setVisible(false);
 		 panelStudentStats.setVisible(false);
-		 panelProfesorDiploma.setVisible(false);
 		 
 		
 		

@@ -446,7 +446,7 @@ public class RegisterUser {
 				
 				if(validateDataStudenti(newStudent)) {
 					JOptionPane.showMessageDialog(null, "Ju lutem mbusheni te gjitha fushat me te dhena!");
-		
+	
 				}{
 				
 					if(newStudent.insertNewStudent()) {
