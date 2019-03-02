@@ -175,7 +175,7 @@ public class Studenti extends Person implements StudentiFunctions{
 			List<Object> param = new ArrayList<Object>();
 			param.add(this.ID);
 			param.add(Hash.saltedHashString(newPass, this.ID));
-			DBConnect.executeProcedure(conn,cstmt,"updatePersonPassword", param);
+			DBConnect.executeProcedure(conn,cstmt,"updateStudentPassword", param);
 			conn.close();
 			return true;
 		} catch (Exception e) {

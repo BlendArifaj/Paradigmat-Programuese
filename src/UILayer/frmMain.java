@@ -49,6 +49,7 @@ import javax.swing.table.DefaultTableModel;
 import Business.Login;
 import DataLogic.Departamenti;
 import DataLogic.Fakulteti;
+import DataLogic.Hash;
 import DataLogic.Lenda;
 import DataLogic.Universiteti;
 import javafx.scene.layout.Pane;
@@ -66,6 +67,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JSeparator;
+import javax.swing.JPasswordField;
 
 public class frmMain extends JFrame {
 
@@ -180,9 +182,9 @@ public class frmMain extends JFrame {
 	private JTextField lblNewPassword;
 	private JTextField lblRepeatNewPassword;
 	private JTextField txtChangePassword;
-	private JTextField txtOldPasswordd;
-	private JTextField txtNewPassword;
-	private JTextField txtNewPasswordd;
+	private JPasswordField pwdOldPassword;
+	private JPasswordField pwdNewPassword;
+	private JPasswordField pwdNewPasswordd;
 	
 	
 	/**
@@ -446,6 +448,130 @@ public class frmMain extends JFrame {
 		
 		panelStudentSettings = new JPanel();
 		panelStudentSettings.setVisible(false);
+		
+		panelStudentiChangePassword = new JPanel();
+		panelStudentiChangePassword.setBackground(Color.WHITE);
+		panelStudentiChangePassword.setBounds(0, 0, 1427, 865);
+		panelMain.add(panelStudentiChangePassword);
+		panelStudentiChangePassword.setLayout(null);
+		
+		txtChangePassword = new JTextField();
+		txtChangePassword.setText("Change password");
+		txtChangePassword.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		txtChangePassword.setColumns(10);
+		txtChangePassword.setBorder(null);
+		txtChangePassword.setBounds(606, 69, 216, 51);
+		panelStudentiChangePassword.add(txtChangePassword);
+		
+		lblPassword = new JTextField();
+		lblPassword.setEditable(false);
+		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblPassword.setBorder(null);
+		lblPassword.setText("Old password");
+		
+		lblPassword.setBounds(278, 249, 216, 51);
+		panelStudentiChangePassword.add(lblPassword);
+		lblPassword.setColumns(10);
+		
+		lblNewPassword = new JTextField();
+		lblNewPassword.setEditable(false);
+		lblNewPassword.setText("New password");
+		lblNewPassword.setBorder(null);
+		lblNewPassword.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblNewPassword.setColumns(10);
+		lblNewPassword.setBounds(278, 387, 216, 51);
+		panelStudentiChangePassword.add(lblNewPassword);
+		
+		lblRepeatNewPassword = new JTextField();
+		lblRepeatNewPassword.setEditable(false);
+		lblRepeatNewPassword.setText("Repeat new password");
+		lblRepeatNewPassword.setBorder(null);
+		lblRepeatNewPassword.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblRepeatNewPassword.setColumns(10);
+		lblRepeatNewPassword.setBounds(278, 522, 268, 51);
+		panelStudentiChangePassword.add(lblRepeatNewPassword);
+				
+				pwdOldPassword = new JPasswordField();
+				pwdOldPassword.setBounds(618, 249, 471, 51);
+				panelStudentiChangePassword.add(pwdOldPassword);
+				
+				pwdNewPassword = new JPasswordField();
+				pwdNewPassword.setBounds(618, 387, 471, 51);
+				panelStudentiChangePassword.add(pwdNewPassword);
+				
+				pwdNewPasswordd = new JPasswordField();
+				pwdNewPasswordd.setBounds(618, 510, 471, 51);
+				panelStudentiChangePassword.add(pwdNewPasswordd);
+				
+				JLabel lblNewLabel_1 = new JLabel("");
+				lblNewLabel_1.setBounds(605, 225, 520, 98);
+				lblNewLabel_1.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).
+						getImage().getScaledInstance(500, 80, Image.SCALE_SMOOTH)));
+				
+						panelStudentiChangePassword.add(lblNewLabel_1);
+				
+				JLabel label_1 = new JLabel("");
+				label_1.setBounds(605, 366, 520, 98);
+				label_1.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).
+						getImage().getScaledInstance(500, 80, Image.SCALE_SMOOTH)));
+				panelStudentiChangePassword.add(label_1);
+				
+				JLabel label_6 = new JLabel("");
+				label_6.setBounds(605, 490, 520, 98);
+				label_6.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).
+						getImage().getScaledInstance(500, 80, Image.SCALE_SMOOTH)));
+				panelStudentiChangePassword.add(label_6);
+				
+				JButton btnCancelPass = new JButton("Cancel");
+				btnCancelPass.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						panelStudentiChangePassword.setVisible(false);
+						panelStudentSettings.setVisible(true);
+					}
+				});
+				btnCancelPass.setFont(new Font("Tahoma", Font.PLAIN, 25));
+				btnCancelPass.setBounds(856, 663, 150, 60);
+				panelStudentiChangePassword.add(btnCancelPass);
+				panelStudentiChangePassword.setVisible(false);
+
+				
+				JButton btnSave_1 = new JButton("Save");
+				btnSave_1.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if(newLogin.getLloji().equals("Student")) {
+							if(newLogin.student.getPassHash().equals(Hash.saltedHashString(new String(pwdOldPassword.getPassword()), newLogin.student.getID()))) {
+								if(new String(pwdNewPassword.getPassword()).equals(new String(pwdNewPasswordd.getPassword()))) {
+									if(newLogin.student.updateStudentPassword(new String(pwdNewPassword.getPassword()))) {
+										JOptionPane.showMessageDialog(null, "Keni bere perditesimin e passwordit me sukses!");
+										panelStudentiChangePassword.setVisible(false);
+										panelStudentSettings.setVisible(true);
+									}else {
+										JOptionPane.showMessageDialog(null, "Gabim gjate perditesimit te passwordit");
+									}
+								}
+							}else {
+								JOptionPane.showMessageDialog(null, "Passwordi gabim!");
+							}
+						}else {
+							if(newLogin.profesor.getPassHash().equals(Hash.saltedHashString(new String(pwdOldPassword.getPassword()), newLogin.profesor.getID()))) {
+								if(new String(pwdNewPassword.getPassword()).equals(new String(pwdNewPasswordd.getPassword()))) {
+									if(newLogin.profesor.updateProfesorPassword(new String(pwdNewPassword.getPassword()))) {
+										JOptionPane.showMessageDialog(null, "Keni bere perditesimin e passwordit me sukses!");
+										panelStudentiChangePassword.setVisible(false);
+										panelStudentSettings.setVisible(true);
+									}else {
+										JOptionPane.showMessageDialog(null, "Gabim gjate perditesimit te passwordit");
+									}
+								}
+							}else {
+								JOptionPane.showMessageDialog(null, "Passwordi gabim!");
+							}
+						}
+					}
+				});
+				btnSave_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
+				btnSave_1.setBounds(683, 663, 150, 60);
+				panelStudentiChangePassword.add(btnSave_1);
 		panelStudentSettings.setBounds(0, 0, 1427, 865);
 		panelMain.add(panelStudentSettings);
 		panelStudentSettings.setBackground(Color.WHITE);
@@ -529,92 +655,6 @@ public class frmMain extends JFrame {
 		lblStudentSettingsProfile.setBounds(464, 217, 239, 183);
 		panelStudentSettings.add(lblStudentSettingsProfile);
 		panelStudentSettings.setVisible(false);
-		
-		panelStudentiChangePassword = new JPanel();
-		panelStudentiChangePassword.setBackground(Color.WHITE);
-		panelStudentiChangePassword.setBounds(0, 0, 1427, 865);
-		panelMain.add(panelStudentiChangePassword);
-		panelStudentiChangePassword.setLayout(null);
-		
-		txtChangePassword = new JTextField();
-		txtChangePassword.setText("Change password");
-		txtChangePassword.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		txtChangePassword.setColumns(10);
-		txtChangePassword.setBorder(null);
-		txtChangePassword.setBounds(606, 69, 216, 51);
-		panelStudentiChangePassword.add(txtChangePassword);
-		
-		txtNewPassword = new JTextField();
-		txtNewPassword.setColumns(10);
-		txtNewPassword.setBorder(null);
-		txtNewPassword.setBounds(618, 387, 471, 51);
-		panelStudentiChangePassword.add(txtNewPassword);
-		
-		txtNewPasswordd = new JTextField();
-		txtNewPasswordd.setColumns(10);
-		txtNewPasswordd.setBorder(null);
-		txtNewPasswordd.setBounds(618, 510, 471, 51);
-		panelStudentiChangePassword.add(txtNewPasswordd);
-		
-		txtOldPasswordd = new JTextField();
-		txtOldPasswordd.setBounds(618, 249, 471, 51);
-		txtOldPasswordd.setBorder(null);
-		panelStudentiChangePassword.add(txtOldPasswordd);
-		txtOldPasswordd.setColumns(10);
-		
-		lblPassword = new JTextField();
-		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblPassword.setBorder(null);
-		lblPassword.setText("Old password");
-		
-		lblPassword.setBounds(278, 249, 216, 51);
-		panelStudentiChangePassword.add(lblPassword);
-		lblPassword.setColumns(10);
-		
-		lblNewPassword = new JTextField();
-		lblNewPassword.setText("New password");
-		lblNewPassword.setBorder(null);
-		lblNewPassword.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblNewPassword.setColumns(10);
-		lblNewPassword.setBounds(278, 387, 216, 51);
-		panelStudentiChangePassword.add(lblNewPassword);
-		
-		lblRepeatNewPassword = new JTextField();
-		lblRepeatNewPassword.setText("Repeat new password");
-		lblRepeatNewPassword.setBorder(null);
-		lblRepeatNewPassword.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblRepeatNewPassword.setColumns(10);
-		lblRepeatNewPassword.setBounds(278, 522, 268, 51);
-		panelStudentiChangePassword.add(lblRepeatNewPassword);
-		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setBounds(605, 225, 520, 98);
-		lblNewLabel_1.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).
-				getImage().getScaledInstance(500, 80, Image.SCALE_SMOOTH)));
-
-		panelStudentiChangePassword.add(lblNewLabel_1);
-		
-		JLabel label_1 = new JLabel("");
-		label_1.setBounds(605, 366, 520, 98);
-		label_1.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).
-				getImage().getScaledInstance(500, 80, Image.SCALE_SMOOTH)));
-		panelStudentiChangePassword.add(label_1);
-		
-		JLabel label_6 = new JLabel("");
-		label_6.setBounds(605, 490, 520, 98);
-		label_6.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).
-				getImage().getScaledInstance(500, 80, Image.SCALE_SMOOTH)));
-		panelStudentiChangePassword.add(label_6);
-		
-		JButton btnCancelPass = new JButton("Cancel");
-		btnCancelPass.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		btnCancelPass.setBounds(856, 663, 150, 60);
-		panelStudentiChangePassword.add(btnCancelPass);
-		
-		JButton btnSave_1 = new JButton("Save");
-		btnSave_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		btnSave_1.setBounds(683, 663, 150, 60);
-		panelStudentiChangePassword.add(btnSave_1);
 		
 		panelStudentDiploma.setBounds(0, 0, 1427, 865);
 		panelMain.add(panelStudentDiploma);
@@ -1870,6 +1910,8 @@ public class frmMain extends JFrame {
 				//caktoVisible("panelAdministrataNjoftimet");
 				//caktoVisibleHighlights(lblHighlightNotifications);
 				if(newLogin.getLloji().equals("Student")) {
+					panelStudentiChangePassword.setVisible(false);
+
 					panelStudentMyAccount.setVisible(false);
 					panelStudentProfile.setVisible(false);
 					panelStudentStats.setVisible(false);
@@ -1878,6 +1920,8 @@ public class frmMain extends JFrame {
 					panelStudentNotifications.setVisible(true);
 					//Studenti
 				}else if(newLogin.getLloji().equals("Profesor")) {
+					panelStudentiChangePassword.setVisible(false);
+
 					panelStudentMyAccount.setVisible(false);
 					panelStudentProfile.setVisible(false);
 					panelStudentStats.setVisible(false);
@@ -1913,6 +1957,8 @@ public class frmMain extends JFrame {
 				//caktoVisible("panelAdministrataThesis");
 				//caktoVisibleHighlights(lblHighlightThesis);
 				if(newLogin.getLloji().equals("Student")) {
+					panelStudentiChangePassword.setVisible(false);
+
 					panelStudentMyAccount.setVisible(false);
 					panelStudentProfile.setVisible(false);
 					panelStudentStats.setVisible(false);
@@ -1920,6 +1966,8 @@ public class frmMain extends JFrame {
 					panelStudentSettings.setVisible(false);
 					panelStudentNotifications.setVisible(false);
 				}else if(newLogin.getLloji().equals("Profesor")) {
+					panelStudentiChangePassword.setVisible(false);
+
 					panelStudentMyAccount.setVisible(false);
 					panelStudentProfile.setVisible(false);
 					panelStudentStats.setVisible(false);
@@ -1961,7 +2009,11 @@ public class frmMain extends JFrame {
 					panelStudentDiploma.setVisible(false);
 					panelStudentSettings.setVisible(true);
 					panelStudentNotifications.setVisible(false);
+					panelStudentiChangePassword.setVisible(false);
+
 				}else if(newLogin.getLloji().equals("Profesor")) {
+					panelStudentiChangePassword.setVisible(false);
+
 					panelStudentMyAccount.setVisible(false);
 					panelStudentProfile.setVisible(false);
 					panelStudentStats.setVisible(false);
@@ -2089,7 +2141,7 @@ public class frmMain extends JFrame {
 					panelAdministrataAddLenda.setVisible(true);
 					panelAdministrataAddFakultet.setVisible(false);
 					panelAdministrataAddUniversity.setVisible(false);
-			
+
 				
 				lblHighlightNotifications.setVisible(false);
 				lblHighlightThesis.setVisible(false);
@@ -2109,6 +2161,8 @@ public class frmMain extends JFrame {
 					panelStudentDiploma.setVisible(false);
 					panelStudentSettings.setVisible(false);
 					panelStudentNotifications.setVisible(false);
+					panelStudentiChangePassword.setVisible(false);
+
 				}else if(newLogin.getLloji().equals("Profesor")) {
 					panelStudentMyAccount.setVisible(false);
 					panelStudentProfile.setVisible(false);
@@ -2116,7 +2170,10 @@ public class frmMain extends JFrame {
 					panelProfesorDiploma.setVisible(false);
 					panelStudentSettings.setVisible(false);			
 					panelStudentNotifications.setVisible(false);
+					panelStudentiChangePassword.setVisible(false);
+
 				}else {
+					
 					panelStudentMyAccount.setVisible(false);
 					panelAdministrataNjoftimet.setVisible(false);
 					panelAdministrataSettings.setVisible(false);
@@ -2157,7 +2214,7 @@ public class frmMain extends JFrame {
 				panelAdministrataAddLenda.setVisible(false);
 				panelAdministrataAddFakultet.setVisible(false);
 				panelAdministrataAddUniversity.setVisible(false);
-				
+				panelStudentiChangePassword.setVisible(false);
 				//Mbushja me vlera
 				if(newLogin.getLloji().equals("Student")) {
 					txtEmri.setText(newLogin.student.getEmri());
