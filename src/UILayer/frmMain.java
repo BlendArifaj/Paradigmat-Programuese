@@ -431,61 +431,11 @@ public class frmMain extends JFrame {
 		panelStudentDiploma = new JPanel();
 		panelStudentDiploma.setVisible(false);
 		
-		panelStudentMyAccount = new JPanel();
-		panelStudentMyAccount.setVisible(false);
-		
 		panelStudentSettings = new JPanel();
 		panelStudentSettings.setVisible(false);
-		panelStudentSettings.setBounds(0, 0, 1427, 865);
-		panelMain.add(panelStudentSettings);
-		panelStudentSettings.setBackground(Color.WHITE);
-		panelStudentSettings.setLayout(null);
 		
-		txtStudentProfile = new JTextField();
-		txtStudentProfile.setText("Profile");
-		txtStudentProfile.setOpaque(false);
-		txtStudentProfile.setFont(new Font("Tahoma", Font.BOLD, 20));
-		txtStudentProfile.setColumns(10);
-		txtStudentProfile.setBorder(null);
-		txtStudentProfile.setBounds(548, 342, 74, 42);
-		panelStudentSettings.add(txtStudentProfile);
-		
-		JLabel lblStudentSettingsProfileIcon = new JLabel("New label");
-		lblStudentSettingsProfileIcon.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/settings_password_button.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
-		lblStudentSettingsProfileIcon.setBounds(538, 231, 100, 100);
-		panelStudentSettings.add(lblStudentSettingsProfileIcon);
-		
-		txtStudentPassword = new JTextField();
-		txtStudentPassword.setFont(new Font("Tahoma", Font.BOLD, 20));
-		txtStudentPassword.setText("Password");
-		txtStudentPassword.setBorder(null);
-		txtStudentPassword.setOpaque(false);
-		txtStudentPassword.setBounds(174, 342, 107, 42);
-		panelStudentSettings.add(txtStudentPassword);
-		txtStudentPassword.setColumns(10);
-		
-		JLabel lblStudentSettingsPassIcon = new JLabel("New label");
-		lblStudentSettingsPassIcon.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/settings_password_button.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
-		lblStudentSettingsPassIcon.setBounds(174, 231, 100, 100);
-		panelStudentSettings.add(lblStudentSettingsPassIcon);
-		
-		JLabel lblStudentSettingsPassRectangle = new JLabel("");
-		lblStudentSettingsPassRectangle.setIcon(new ImageIcon(frmMain.class.getResource("/Images/settings_button.png")));
-		lblStudentSettingsPassRectangle.setBounds(107, 217, 239, 183);
-		panelStudentSettings.add(lblStudentSettingsPassRectangle);
-		
-		JLabel lblStudentSettingsProfile = new JLabel("");
-		lblStudentSettingsProfile.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				panelStudentMyAccount.setVisible(true);
-				panelStudentSettings.setVisible(false);
-			}
-		});
-		lblStudentSettingsProfile.setIcon(new ImageIcon(frmMain.class.getResource("/Images/settings_button.png")));
-		lblStudentSettingsProfile.setBounds(464, 217, 239, 183);
-		panelStudentSettings.add(lblStudentSettingsProfile);
-		panelStudentSettings.setVisible(false);
+		panelStudentMyAccount = new JPanel();
+		panelStudentMyAccount.setVisible(false);
 		panelStudentMyAccount.setBounds(0, 0, 1427, 865);
 		panelMain.add(panelStudentMyAccount);
 		panelStudentMyAccount.setBackground(Color.WHITE);
@@ -643,12 +593,12 @@ public class frmMain extends JFrame {
 		btnEdit.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				txtEmri.setEnabled(true);
-				txtMbiemri.setEnabled(true);
-				txtEmail.setEnabled(true);
-				txtTel.setEnabled(true);
+				txtEmri.setEditable(true);
+				txtMbiemri.setEditable(true);
+				txtEmail.setEditable(true);
+				txtTel.setEditable(true);
 				btnSave.setEnabled(true);
-				
+				btnEdit.setEnabled(false);
 			}
 		});
 		btnEdit.setBounds(829, 725, 120, 60);
@@ -658,6 +608,42 @@ public class frmMain extends JFrame {
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnSave.setEnabled(false);
+				btnEdit.setEnabled(true);
+				txtEmri.setEditable(false);
+				txtMbiemri.setEditable(false);
+				txtEmail.setEditable(false);
+				txtTel.setEditable(false);
+				if(newLogin.getLloji().equals("Student")) {
+					newLogin.student.setEmri(txtEmri.getText());
+					newLogin.student.setMbiemri(txtMbiemri.getText());
+					newLogin.student.setEmail(txtEmail.getText());
+					newLogin.student.setTel(txtTel.getText());
+					if(newLogin.student.updateStuentData()) {
+						JOptionPane.showMessageDialog(null, "Keni perditesuar te dhenat me sukses!");
+					}else {
+						JOptionPane.showMessageDialog(null, "Gabim gjate perditesimit te te dhenave!");
+					}
+				}else if(newLogin.getLloji().equals("Profesor")){
+					newLogin.profesor.setEmri(txtEmri.getText());
+					newLogin.profesor.setMbiemri(txtMbiemri.getText());
+					newLogin.profesor.setEmail(txtEmail.getText());
+					newLogin.profesor.setTel(txtTel.getText());
+					if(newLogin.profesor.updateProfesorData()) {
+						JOptionPane.showMessageDialog(null, "Keni perditesuar te dhenat me sukses!");
+					}else {
+						JOptionPane.showMessageDialog(null, "Gabim gjate perditesimit te te dhenave!");
+					}
+				}else {
+					newLogin.administrat.setEmri(txtEmri.getText());
+					newLogin.administrat.setMbiemri(txtMbiemri.getText());
+					newLogin.administrat.setEmail(txtEmail.getText());
+					newLogin.administrat.setTel(txtTel.getText());
+					if(newLogin.administrat.updateAdministrataData()) {
+						JOptionPane.showMessageDialog(null, "Keni perditesuar te dhenat me sukses!");
+					}else {
+						JOptionPane.showMessageDialog(null, "Gabim gjate perditesimit te te dhenave!");
+					}
+				}
 			}
 		});
 		btnSave.setEnabled(false);
@@ -665,6 +651,82 @@ public class frmMain extends JFrame {
 		btnSave.setBounds(972, 725, 120, 60);
 		panelStudentMyAccount.add(btnSave);
 		panelStudentMyAccount.setVisible(false);
+		panelStudentSettings.setBounds(0, 0, 1427, 865);
+		panelMain.add(panelStudentSettings);
+		panelStudentSettings.setBackground(Color.WHITE);
+		panelStudentSettings.setLayout(null);
+		
+		txtStudentProfile = new JTextField();
+		txtStudentProfile.setText("Profile");
+		txtStudentProfile.setOpaque(false);
+		txtStudentProfile.setFont(new Font("Tahoma", Font.BOLD, 20));
+		txtStudentProfile.setColumns(10);
+		txtStudentProfile.setBorder(null);
+		txtStudentProfile.setBounds(548, 342, 74, 42);
+		panelStudentSettings.add(txtStudentProfile);
+		
+		JLabel lblStudentSettingsProfileIcon = new JLabel("New label");
+		lblStudentSettingsProfileIcon.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/settings_password_button.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
+		lblStudentSettingsProfileIcon.setBounds(538, 231, 100, 100);
+		panelStudentSettings.add(lblStudentSettingsProfileIcon);
+		
+		txtStudentPassword = new JTextField();
+		txtStudentPassword.setFont(new Font("Tahoma", Font.BOLD, 20));
+		txtStudentPassword.setText("Password");
+		txtStudentPassword.setBorder(null);
+		txtStudentPassword.setOpaque(false);
+		txtStudentPassword.setBounds(174, 342, 107, 42);
+		panelStudentSettings.add(txtStudentPassword);
+		txtStudentPassword.setColumns(10);
+		
+		JLabel lblStudentSettingsPassIcon = new JLabel("New label");
+		lblStudentSettingsPassIcon.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/settings_password_button.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
+		lblStudentSettingsPassIcon.setBounds(174, 231, 100, 100);
+		panelStudentSettings.add(lblStudentSettingsPassIcon);
+		
+		JLabel lblStudentSettingsPassRectangle = new JLabel("");
+		lblStudentSettingsPassRectangle.setIcon(new ImageIcon(frmMain.class.getResource("/Images/settings_button.png")));
+		lblStudentSettingsPassRectangle.setBounds(107, 217, 239, 183);
+		panelStudentSettings.add(lblStudentSettingsPassRectangle);
+		
+		JLabel lblStudentSettingsProfile = new JLabel("");
+		lblStudentSettingsProfile.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				panelStudentMyAccount.setVisible(true);
+				panelStudentSettings.setVisible(false);
+				//Mbushja me vlera
+				if(newLogin.getLloji().equals("Student")) {
+					txtEmri.setText(newLogin.student.getEmri());
+					txtMbiemri.setText(newLogin.student.getMbiemri());
+					txtEmail.setText(newLogin.student.getEmail());
+					txtTel.setText(newLogin.student.getTel());
+					txtUniversiteti.setText(newLogin.student.getUniversiteti().getEmri());
+					txtFakulteti.setText(newLogin.student.getFakulteti().getEmri());
+					txtDepartamenti.setText(newLogin.student.getDepartamenti().getDeparamenti());
+				}else if(newLogin.getLloji().equals("Profesor")) {
+					txtEmri.setText(newLogin.profesor.getEmri());
+					txtMbiemri.setText(newLogin.profesor.getMbiemri());
+					txtEmail.setText(newLogin.profesor.getEmail());
+					txtTel.setText(newLogin.profesor.getTel());
+					txtUniversiteti.setText("-NOT DEFINED-");
+					txtFakulteti.setText("-NOT DEFINED-");
+					txtDepartamenti.setText("-NOT DEFINED-");
+				}else {
+					txtEmri.setText(newLogin.administrat.getEmri());
+					txtMbiemri.setText(newLogin.administrat.getMbiemri());
+					txtEmail.setText(newLogin.administrat.getEmail());
+					txtTel.setText(newLogin.administrat.getTel());
+					txtUniversiteti.setText(newLogin.administrat.getFakulteti().getUniversiteti().getEmri());
+					txtFakulteti.setText(newLogin.administrat.getFakulteti().getEmri());
+					txtDepartamenti.setText("-NOT DEFINED-");
+				}
+			}
+		});
+		lblStudentSettingsProfile.setIcon(new ImageIcon(frmMain.class.getResource("/Images/settings_button.png")));
+		lblStudentSettingsProfile.setBounds(464, 217, 239, 183);
+		panelStudentSettings.add(lblStudentSettingsProfile);
+		panelStudentSettings.setVisible(false);
 		
 		panelStudentDiploma.setBounds(0, 0, 1427, 865);
 		panelMain.add(panelStudentDiploma);

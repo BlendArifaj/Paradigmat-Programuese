@@ -117,7 +117,7 @@ public class Person {
 	public void setNjoftimet(List<Njoftimi> njoftimet) {
 		this.njoftimet = njoftimet;
 	}
-	public Boolean update() {
+	public Boolean updateData() {
 		//DBConnect objDB = new DBConnect("FIEKDB");
 		Connection conn = DBConnect.Connect2DB("fiekdb");
 		CallableStatement cstmt = null;
@@ -127,15 +127,25 @@ public class Person {
 			param.add(this.emri);
 			param.add(this.mbiemri);
 			param.add(this.email);
-			param.add(this.passHash);
 			param.add(this.tel);
-			ResultSet res = DBConnect.executeProcedure(conn,cstmt,"updatePerson", param);
+			DBConnect.executeProcedure(conn,cstmt,"updatePersonData", param);
 			conn.close();
-			cstmt.close();
-			res.close();
-			if(!DBConnect.isOk) {
-				return false;
-			}
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	public Boolean updatePassword() {
+		//DBConnect objDB = new DBConnect("FIEKDB");
+		Connection conn = DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;
+		try {
+			List<Object> param = new ArrayList<Object>();
+			param.add(this.ID);
+			param.add(this.passHash);
+			DBConnect.executeProcedure(conn,cstmt,"updatePersonPassword", param);
+			conn.close();
 			return true;
 		} catch (Exception e) {
 			return false;

@@ -149,4 +149,37 @@ public class Studenti extends Person implements StudentiFunctions{
 		}
 	}
 	
+	public Boolean updateStuentData() {
+		//DBConnect objDB = new DBConnect("FIEKDB");
+		Connection conn = DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;
+		try {
+			List<Object> param = new ArrayList<Object>();
+			param.add(this.ID);
+			param.add(this.emri);
+			param.add(this.mbiemri);
+			param.add(this.email);
+			param.add(this.tel);
+			DBConnect.executeProcedure(conn,cstmt,"updateStudentData", param);
+			conn.close();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	public Boolean updateStudentPassword(String newPass) {
+		//DBConnect objDB = new DBConnect("FIEKDB");
+		Connection conn = DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;
+		try {
+			List<Object> param = new ArrayList<Object>();
+			param.add(this.ID);
+			param.add(Hash.saltedHashString(newPass, this.ID));
+			DBConnect.executeProcedure(conn,cstmt,"updatePersonPassword", param);
+			conn.close();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
 }

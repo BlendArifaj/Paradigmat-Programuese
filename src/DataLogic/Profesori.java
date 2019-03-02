@@ -143,6 +143,40 @@ public class Profesori extends Person implements ProfesoriFunctions {
 		}	
 	}
 	
+	public Boolean updateProfesorData() {
+		//DBConnect objDB = new DBConnect("FIEKDB");
+		Connection conn = DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;
+		try {
+			List<Object> param = new ArrayList<Object>();
+			param.add(this.ID);
+			param.add(this.emri);
+			param.add(this.mbiemri);
+			param.add(this.email);
+			param.add(this.tel);
+			DBConnect.executeProcedure(conn,cstmt,"updateProfesorData", param);
+			conn.close();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	public Boolean updateProfesorPassword(String newPass) {
+		//DBConnect objDB = new DBConnect("FIEKDB");
+		Connection conn = DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;
+		try {
+			List<Object> param = new ArrayList<Object>();
+			param.add(this.ID);
+			param.add(Hash.saltedHashString(newPass, this.ID));
+			DBConnect.executeProcedure(conn,cstmt,"updateProfesorPassword", param);
+			conn.close();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
 	//HashTable procedura e cila ka me i mor krejt profesoret (vetem emri) dhe si qeles, dmth menyren per me ju qas do ta kete id-n e profes
 }
 

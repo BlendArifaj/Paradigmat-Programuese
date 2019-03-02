@@ -165,5 +165,38 @@ public class Administrata extends Person implements AdministrataFunctions{
 		}
 	}
 	
+	public Boolean updateAdministrataData() {
+		//DBConnect objDB = new DBConnect("FIEKDB");
+		Connection conn = DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;
+		try {
+			List<Object> param = new ArrayList<Object>();
+			param.add(this.ID);
+			param.add(this.emri);
+			param.add(this.mbiemri);
+			param.add(this.email);
+			param.add(this.tel);
+			DBConnect.executeProcedure(conn,cstmt,"updateAdministrataData", param);
+			conn.close();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	public Boolean updateAdministrataPassword(String newPass) {
+		//DBConnect objDB = new DBConnect("FIEKDB");
+		Connection conn = DBConnect.Connect2DB("fiekdb");
+		CallableStatement cstmt = null;
+		try {
+			List<Object> param = new ArrayList<Object>();
+			param.add(this.ID);
+			param.add(Hash.saltedHashString(newPass, this.ID));
+			DBConnect.executeProcedure(conn,cstmt,"updateAdministrataPassword", param);
+			conn.close();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
 
 }
