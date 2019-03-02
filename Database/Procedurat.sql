@@ -135,11 +135,11 @@ DELIMITER //;
 DELIMITER //
 CREATE PROCEDURE insertPunim(
 IN tema varchar(60),
-IN permbajtja blob,
+IN permbajtja varchar(100),
 IN profesorId varchar(20),
 IN studentId varchar(20),
-IN departamenti varchar(50),
-IN lenda varchar(30)
+IN deptid varchar(50),
+IN lendaid varchar(30)
 )
 BEGIN
 	INSERT INTO punimi values(null,
@@ -147,8 +147,8 @@ BEGIN
     permbajtja,
 	profesorId,
 	studentId,
-	(select d.id from Departamenti d where d.emri=departamenti),
-	(select l.id from lenda l where l.lenda = lenda),
+	deptid,
+	lendaid,
 	(select CURDATE()),
 	FALSE,
 	FALSE);
@@ -185,13 +185,22 @@ SELECT * FROM PROFESORI P WHERE P.ID = profesorID;
 END //
 DELIMITER //;
 
+DELIMITER //
+CREATE PROCEDURE getProfesoriFromEmri(
+IN emriMbiemri varchar(61))
+BEGIN
+SELECT * FROM PROFESORI P WHERE concat(P.emri,' ',P.mbiemri) like concat('%',emriMbiemri,'%');
+END //
+DELIMITER //;
+
+
 #PROCEDURA E CILA I MERR FAKULTETET NE TE CILAT JEP MESIM PROFESORI
 DELIMITER //
 CREATE PROCEDURE getProfesoriFakultetet(
 IN profesorID varchar(20))
 BEGIN
 SELECT F.EMRI AS FAKULTETI
-FROM PROFESOR P, FAKULTETI F,
+FROM PROFESORI P, FAKULTETI F,
 	PROFESORFAKULTET PF
 WHERE P.ID = PF.PROFESORID
 	AND F.ID = PF.FAKULTETID
@@ -199,16 +208,17 @@ WHERE P.ID = PF.PROFESORID
 END //
 DELIMITER //;
 #PROCEDURA E CILA I MERR LENDET TE CILAT I JEP PROFESORI
+drop procedure getProfesoriLendet;
 DELIMITER //
 CREATE PROCEDURE getProfesoriLendet(
 IN profesorID varchar(20))
 BEGIN
 SELECT L.LENDA AS LENDA
-FROM PROFESOR P, LENDA L,
+FROM PROFESORI P, LENDA L,
 	PROFESORLENDA PL
-WHERE P.ID = PF.PROFESORID
+WHERE P.ID = PL.PROFESORID
 	AND L.ID = PL.LENDAID
-	AND P.ID = PROFESORID;
+	AND P.ID = profesorID;
 END //
 DELIMITER //;
 
@@ -496,55 +506,111 @@ END$$
 DELIMITER ;
 
 USE `fiekdb`;
-DROP procedure IF EXISTS `updatePersonData`;
+DROP procedure IF EXISTS `updateStudentData`;
 DELIMITER $$
 USE `fiekdb`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updatePersonData`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateStudentData`(
 IN IDPERSON VARCHAR(20),
 IN _EMRI VARCHAR(30),
 IN _MBIEMRI VARCHAR(30),
 IN _EMAIL VARCHAR(40),
 IN _TEL VARCHAR(15))
 BEGIN
-BEGIN
-IF (SELECT COUNT(*) FROM Student S WHERE S.ID = IDPERSON) = 1 THEN
 	UPDATE STUDENT S
-    SET S.EMRI = _EMRI, S.MBIEMRI = _MBIEMRI, S.EMAIL = _EMAIL, S.PASSHASH = _PASSHASH, S.TEL = _TEL
-    WHERE S.ID = _IDPERSON;
-ELSEIF(SELECT COUNT(*) FROM Profesori P WHERE P.ID = IDPERSON) =1 THEN
-	UPDATE PROFESORI P
-    SET P.EMRI = _EMRI, P.MBIEMRI = _MBIEMRI, P.EMAIL = _EMAIL, P.PASSHASH = _PASSHASH, P.TEL = _TEL
-    WHERE P.ID = _IDPERSON;
-ELSEIF(SELECT COUNT(*) FROM Administrata A WHERE A.ID = IDPERSON) =1 THEN
-	UPDATE Administrata A
-    SET A.EMRI = _EMRI, A.MBIEMRI = _MBIEMRI, A.EMAIL = _EMAIL, A.PASSHASH = _PASSHASH, A.TEL = _TEL
-    WHERE A.ID = _IDPERSON;
+    SET S.EMRI = _EMRI, S.MBIEMRI = _MBIEMRI, S.EMAIL = _EMAIL,S.TEL = _TEL
+    WHERE S.ID = IDPERSON;
+END $$
+DELIMITER ;
 
-END$$
+USE `fiekdb`;
+DROP procedure IF EXISTS `updateStudentPassword`;
+DELIMITER $$
+USE `fiekdb`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateStudentPassword`(
+IN IDPERSON VARCHAR(20),
+IN _PASSHASH VARCHAR(260))
+BEGIN
+	UPDATE STUDENT S
+    SET S.PASSHASH = _PASSHASH
+    WHERE S.ID = IDPERSON;
+END $$
 DELIMITER ;
 
 
-
-#PROCEDURA E CILA E BENE UPDATE PERSONIN
-CREATE PROCEDURE updatePerson(
+USE `fiekdb`;
+DROP procedure IF EXISTS `updateProfesorData`;
+DELIMITER $$
+USE `fiekdb`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateProfesorData`(
 IN IDPERSON VARCHAR(20),
 IN _EMRI VARCHAR(30),
 IN _MBIEMRI VARCHAR(30),
 IN _EMAIL VARCHAR(40),
-IN _PASSHASH VARCHAR(260),
 IN _TEL VARCHAR(15))
 BEGIN
-IF (SELECT COUNT(*) FROM Student S WHERE S.ID = IDPERSON) = 1 THEN
-	UPDATE STUDENT S
-    SET S.EMRI = _EMRI, S.MBIEMRI = _MBIEMRI, S.EMAIL = _EMAIL, S.PASSHASH = _PASSHASH, S.TEL = _TEL
-    WHERE S.ID = _IDPERSON
-ELSEIF (SELECT COUNT(*) FROM Profesori P WHERE P.ID = IDPERSON) =1 THEN
+	UPDATE PROFESORI S
+    SET S.EMRI = _EMRI, S.MBIEMRI = _MBIEMRI, S.EMAIL = _EMAIL,S.TEL = _TEL
+    WHERE S.ID = IDPERSON;
+END $$
+DELIMITER ;
+
+USE `fiekdb`;
+DROP procedure IF EXISTS `updateProfesorPassword`;
+DELIMITER $$
+USE `fiekdb`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateProfesorPassword`(
+IN IDPERSON VARCHAR(20),
+IN _PASSHASH VARCHAR(260))
+BEGIN
 	UPDATE PROFESORI P
-    SET P.EMRI = _EMRI, P.MBIEMRI = _MBIEMRI, P.EMAIL = _EMAIL, P.PASSHASH = _PASSHASH, P.TEL = _TEL
-    WHERE P.ID = _IDPERSON
-ELSE (SELECT COUNT(*) FROM Administrata A WHERE A.ID = IDPERSON) =1 THEN
-	UPDATE Administrata A
-    SET A.EMRI = _EMRI, A.MBIEMRI = _MBIEMRI, A.EMAIL = _EMAIL, A.PASSHASH = _PASSHASH, A.TEL = _TEL
-    WHERE A.ID = _IDPERSON
-END //
-DELIMITER //;
+    SET P.PASSHASH = _PASSHASH
+    WHERE P.ID = IDPERSON;
+END $$
+DELIMITER ;
+
+
+USE `fiekdb`;
+DROP procedure IF EXISTS `updateAdministrataData`;
+DELIMITER $$
+USE `fiekdb`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateAdministrataData`(
+IN IDPERSON VARCHAR(20),
+IN _EMRI VARCHAR(30),
+IN _MBIEMRI VARCHAR(30),
+IN _EMAIL VARCHAR(40),
+IN _TEL VARCHAR(15))
+BEGIN
+	UPDATE ADMINISTRATA S
+    SET S.EMRI = _EMRI, S.MBIEMRI = _MBIEMRI, S.EMAIL = _EMAIL,S.TEL = _TEL
+    WHERE S.ID = IDPERSON;
+END $$
+DELIMITER ;
+
+USE `fiekdb`;
+DROP procedure IF EXISTS `updateAdministrataPassword`;
+DELIMITER $$
+USE `fiekdb`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateAdministrataPassword`(
+IN IDPERSON VARCHAR(20),
+IN _PASSHASH VARCHAR(260))
+BEGIN
+	UPDATE ADMINISTRATA P
+    SET P.PASSHASH = _PASSHASH
+    WHERE P.ID = IDPERSON;
+END $$
+DELIMITER ;
+
+USE `fiekdb`;
+DROP procedure IF EXISTS `getAllProfesoret`;
+DELIMITER $$
+USE `fiekdb`$$
+#id varchar(20) not null primary key,
+#emri varchar(30) not null,
+#mbiemri varchar(30) not null,
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAllProfesoret`()
+BEGIN
+	select P.id as id, p.emri as emri, p.mbiemri as mbiemri
+    from Profesori P;
+END $$
+DELIMITER ;
+

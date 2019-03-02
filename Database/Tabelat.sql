@@ -63,10 +63,11 @@ create table PunimProcesi(
 id int auto_increment primary key,
 procesi varchar(50));
 
+drop table Punimi;
 create table Punimi(
 id int auto_increment primary key,
 tema varchar(60) not null,
-permbajtja blob not null ,#65535 bytes
+permbajtja varchar(100) not null ,#65535 bytes
 profesorId varchar(20) not null,
 studentId varchar(20) not null,
 departamentId varchar(10) not null,

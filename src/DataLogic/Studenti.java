@@ -101,7 +101,7 @@ public class Studenti extends Person implements StudentiFunctions{
 				Punimi objP = new Punimi(res.getInt("id"),res.getString("tema"),res.getString("profesorID"),
 						res.getString("StudentID"),res.getString("fakultetID"),res.getString("dataDorezimit"),
 						res.getString("lenda"),res.getBoolean("profesoriPergjigje"),
-						res.getBoolean("administrataPergjigje"),res.getBytes("permbajtja"));
+						res.getBoolean("administrataPergjigje"),res.getString("permbajtja"));
 				returnPunimet.add(objP);
 			}
 			conn.close();

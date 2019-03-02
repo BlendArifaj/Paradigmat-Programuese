@@ -23,10 +23,10 @@ public class Punimi implements PunimiFunctions{
 	private Lenda lenda = new Lenda();
 	private boolean profesorPergjigje = false;
 	private boolean administratPergjigje = false; 
-	private byte[] permbajtja = null;
+	private String path = null;
 	
 	public Punimi(int iD, String titulli, String profesorID, String studentID, String departamenti, String dataDorezimit,
-			String lenda, boolean profesorPergjigje, boolean administratPergjigje, byte[] permbajtja) {
+			String lenda, boolean profesorPergjigje, boolean administratPergjigje,String permbajtja) {
 		this.ID = iD;
 		this.titulli = titulli;
 		this.profesori.getProfesori(profesorID);
@@ -36,14 +36,14 @@ public class Punimi implements PunimiFunctions{
 		this.lenda.getLenden(lenda);
 		this.profesorPergjigje = profesorPergjigje;
 		this.administratPergjigje = administratPergjigje;
-		this.permbajtja = permbajtja;
+		this.path = permbajtja;
 	}
 	
 	public Punimi(String titulli,String profesorID, String lenda,String pathToPermbajtja) {
 		this.titulli = titulli;
 		this.profesori.getProfesori(profesorID);
 		this.lenda.getLenden(lenda);
-		this.permbajtja = this.getPermbajtja(pathToPermbajtja);
+		this.path = pathToPermbajtja;
 	}
 	
 	public boolean insertNewPunim() {
@@ -53,20 +53,16 @@ public class Punimi implements PunimiFunctions{
 		try {
 			List<Object> param = new ArrayList<Object>();
 			param.add(this.titulli);
-			param.add(this.permbajtja);
+			param.add(this.path);
 			param.add(this.profesori.getID());
 			param.add(this.studenti.getID());
-			param.add(this.departamenti);
-			param.add(this.lenda.getLenda());
-			ResultSet res = DBConnect.executeProcedure(conn,cstmt,"insertPunim", param);
+			param.add(this.departamenti.getID());
+			param.add(this.lenda.getID());
+			DBConnect.executeProcedure(conn,cstmt,"insertPunim", param);
 			conn.close();
-			cstmt.close();
-			res.close();
-			if(!DBConnect.isOk) {
-				return false;
-			}
 			return true;
 		} catch (Exception e) {
+			System.out.println(e);
 			return false;
 		}		
 	}
@@ -133,11 +129,11 @@ public class Punimi implements PunimiFunctions{
 	public void setAdministratPergjigje(boolean administratPergjigje) {
 		this.administratPergjigje = administratPergjigje;
 	}
-	public byte[] getPermbajtja() {
-		return permbajtja;
+	public String getPermbajtja() {
+		return this.path;
 	}
-	public void setPermbajtja(byte[] permbajtja) {
-		this.permbajtja = permbajtja;
+	public void setPath(String newPath) {
+		this.path = newPath;
 	}
 
 }
