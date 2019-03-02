@@ -70,7 +70,7 @@ BEGIN
 INSERT INTO Fakulteti values(
 id,
 emri,
-(Select u.id from Universiteti u where u.emri = universiteti),
+(Select u.id from Universiteti u where u.universiteti = universiteti),
 adresa);
 END //
 DELIMITER //;
@@ -247,6 +247,8 @@ F.UNIVERSITETIID = U.ID;
 END //
 DELIMITER //
 
+
+
 #Procedura e cila i merr departamentet e fakultetit
 DELIMITER //
 CREATE PROCEDURE getDepartamentetFakultetit(
@@ -259,13 +261,15 @@ END //
 DELIMITER //;
 
 #PROCEDURA E CILA I MERR TE DHENAT E ADMINISRATES
+DROP PROCEDURE getAdministrata;
 DELIMITER //
 CREATE PROCEDURE getAdministrata(
 IN _ID varchar(20))
 BEGIN
-SELECT *
-FROM ADMINISTRATA A 
-WHERE A.ID = _ID;
+SELECT A.ID AS ID,A.EMRI AS EMRI, A.MBIEMRI AS MBIEMRI, A.EMAIL AS EMAIL,
+	A.PASSHASH AS PASSHASH,A.TEL AS TEL,A.access AS access,F.EMRI AS FAKULTETI
+FROM ADMINISTRATA A, FAKULTETI F
+WHERE A.ID = _ID AND A.fakultetiId = F.ID;
 END //
 DELIMITER //;
 
@@ -300,6 +304,17 @@ BEGIN
 SELECT * 
 FROM UNIVERSITETI U
 WHERE U.UNIVERSITETI = UNINAME;
+END //
+DELIMITER //;
+
+#PROCEDURA E CILA E MERR UNIVERSITETIN
+DELIMITER //
+CREATE PROCEDURE getUniversitetiFromID(
+IN ID int)
+BEGIN
+SELECT * 
+FROM UNIVERSITETI U
+WHERE U.ID = ID;
 END //
 DELIMITER //;
 
@@ -485,4 +500,20 @@ FROM FAKULTETI F
 WHERE F.universitetiId = uniID;
 END$$
 DELIMITER ;
+USE `fiekdb`;
+DROP procedure IF EXISTS `getStudenti`;
 
+DELIMITER $$
+USE `fiekdb`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getStudenti`(
+IN stdID varchar(20))
+BEGIN
+SELECT S.id,S.emri,S.mbiemri,S.email,S.passhash,S.tel,S.niveliStudimeve,D.departamenti,F.emri as Fakulteti,U.universiteti,S.qyteti as qyteti
+FROM STUDENT S , Departamenti D, Fakulteti F,  Universiteti U
+WHERE S.ID = stdID and
+S.departamentId = D.id and
+D.fakultetiId = F.id and 
+F.universitetiId = u.id;
+END$$
+
+DELIMITER ;

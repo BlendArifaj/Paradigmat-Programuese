@@ -11,7 +11,7 @@ import Functions.AdministrataFunctions;
 public class Administrata extends Person implements AdministrataFunctions{
 
 	private int access;
-	private Fakulteti fakulteti;
+	private Fakulteti fakulteti = new Fakulteti();
 	public Administrata() {
 		super();
 	}
@@ -42,10 +42,8 @@ public class Administrata extends Person implements AdministrataFunctions{
 			//DBConnect objDB = new DBConnect("FIEKDB");
 			List<Object> param = new ArrayList<Object>();
 			param.add(prof.getID());
-			ResultSet res = DBConnect.executeProcedure(conn,cstmt,"aprovoProfesorin", param);
+			DBConnect.executeProcedure(conn,cstmt,"aprovoProfesorin", param);
 			conn.close();
-			cstmt.close();
-			res.close();
 			return true;
 		} catch (Exception e) {
 			try {
@@ -101,7 +99,7 @@ public class Administrata extends Person implements AdministrataFunctions{
 				this.passHash = res.getString("passhash");
 				this.tel = res.getString("tel");
 				//System.out.println(res.getString("FAKULTETI"));
-				//this.fakulteti.inicializoFakultetin(res.getString("FAKULTETI"));
+				this.fakulteti.inicializoFakultetin(res.getString("Fakulteti"));
 				this.access = res.getInt("access");
 				//this.inicializoNjoftimet();
 			}

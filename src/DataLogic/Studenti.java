@@ -121,6 +121,7 @@ public class Studenti extends Person implements StudentiFunctions{
 	public void getStudenti(String stdId){
 		Connection conn = DBConnect.Connect2DB("fiekdb");
 		CallableStatement cstmt = null;
+		
 		//DBConnect objDB = new DBConnect("FIEKDB");
 		try {
 			List<Object> param = new ArrayList<Object>();
@@ -144,7 +145,7 @@ public class Studenti extends Person implements StudentiFunctions{
 			res.close();
 			conn.close();
 		} catch (Exception e) {
-
+			System.out.println(e);
 		}
 	}
 	

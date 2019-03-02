@@ -437,6 +437,7 @@ public class frmMain extends JFrame {
 		panelStudentMyAccount.setLayout(null);
 		
 		txtFakulteti = new JTextField();
+		txtFakulteti.setEditable(false);
 		txtFakulteti.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		txtFakulteti.setColumns(10);
 		txtFakulteti.setBorder(null);
@@ -444,6 +445,7 @@ public class frmMain extends JFrame {
 		panelStudentMyAccount.add(txtFakulteti);
 		
 		txtDepartamenti = new JTextField();
+		txtDepartamenti.setEditable(false);
 		txtDepartamenti.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		txtDepartamenti.setColumns(10);
 		txtDepartamenti.setBorder(null);
@@ -451,6 +453,7 @@ public class frmMain extends JFrame {
 		panelStudentMyAccount.add(txtDepartamenti);
 		
 		txtTel = new JTextField();
+		txtTel.setEditable(false);
 		txtTel.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		txtTel.setColumns(10);
 		txtTel.setBorder(null);
@@ -458,6 +461,7 @@ public class frmMain extends JFrame {
 		panelStudentMyAccount.add(txtTel);
 		
 		txtEmail = new JTextField();
+		txtEmail.setEditable(false);
 		txtEmail.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		txtEmail.setColumns(10);
 		txtEmail.setBorder(null);
@@ -465,6 +469,7 @@ public class frmMain extends JFrame {
 		panelStudentMyAccount.add(txtEmail);
 		
 		txtMbiemri = new JTextField();
+		txtMbiemri.setEditable(false);
 		txtMbiemri.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		txtMbiemri.setColumns(10);
 		txtMbiemri.setBorder(null);
@@ -472,6 +477,7 @@ public class frmMain extends JFrame {
 		panelStudentMyAccount.add(txtMbiemri);
 		
 		txtUniversiteti = new JTextField();
+		txtUniversiteti.setEditable(false);
 		txtUniversiteti.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		txtUniversiteti.setColumns(10);
 		txtUniversiteti.setBorder(null);
@@ -479,6 +485,7 @@ public class frmMain extends JFrame {
 		panelStudentMyAccount.add(txtUniversiteti);
 		
 		txtEmri = new JTextField();
+		txtEmri.setEditable(false);
 		txtEmri.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		txtEmri.setBounds(341, 136, 403, 55);
 		txtEmri.setBorder(null);
@@ -1666,6 +1673,7 @@ public class frmMain extends JFrame {
 					panelStudentNotifications.setVisible(true);
 					//Profesori
 				}else {
+					panelStudentMyAccount.setVisible(false);
 					panelAdministrataNjoftimet.setVisible(true);
 					panelAdministrataSettings.setVisible(false);
 					panelAdministrataSettingsShto.setVisible(false);
@@ -1706,6 +1714,7 @@ public class frmMain extends JFrame {
 					panelStudentSettings.setVisible(false);
 					panelStudentNotifications.setVisible(false);
 				}else {
+					panelStudentMyAccount.setVisible(false);
 					panelAdministrataNjoftimet.setVisible(false);
 					panelAdministrataSettings.setVisible(false);
 					panelAdministrataSettingsShto.setVisible(false);
@@ -1747,6 +1756,7 @@ public class frmMain extends JFrame {
 					panelStudentSettings.setVisible(true);
 					panelStudentNotifications.setVisible(false);
 				}else {
+					panelStudentMyAccount.setVisible(false);
 					panelAdministrataNjoftimet.setVisible(false);
 					panelAdministrataSettings.setVisible(false);
 					panelAdministrataSettingsShto.setVisible(true);
@@ -1894,6 +1904,7 @@ public class frmMain extends JFrame {
 					panelStudentSettings.setVisible(false);			
 					panelStudentNotifications.setVisible(false);
 				}else {
+					panelStudentMyAccount.setVisible(false);
 					panelAdministrataNjoftimet.setVisible(false);
 					panelAdministrataSettings.setVisible(false);
 					panelAdministrataSettingsShto.setVisible(false);
@@ -1917,6 +1928,50 @@ public class frmMain extends JFrame {
 		btnMyAccount.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				panelStudentMyAccount.setVisible(true);
+				panelStudentProfile.setVisible(false);
+				panelStudentStats.setVisible(false);
+				panelStudentDiploma.setVisible(false);
+				panelStudentSettings.setVisible(false);
+				panelStudentNotifications.setVisible(false);
+				panelAdministrataNjoftimet.setVisible(false);
+				panelAdministrataSettings.setVisible(false);
+				panelAdministrataSettingsShto.setVisible(false);
+				panelAdministrataDiploma.setVisible(false);
+				panelAdministrataStats.setVisible(false);
+				panelAdministrataBtnKontrollo.setVisible(false);	
+				panelAdministrataAddDepartament.setVisible(false);
+				panelAdministrataAddLenda.setVisible(false);
+				panelAdministrataAddFakultet.setVisible(false);
+				panelAdministrataAddUniversity.setVisible(false);
+				
+				//Mbushja me vlera
+				if(newLogin.getLloji().equals("Student")) {
+					txtEmri.setText(newLogin.student.getEmri());
+					txtMbiemri.setText(newLogin.student.getMbiemri());
+					txtEmail.setText(newLogin.student.getEmail());
+					txtTel.setText(newLogin.student.getTel());
+					txtUniversiteti.setText(newLogin.student.getUniversiteti().getEmri());
+					txtFakulteti.setText(newLogin.student.getFakulteti().getEmri());
+					txtDepartamenti.setText(newLogin.student.getDepartamenti().getDeparamenti());
+				}else if(newLogin.getLloji().equals("Profesor")) {
+					txtEmri.setText(newLogin.profesor.getEmri());
+					txtMbiemri.setText(newLogin.profesor.getMbiemri());
+					txtEmail.setText(newLogin.profesor.getEmail());
+					txtTel.setText(newLogin.profesor.getTel());
+					txtUniversiteti.setText("-NOT DEFINED-");
+					txtFakulteti.setText("-NOT DEFINED-");
+					txtDepartamenti.setText("-NOT DEFINED-");
+				}else {
+					txtEmri.setText(newLogin.administrat.getEmri());
+					txtMbiemri.setText(newLogin.administrat.getMbiemri());
+					txtEmail.setText(newLogin.administrat.getEmail());
+					txtTel.setText(newLogin.administrat.getTel());
+					txtUniversiteti.setText(newLogin.administrat.getFakulteti().getUniversiteti().getEmri());
+					txtFakulteti.setText(newLogin.administrat.getFakulteti().getEmri());
+					txtDepartamenti.setText("-NOT DEFINED-");
+				}
+			
 			}
 		});
 	}
