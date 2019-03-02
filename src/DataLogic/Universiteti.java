@@ -8,7 +8,7 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.List;
 
-public class Universiteti {
+public final class Universiteti {
 	private int ID;
 	private String emri;
 	private List<Fakulteti> fakultetet;
