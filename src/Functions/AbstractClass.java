@@ -24,4 +24,5 @@ public abstract class AbstractClass {
 	protected void inicializoNjoftimet() {}
 	public Boolean updateData() {
 		return null;}
+	
 }
