@@ -18,6 +18,7 @@ import DataLogic.Departamenti;
 import DataLogic.Fakulteti;
 import DataLogic.Hash;
 import DataLogic.Profesori;
+import DataLogic.RegularExpressionClass;
 import DataLogic.Studenti;
 import DataLogic.Universiteti;
 
@@ -447,8 +448,7 @@ public class RegisterUser {
 				if(validateDataStudenti(newStudent)) {
 					JOptionPane.showMessageDialog(null, "Ju lutem mbusheni te gjitha fushat me te dhena!");
 	
-				}{
-				
+				}else{
 					if(newStudent.insertNewStudent()) {
 					JOptionPane.showMessageDialog(null, "Jeni regjistruar me sukses! Jeni ne listen e pritjes se Administrates per pranim!");
 					txtStdID.setText("");
@@ -469,23 +469,31 @@ public class RegisterUser {
 	
 	public boolean validateDataProfesori(Profesori newProfesor) {
 		
-		if (newProfesor.getID().isEmpty() && newProfesor.getEmri().isEmpty() && newProfesor.getMbiemri().isEmpty() &&
+		if (newProfesor.getID().isEmpty() || newProfesor.getEmri().isEmpty() || newProfesor.getMbiemri().isEmpty() ||
 				newProfesor.getEmail().isEmpty()) {
 			return true;
+		}	
+		String regx = "^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$";
+		if(RegularExpressionClass.cheackString(newProfesor.getEmail(), regx)) {
+			return false;
+		}else {
+			return true;
 		}
-		
-		return false;
 	}
 	
 	public boolean validateDataStudenti(Studenti newStudent) {
 		
-		if (newStudent.getID().isEmpty() && newStudent.getEmri().isEmpty() && newStudent.getMbiemri().isEmpty() &&
+		if (newStudent.getID().isEmpty() || newStudent.getEmri().isEmpty() || newStudent.getMbiemri().isEmpty() ||
 				newStudent.getEmail().isEmpty()) {
 			return true;
 		}
-		
-		return false;
-	}
+		String regx = "^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$";
+		if(RegularExpressionClass.cheackString(newStudent.getEmail(), regx)) {
+			return false;
+		}else {
+			return true;
+		}
+			}
 	
 	
 }

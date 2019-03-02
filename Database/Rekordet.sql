@@ -26,6 +26,7 @@ insert into Lenda values(null,'Database');
 insert into Lenda values(null,'Paradigmat Programuese');
 insert into Lenda values(null,'Modeli i te dhenave');
 
+insert into Profesori values("P001","Blend","Arifaj","blend.arifaj@uni-pr.edu","43346183620923653ae3897b569e9a1f0a37ea71d1d77ca8a19fc0d2f0b9f669","044-444-444",1);
 select * from Lenda;
 SELECT * FROM PROFESORI P WHERE P.ID = profesorID;
 select * from ProfesorLenda;

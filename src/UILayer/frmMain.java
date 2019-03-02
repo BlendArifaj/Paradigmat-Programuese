@@ -49,6 +49,8 @@ import javax.swing.AbstractListModel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.RegularExpression;
+
 import Business.Login;
 import DataLogic.DBConnect;
 import DataLogic.Departamenti;
@@ -57,6 +59,7 @@ import DataLogic.Hash;
 import DataLogic.Lenda;
 import DataLogic.Profesori;
 import DataLogic.Punimi;
+import DataLogic.RegularExpressionClass;
 import DataLogic.Studenti;
 import DataLogic.Universiteti;
 import javafx.scene.layout.Pane;
@@ -201,6 +204,7 @@ public class frmMain extends JFrame {
 	private JTextField txtLenda_1;
 	private JTable table_1;
 	private JScrollPane scrollPane_1;
+	private JLabel pathLabel;
 	
 	
 	/**
@@ -567,11 +571,18 @@ public class frmMain extends JFrame {
 						chooser.showSaveDialog(null);
 
 					    FileNameExtensionFilter filter = new FileNameExtensionFilter(
-					        "docx", "doc", "txt");
+					        "docx", "doc", "txt","pdf");
 					    chooser.setFileFilter(filter);
 					    
 					    int returnVal = chooser.showOpenDialog(frame);
 					    if(returnVal == JFileChooser.APPROVE_OPTION) {
+					    	String regex = ".pdf$";
+					    	if(RegularExpressionClass.cheackString(chooser.getSelectedFile().getPath(),regex)) {
+					    		pathLabel.setText(chooser.getSelectedFile().getPath());
+					    	}else {
+					    		JOptionPane.showMessageDialog(null, "Format i papranuar, zgjedhni formation PDF!");
+					    	}
+					    	
 					    }
 					    
 					    //System.out.println(path.replace("\\", "\\\\"));
@@ -602,14 +613,24 @@ public class frmMain extends JFrame {
 				cmbZgjedhDepartamentin.setBackground(Color.WHITE);
 				cmbZgjedhDepartamentin.setBounds(322, 474, 363, 84);
 				panelStudentDiploma.add(cmbZgjedhDepartamentin);
-				cmbZgjedhDepartamentin.setModel(new DefaultComboBoxModel(new String[] {newLogin.student.getDepartamenti().getDeparamenti()}));
+				try {
+					cmbZgjedhDepartamentin.setModel(new DefaultComboBoxModel(new String[] {newLogin.student.getDepartamenti().getDeparamenti()}));
+
+				}catch(Exception e){
+					
+				}
 				
 				cmbZgjedhFakultetin = new JComboBox();
 				cmbZgjedhFakultetin.setFont(new Font("Tahoma", Font.PLAIN, 30));
 				cmbZgjedhFakultetin.setBackground(Color.WHITE);
 				cmbZgjedhFakultetin.setBounds(322, 376, 363, 84);
 				panelStudentDiploma.add(cmbZgjedhFakultetin);
-				cmbZgjedhFakultetin.setModel(new DefaultComboBoxModel(new String[] {newLogin.student.getFakulteti().getEmri()}));
+				try { 
+					cmbZgjedhFakultetin.setModel(new DefaultComboBoxModel(new String[] {newLogin.student.getFakulteti().getEmri()}));
+
+				}catch(Exception e){
+					
+				}
 				
 						
 						txtFakulteti_1 = new JTextField();
@@ -654,6 +675,10 @@ public class frmMain extends JFrame {
 						cmbZgjedhLenden.setBackground(Color.WHITE);
 						cmbZgjedhLenden.setBounds(322, 668, 363, 84);
 						panelStudentDiploma.add(cmbZgjedhLenden);
+						
+						pathLabel = new JLabel("");
+						pathLabel.setBounds(771, 571, 190, 16);
+						panelStudentDiploma.add(pathLabel);
 						panelStudentDiploma.setVisible(false);
 				
 				panelStudentNotifications = new JPanel();
