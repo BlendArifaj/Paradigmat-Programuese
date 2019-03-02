@@ -358,14 +358,19 @@ public class RegisterUser {
 				
 				if(validateDataProfesori(newProfesori)) {
 					JOptionPane.showMessageDialog(null, "Ju lutem mbusheni te gjitha fushat me te dhena!");
-				}
-				
+				} else {
 				
 				if(newProfesori.insertNewProfesor()) {
 					JOptionPane.showMessageDialog(null, "Jeni regjistruar me sukses! Jeni ne listen e pritjes se Administrates per pranim!");
+					txtPID.setText("");
+					txtPEmri.setText("");
+					txtPMbiemri.setText("");
+					txtPEmail.setText("");
+					txtPTel.setText("");
 
 				}else {
 					JOptionPane.showMessageDialog(null, "Gabim gjate regjistrimit! Ju lutem kontrolloni te dhenat!");
+				}
 				}
 			}
 		});
@@ -441,13 +446,18 @@ public class RegisterUser {
 				
 				if(validateDataStudenti(newStudent)) {
 					JOptionPane.showMessageDialog(null, "Ju lutem mbusheni te gjitha fushat me te dhena!");
-				}
+		
+				}{
 				
-				
-				if(newStudent.insertNewStudent()) {
+					if(newStudent.insertNewStudent()) {
 					JOptionPane.showMessageDialog(null, "Jeni regjistruar me sukses! Jeni ne listen e pritjes se Administrates per pranim!");
-				}else {
+					txtStdID.setText("");
+					txtStdEmri.setText("");
+					txtStdMbiemri.setText("");
+					txtStdEmail.setText("");
+					}else {
 					JOptionPane.showMessageDialog(null, "Gabim gjate regjistrimit! Ju lutem kontrolloni te dhenat!");
+				}
 				}
 	
 			}
