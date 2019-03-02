@@ -28,7 +28,6 @@ insert into Lenda values(null,'Modeli i te dhenave');
 
 select * from Lenda;
 SELECT * FROM PROFESORI P WHERE P.ID = profesorID;
-
 select * from ProfesorLenda;
 
 select * from Punimi;

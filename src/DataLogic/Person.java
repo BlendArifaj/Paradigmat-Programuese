@@ -8,9 +8,16 @@ import java.util.List;
 
 import Functions.AbstractClass;
 
-public class Person extends AbstractClass {
+public class Person{
 	
-	
+	protected String ID = null;
+	protected String emri = null;
+	protected String mbiemri = null;
+	protected String email = null;
+	protected String passHash = null;
+	protected String tel = null;
+	protected List<Njoftimi> njoftimet = new ArrayList<Njoftimi>();
+	protected List<Njoftimi> newNjoftimet = new ArrayList<Njoftimi>();
 	protected boolean newNjoftim = false;
 	public Person() {
 		
