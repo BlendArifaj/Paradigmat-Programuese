@@ -172,6 +172,8 @@ public class frmMain extends JFrame {
 	private JTextField txtProfileEmail;
 	private JTextField txtProfileTel;
 	
+	private JButton btnSave;
+	
 	
 	/**
 	 * Launch the application.
@@ -420,17 +422,70 @@ public class frmMain extends JFrame {
 		panelAdministrataBtnKontrollo = new JPanel();
 		panelAdministrataBtnKontrollo.setVisible(false);
 		
-		panelStudentDiploma = new JPanel();
-		panelStudentDiploma.setVisible(false);
-		
 		panelAdministrataSettingsShto = new JPanel();
 		panelAdministrataSettingsShto.setVisible(false);
 		
 		panelStudentProfile = new JPanel();
 		panelStudentProfile.setVisible(false);
 		
+		panelStudentDiploma = new JPanel();
+		panelStudentDiploma.setVisible(false);
+		
 		panelStudentMyAccount = new JPanel();
 		panelStudentMyAccount.setVisible(false);
+		
+		panelStudentSettings = new JPanel();
+		panelStudentSettings.setVisible(false);
+		panelStudentSettings.setBounds(0, 0, 1427, 865);
+		panelMain.add(panelStudentSettings);
+		panelStudentSettings.setBackground(Color.WHITE);
+		panelStudentSettings.setLayout(null);
+		
+		txtStudentProfile = new JTextField();
+		txtStudentProfile.setText("Profile");
+		txtStudentProfile.setOpaque(false);
+		txtStudentProfile.setFont(new Font("Tahoma", Font.BOLD, 20));
+		txtStudentProfile.setColumns(10);
+		txtStudentProfile.setBorder(null);
+		txtStudentProfile.setBounds(548, 342, 74, 42);
+		panelStudentSettings.add(txtStudentProfile);
+		
+		JLabel lblStudentSettingsProfileIcon = new JLabel("New label");
+		lblStudentSettingsProfileIcon.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/settings_password_button.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
+		lblStudentSettingsProfileIcon.setBounds(538, 231, 100, 100);
+		panelStudentSettings.add(lblStudentSettingsProfileIcon);
+		
+		txtStudentPassword = new JTextField();
+		txtStudentPassword.setFont(new Font("Tahoma", Font.BOLD, 20));
+		txtStudentPassword.setText("Password");
+		txtStudentPassword.setBorder(null);
+		txtStudentPassword.setOpaque(false);
+		txtStudentPassword.setBounds(174, 342, 107, 42);
+		panelStudentSettings.add(txtStudentPassword);
+		txtStudentPassword.setColumns(10);
+		
+		JLabel lblStudentSettingsPassIcon = new JLabel("New label");
+		lblStudentSettingsPassIcon.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/settings_password_button.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
+		lblStudentSettingsPassIcon.setBounds(174, 231, 100, 100);
+		panelStudentSettings.add(lblStudentSettingsPassIcon);
+		
+		JLabel lblStudentSettingsPassRectangle = new JLabel("");
+		lblStudentSettingsPassRectangle.setIcon(new ImageIcon(frmMain.class.getResource("/Images/settings_button.png")));
+		lblStudentSettingsPassRectangle.setBounds(107, 217, 239, 183);
+		panelStudentSettings.add(lblStudentSettingsPassRectangle);
+		
+		JLabel lblStudentSettingsProfile = new JLabel("");
+		lblStudentSettingsProfile.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				panelStudentMyAccount.setVisible(true);
+				panelStudentSettings.setVisible(false);
+			}
+		});
+		lblStudentSettingsProfile.setIcon(new ImageIcon(frmMain.class.getResource("/Images/settings_button.png")));
+		lblStudentSettingsProfile.setBounds(464, 217, 239, 183);
+		panelStudentSettings.add(lblStudentSettingsProfile);
+		panelStudentSettings.setVisible(false);
 		panelStudentMyAccount.setBounds(0, 0, 1427, 865);
 		panelMain.add(panelStudentMyAccount);
 		panelStudentMyAccount.setBackground(Color.WHITE);
@@ -583,7 +638,129 @@ public class frmMain extends JFrame {
 		lblStudentDepartamentMyAccount.setIcon(new ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")));
 		lblStudentDepartamentMyAccount.setBounds(333, 704, 423, 105);
 		panelStudentMyAccount.add(lblStudentDepartamentMyAccount);
+		
+		JButton btnEdit = new JButton("Edit");
+		btnEdit.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		btnEdit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtEmri.setEnabled(true);
+				txtMbiemri.setEnabled(true);
+				txtEmail.setEnabled(true);
+				txtTel.setEnabled(true);
+				btnSave.setEnabled(true);
+				
+			}
+		});
+		btnEdit.setBounds(829, 725, 120, 60);
+		panelStudentMyAccount.add(btnEdit);
+		
+		btnSave = new JButton("Save");
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnSave.setEnabled(false);
+			}
+		});
+		btnSave.setEnabled(false);
+		btnSave.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		btnSave.setBounds(972, 725, 120, 60);
+		panelStudentMyAccount.add(btnSave);
 		panelStudentMyAccount.setVisible(false);
+		
+		panelStudentDiploma.setBounds(0, 0, 1427, 865);
+		panelMain.add(panelStudentDiploma);
+		panelStudentDiploma.setBackground(Color.WHITE);
+		panelStudentDiploma.setLayout(null);
+		
+		txtAdd = new JTextField();
+		txtAdd.setText("Add");
+		txtAdd.setOpaque(false);
+		txtAdd.setHorizontalAlignment(SwingConstants.CENTER);
+		txtAdd.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		txtAdd.setColumns(10);
+		txtAdd.setBorder(null);
+		txtAdd.setBounds(826, 726, 71, 46);
+		panelStudentDiploma.add(txtAdd);
+		
+		JLabel lblStudentDiplomaShto = new JLabel("");
+		lblStudentDiplomaShto.setIcon(new ImageIcon(frmMain.class.getResource("/Images/login_rectangle_login.png")));
+		lblStudentDiplomaShto.setBounds(761, 726, 200, 46);
+		panelStudentDiploma.add(lblStudentDiplomaShto);
+		
+		txtUpload = new JTextField();
+		txtUpload.setText("Upload");
+		txtUpload.setOpaque(false);
+		txtUpload.setHorizontalAlignment(SwingConstants.CENTER);
+		txtUpload.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		txtUpload.setColumns(10);
+		txtUpload.setBorder(null);
+		txtUpload.setBounds(807, 595, 114, 46);
+		panelStudentDiploma.add(txtUpload);
+		
+		JLabel lblStudentDiplomaUploadIcon = new JLabel("");
+		lblStudentDiplomaUploadIcon.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/upload.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
+		lblStudentDiplomaUploadIcon.setBounds(814, 484, 107, 111);
+		panelStudentDiploma.add(lblStudentDiplomaUploadIcon);
+		
+		txtDepartamenti_1 = new JTextField();
+		txtDepartamenti_1.setText("Departamenti");
+		txtDepartamenti_1.setOpaque(false);
+		txtDepartamenti_1.setHorizontalAlignment(SwingConstants.CENTER);
+		txtDepartamenti_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		txtDepartamenti_1.setColumns(10);
+		txtDepartamenti_1.setBorder(null);
+		txtDepartamenti_1.setBounds(207, 499, 375, 79);
+		panelStudentDiploma.add(txtDepartamenti_1);
+		
+		txtProfesori = new JTextField();
+		txtProfesori.setText("Fakulteti");
+		txtProfesori.setOpaque(false);
+		txtProfesori.setHorizontalAlignment(SwingConstants.CENTER);
+		txtProfesori.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		txtProfesori.setColumns(10);
+		txtProfesori.setBorder(null);
+		txtProfesori.setBounds(207, 355, 375, 79);
+		panelStudentDiploma.add(txtProfesori);
+		
+		txtShkruajTemen = new JTextField();
+		txtShkruajTemen.setHorizontalAlignment(SwingConstants.CENTER);
+		txtShkruajTemen.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		txtShkruajTemen.setText("Shkruaj temen");
+		txtShkruajTemen.setBounds(351, 140, 579, 79);
+		txtShkruajTemen.setBorder(null);
+		txtShkruajTemen.setOpaque(false);
+		panelStudentDiploma.add(txtShkruajTemen);
+		txtShkruajTemen.setColumns(10);
+		
+		JLabel lblStudentDiplomaTema = new JLabel("");
+		lblStudentDiplomaTema.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).getImage().getScaledInstance(600, 100, Image.SCALE_SMOOTH)));
+		lblStudentDiplomaTema.setBounds(341, 126, 608, 105);
+		panelStudentDiploma.add(lblStudentDiplomaTema);
+		
+		JLabel lblStudentDiplomaFakulteti = new JLabel("");
+		lblStudentDiplomaFakulteti.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).getImage().getScaledInstance(400, 100, Image.SCALE_SMOOTH)));
+		lblStudentDiplomaFakulteti.setBounds(197, 345, 400, 105);
+		panelStudentDiploma.add(lblStudentDiplomaFakulteti);
+		
+		JLabel lblStudentDiplomaDepart = new JLabel("Departamenti");
+		lblStudentDiplomaDepart.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).getImage().getScaledInstance(400, 100, Image.SCALE_SMOOTH)));
+		lblStudentDiplomaDepart.setBounds(197, 484, 400, 105);
+		panelStudentDiploma.add(lblStudentDiplomaDepart);
+		
+		// DB
+		// Tek Faqja per uploadim te diplomes , mbushja e comboBox me te dhenat nga profesorat e departamentit
+		JComboBox comboBoxProfesorat = new JComboBox();
+		comboBoxProfesorat.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		comboBoxProfesorat.setModel(new DefaultComboBoxModel(new String[] {"Blerim Rexha", "Lule Ahmedi", "Agni Dika"}));
+		comboBoxProfesorat.setBackground(Color.WHITE);
+		comboBoxProfesorat.setBounds(197, 646, 399, 84);
+		panelStudentDiploma.add(comboBoxProfesorat);
+		
+		JLabel lblStudentDiplomaUpload = new JLabel("");
+		lblStudentDiplomaUpload.setIcon(new ImageIcon(frmMain.class.getResource("/Images/settings_button.png")));
+		lblStudentDiplomaUpload.setBounds(761, 472, 200, 177);
+		panelStudentDiploma.add(lblStudentDiplomaUpload);
+		panels.add(panelStudentDiploma);
+		panelStudentDiploma.setVisible(false);
 		panelStudentProfile.setBounds(0, 0, 1427, 865);
 		panelMain.add(panelStudentProfile);
 		panelStudentProfile.setBackground(Color.WHITE);
@@ -1283,101 +1460,6 @@ public class frmMain extends JFrame {
 		lblShtoDepartamentRectangle.setBounds(348, 499, 271, 198);
 		lblShtoDepartamentRectangle.setIcon(new ImageIcon(frmMain.class.getResource("/Images/settings_button.png")));
 		panelAdministrataSettingsShto.add(lblShtoDepartamentRectangle);
-		
-		panelStudentDiploma.setBounds(0, 0, 1427, 865);
-		panelMain.add(panelStudentDiploma);
-		panelStudentDiploma.setBackground(Color.WHITE);
-		panelStudentDiploma.setLayout(null);
-		
-		txtAdd = new JTextField();
-		txtAdd.setText("Add");
-		txtAdd.setOpaque(false);
-		txtAdd.setHorizontalAlignment(SwingConstants.CENTER);
-		txtAdd.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		txtAdd.setColumns(10);
-		txtAdd.setBorder(null);
-		txtAdd.setBounds(826, 726, 71, 46);
-		panelStudentDiploma.add(txtAdd);
-		
-		JLabel lblStudentDiplomaShto = new JLabel("");
-		lblStudentDiplomaShto.setIcon(new ImageIcon(frmMain.class.getResource("/Images/login_rectangle_login.png")));
-		lblStudentDiplomaShto.setBounds(761, 726, 200, 46);
-		panelStudentDiploma.add(lblStudentDiplomaShto);
-		
-		txtUpload = new JTextField();
-		txtUpload.setText("Upload");
-		txtUpload.setOpaque(false);
-		txtUpload.setHorizontalAlignment(SwingConstants.CENTER);
-		txtUpload.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		txtUpload.setColumns(10);
-		txtUpload.setBorder(null);
-		txtUpload.setBounds(807, 595, 114, 46);
-		panelStudentDiploma.add(txtUpload);
-		
-		JLabel lblStudentDiplomaUploadIcon = new JLabel("");
-		lblStudentDiplomaUploadIcon.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/upload.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
-		lblStudentDiplomaUploadIcon.setBounds(814, 484, 107, 111);
-		panelStudentDiploma.add(lblStudentDiplomaUploadIcon);
-		
-		txtDepartamenti_1 = new JTextField();
-		txtDepartamenti_1.setText("Departamenti");
-		txtDepartamenti_1.setOpaque(false);
-		txtDepartamenti_1.setHorizontalAlignment(SwingConstants.CENTER);
-		txtDepartamenti_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		txtDepartamenti_1.setColumns(10);
-		txtDepartamenti_1.setBorder(null);
-		txtDepartamenti_1.setBounds(207, 499, 375, 79);
-		panelStudentDiploma.add(txtDepartamenti_1);
-		
-		txtProfesori = new JTextField();
-		txtProfesori.setText("Fakulteti");
-		txtProfesori.setOpaque(false);
-		txtProfesori.setHorizontalAlignment(SwingConstants.CENTER);
-		txtProfesori.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		txtProfesori.setColumns(10);
-		txtProfesori.setBorder(null);
-		txtProfesori.setBounds(207, 355, 375, 79);
-		panelStudentDiploma.add(txtProfesori);
-		
-		txtShkruajTemen = new JTextField();
-		txtShkruajTemen.setHorizontalAlignment(SwingConstants.CENTER);
-		txtShkruajTemen.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		txtShkruajTemen.setText("Shkruaj temen");
-		txtShkruajTemen.setBounds(351, 140, 579, 79);
-		txtShkruajTemen.setBorder(null);
-		txtShkruajTemen.setOpaque(false);
-		panelStudentDiploma.add(txtShkruajTemen);
-		txtShkruajTemen.setColumns(10);
-		
-		JLabel lblStudentDiplomaTema = new JLabel("");
-		lblStudentDiplomaTema.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).getImage().getScaledInstance(600, 100, Image.SCALE_SMOOTH)));
-		lblStudentDiplomaTema.setBounds(341, 126, 608, 105);
-		panelStudentDiploma.add(lblStudentDiplomaTema);
-		
-		JLabel lblStudentDiplomaFakulteti = new JLabel("");
-		lblStudentDiplomaFakulteti.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).getImage().getScaledInstance(400, 100, Image.SCALE_SMOOTH)));
-		lblStudentDiplomaFakulteti.setBounds(197, 345, 400, 105);
-		panelStudentDiploma.add(lblStudentDiplomaFakulteti);
-		
-		JLabel lblStudentDiplomaDepart = new JLabel("Departamenti");
-		lblStudentDiplomaDepart.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/myaccount_rectangle.png")).getImage().getScaledInstance(400, 100, Image.SCALE_SMOOTH)));
-		lblStudentDiplomaDepart.setBounds(197, 484, 400, 105);
-		panelStudentDiploma.add(lblStudentDiplomaDepart);
-		
-		// DB
-		// Tek Faqja per uploadim te diplomes , mbushja e comboBox me te dhenat nga profesorat e departamentit
-		JComboBox comboBoxProfesorat = new JComboBox();
-		comboBoxProfesorat.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		comboBoxProfesorat.setModel(new DefaultComboBoxModel(new String[] {"Blerim Rexha", "Lule Ahmedi", "Agni Dika"}));
-		comboBoxProfesorat.setBackground(Color.WHITE);
-		comboBoxProfesorat.setBounds(197, 646, 399, 84);
-		panelStudentDiploma.add(comboBoxProfesorat);
-		
-		JLabel lblStudentDiplomaUpload = new JLabel("");
-		lblStudentDiplomaUpload.setIcon(new ImageIcon(frmMain.class.getResource("/Images/settings_button.png")));
-		lblStudentDiplomaUpload.setBounds(761, 472, 200, 177);
-		panelStudentDiploma.add(lblStudentDiplomaUpload);
-		panels.add(panelStudentDiploma);
 		panelAdministrataBtnKontrollo.setBounds(0, 0, 1660, 900);
 		panelMain.add(panelAdministrataBtnKontrollo);
 		panelAdministrataBtnKontrollo.setBackground(SystemColor.text);
@@ -1566,51 +1648,6 @@ public class frmMain extends JFrame {
 		lblShtoTeDhenaRectangle.setIcon(new ImageIcon(frmMain.class.getResource("/Images/settings_button.png")));
 		lblShtoTeDhenaRectangle.setBounds(358, 455, 271, 198);
 		panelAdministrataSettings.add(lblShtoTeDhenaRectangle);
-		
-		panelStudentSettings = new JPanel();
-		panelStudentSettings.setVisible(false);
-		panelStudentSettings.setBounds(0, 0, 1427, 865);
-		panelMain.add(panelStudentSettings);
-		panelStudentSettings.setBackground(Color.WHITE);
-		panelStudentSettings.setLayout(null);
-		
-		txtStudentProfile = new JTextField();
-		txtStudentProfile.setText("Profile");
-		txtStudentProfile.setOpaque(false);
-		txtStudentProfile.setFont(new Font("Tahoma", Font.BOLD, 20));
-		txtStudentProfile.setColumns(10);
-		txtStudentProfile.setBorder(null);
-		txtStudentProfile.setBounds(548, 342, 74, 42);
-		panelStudentSettings.add(txtStudentProfile);
-		
-		JLabel lblStudentSettingsProfileIcon = new JLabel("New label");
-		lblStudentSettingsProfileIcon.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/settings_password_button.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
-		lblStudentSettingsProfileIcon.setBounds(538, 231, 100, 100);
-		panelStudentSettings.add(lblStudentSettingsProfileIcon);
-		
-		txtStudentPassword = new JTextField();
-		txtStudentPassword.setFont(new Font("Tahoma", Font.BOLD, 20));
-		txtStudentPassword.setText("Password");
-		txtStudentPassword.setBorder(null);
-		txtStudentPassword.setOpaque(false);
-		txtStudentPassword.setBounds(174, 342, 107, 42);
-		panelStudentSettings.add(txtStudentPassword);
-		txtStudentPassword.setColumns(10);
-		
-		JLabel lblStudentSettingsPassIcon = new JLabel("New label");
-		lblStudentSettingsPassIcon.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/settings_password_button.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
-		lblStudentSettingsPassIcon.setBounds(174, 231, 100, 100);
-		panelStudentSettings.add(lblStudentSettingsPassIcon);
-		
-		JLabel lblStudentSettingsPassRectangle = new JLabel("");
-		lblStudentSettingsPassRectangle.setIcon(new ImageIcon(frmMain.class.getResource("/Images/settings_button.png")));
-		lblStudentSettingsPassRectangle.setBounds(107, 217, 239, 183);
-		panelStudentSettings.add(lblStudentSettingsPassRectangle);
-		
-		JLabel lblStudentSettingsProfile = new JLabel("");
-		lblStudentSettingsProfile.setIcon(new ImageIcon(frmMain.class.getResource("/Images/settings_button.png")));
-		lblStudentSettingsProfile.setBounds(464, 217, 239, 183);
-		panelStudentSettings.add(lblStudentSettingsProfile);
 		/*
 		panels.add(panelAdministrataNjoftimet);
 		panels.add(panelAdministrataSettings);
@@ -1632,8 +1669,6 @@ public class frmMain extends JFrame {
 		 panelAdministrataDiploma.setVisible(false);
 		 panelAdministrataStats.setVisible(false);
 		 panelStudentStats.setVisible(false);
-		 panelStudentDiploma.setVisible(false);
-		 panelStudentSettings.setVisible(false);
 		 panelProfesorDiploma.setVisible(false);
 		 
 		
