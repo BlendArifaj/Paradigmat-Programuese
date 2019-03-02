@@ -122,7 +122,6 @@ public class Fakulteti {
 		param.add(fk);
 		try {
 			ResultSet res = DBConnect.executeProcedure(conn,cstmt,"getFakulteti", param);
-			
 			while(res.next()) {
 				this.ID = res.getString("ID");
 				this.emri = res.getString("FAKULTETI");

@@ -100,7 +100,8 @@ public class Administrata extends Person implements AdministrataFunctions{
 				this.email = res.getString("email");
 				this.passHash = res.getString("passhash");
 				this.tel = res.getString("tel");
-				//this.fakulteti.inicializoFakultetin(res.getString("fakultetiId"));
+				//System.out.println(res.getString("FAKULTETI"));
+				//this.fakulteti.inicializoFakultetin(res.getString("FAKULTETI"));
 				this.access = res.getInt("access");
 				//this.inicializoNjoftimet();
 			}
